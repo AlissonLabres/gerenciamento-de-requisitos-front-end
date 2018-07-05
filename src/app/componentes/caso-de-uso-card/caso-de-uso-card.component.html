@@ -1,0 +1,223 @@
+<form [formGroup]="casoDeUsoForm">
+  <div class="form-group row mb-0">
+    <strong class="col-sm-4 col-form-label text-right">
+      Titulo:
+    </strong>
+    <div class="col-sm-8">
+      <span
+        *ngIf="!edit"
+        class="form-control-plaintext text-left"
+      >
+        {{ casoDeUsoAux?.titulo }}
+      </span>
+      <input
+        pTooltip="titulo caso de uso, geralmente ligado com um requisito"
+        tooltipPosition="right"
+        tooltipEvent="focus"
+        class="col-sm-8"
+        pInput
+        *ngIf="edit"
+        formControlName="titulo"
+        required
+        type="text"
+        id="tituloInp"
+      >
+    </div>
+  </div>
+  <div class="form-group row mb-0">
+    <strong class="col-sm-4 col-form-label text-right">
+      Escopo:
+    </strong>
+    <div class="col-sm-8">
+      <span
+        *ngIf="!edit"
+        class="form-control-plaintext text-left"
+      >
+        {{ casoDeUsoAux?.escopo }}
+      </span>
+      <textarea
+        pTooltip="abrangencia dentro do projeto"
+        tooltipPosition="right"
+        tooltipEvent="focus"
+        class="col-sm-8"
+        pInputTextArea
+        required
+        *ngIf="edit"
+        formControlName="escopo"
+      ></textarea>
+    </div>
+  </div>
+  <div class="form-group row mb-0">
+    <strong class="col-sm-4 col-form-label text-right">
+      Nivel:
+    </strong>
+    <div class="col-sm-8">
+      <span
+        *ngIf="!edit"
+        class="form-control-plaintext text-left"
+      >
+        {{ casoDeUsoAux?.nivel }}
+      </span>
+      <p-dropdown
+        formControlName="nivel"
+        [options]="nivel"
+        [(ngModel)]="nivelSelecionado"
+        *ngIf="edit"
+      ></p-dropdown>
+    </div>
+
+  </div>
+  <div class="form-group row mb-0">
+    <strong class="col-sm-4 col-form-label text-right">
+      Ator Principal:
+    </strong>
+    <div class="col-sm-8">
+      <span
+        *ngIf="!edit"
+        class="form-control-plaintext text-left"
+      >
+        {{ casoDeUsoAux?.atorPrincipal }}
+      </span>
+      <input
+        pTooltip="quem fara a acao"
+        tooltipPosition="right"
+        tooltipEvent="focus"
+        class="col-sm-8"
+        pInputText
+        *ngIf="edit"
+        formControlName="atorPrincipal"
+      >
+    </div>
+  </div>
+  <div class="form-group row mb-0">
+    <strong class="col-sm-4 col-form-label text-right">
+      Pre-condicoes:
+    </strong>
+    <div class="col-sm-8">
+      <span
+        *ngIf="!edit"
+        class="form-control-plaintext text-left"
+      >
+        {{ casoDeUsoAux?.preCondicoes }}
+      </span>
+      <input
+        pTooltip="requisitos ou condicoes para executar a acao"
+        tooltipPosition="right"
+        tooltipEvent="focus"
+        class="col-sm-8"
+        pInputText
+        *ngIf="edit"
+        formControlName="preCondicoes"
+      >
+    </div>
+  </div>
+  <div class="form-group row mb-0">
+    <strong class="col-sm-4 col-form-label text-right">
+      Pos-condicoes:
+    </strong>
+    <div class="col-sm-8">
+      <span
+        *ngIf="!edit"
+        class="form-control-plaintext text-left"
+      >
+        {{ casoDeUsoAux?.posCondicoes }}
+      </span>
+      <input
+        pTooltip="o que acontecera depois de executar a acao"
+        tooltipPosition="right"
+        tooltipEvent="focus"
+        class="col-sm-8"
+        pInputText
+        *ngIf="edit"
+        formControlName="posCondicoes"
+      >
+    </div>
+  </div>
+  <div class="form-group row mb-0">
+    <strong class="col-sm-4 col-form-label text-right">
+      Cenario principal:
+    </strong>
+    <div class="col-sm-8">
+      <span
+        *ngIf="!edit"
+        class="form-control-plaintext text-left"
+      >
+        {{ casoDeUsoAux?.cenarioPrincipal }}
+      </span>
+      <textarea
+        pTooltip="descrever o que o ator principal ira fazer para realizar com sucesso a acao"
+        tooltipPosition="right"
+        tooltipEvent="focus"
+        class="col-sm-8"
+        pInputTextArea
+        *ngIf="edit"
+        formControlName="cenarioPrincipal"
+      ></textarea>
+    </div>
+  </div>
+  <div class="form-group row mb-0">
+    <strong class="col-sm-4 col-form-label text-right">
+      Extensao:
+    </strong>
+    <div class="col-sm-8">
+      <span
+        *ngIf="!edit"
+        class="form-control-plaintext text-left"
+      >
+        {{ casoDeUsoAux?.extensao }}
+      </span>
+      <input
+        pTooltip="cenario alternativo / sem sucesso. Ex.: perder a conexao com o sistema"
+        tooltipPosition="right"
+        tooltipEvent="focus"
+        class="col-sm-8"
+        pInputText
+        *ngIf="edit"
+        formControlName="extensao"
+      >
+    </div>
+  </div>
+  <div class="form-group row mb-0">
+    <strong class="col-sm-4 col-form-label text-right">
+      Criador do requisito:
+    </strong>
+    <div class="col-sm-8">
+      <span
+        *ngIf="!edit"
+        class="form-control-plaintext text-left"
+      >
+        {{ casoDeUsoAux?.criador }}
+      </span>
+      <input
+        class="col-sm-8"
+        pInputText
+        *ngIf="edit"
+        formControlName="criador"
+        required
+        type="text"
+        id="criadorRequisitoInp"
+      >
+    </div>
+  </div>
+  <div class="form-group row mb-0">
+    <strong class="col-sm-4 col-form-label text-right">
+      Data de criacao:
+    </strong>
+    <div class="col-sm-8">
+      <span
+        *ngIf="!edit"
+        class="form-control-plaintext text-left"
+      >
+        {{ casoDeUsoAux?.dataCriacao | date: 'dd/MM/yyyy' }}
+      </span>
+      <p-calendar
+        dateFormat="dd/mm/yy"
+        *ngIf="edit"
+        formControlName="dataCriacao"
+        required
+        type="text"
+        id="integrantesInp"
+      ></p-calendar>
+    </div>
+  </div>
+</form>
