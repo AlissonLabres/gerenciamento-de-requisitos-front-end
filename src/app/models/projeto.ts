@@ -1,3 +1,4 @@
+import { Atividade } from './atividade';
 import { Requisito } from './requisito';
 import { Integrante } from './integrante';
 
@@ -6,9 +7,9 @@ export class Projeto {
   private _nome: string;
   private _dataInicio: string;
   private _dataFim: string;
-  private _requisitos: any[];
-  private _casosDeUso: any[];
-  private _integrantes: any[];
+  private _requisitos: Requisito[];
+  private _atividades: Atividade[];
+  private _integrantes: Integrante[];
 
   constructor(
     id: number,
@@ -16,7 +17,7 @@ export class Projeto {
     dataInicio: string,
     dataFim: string,
     requisitos: Requisito[],
-    casosDeUso: any[],
+    atividades: Atividade[],
     integrantes: Integrante[]
   ) {
     this.idProjeto = id;
@@ -24,7 +25,7 @@ export class Projeto {
     this.dataInicio = dataInicio;
     this.dataFim = dataFim;
     this.requisitos = requisitos;
-    this.casosDeUso = casosDeUso;
+    this.atividades = atividades;
     this.integrantes = integrantes;
   }
 
@@ -68,12 +69,12 @@ export class Projeto {
     this._requisitos = requisitos;
   }
 
-  public get casosDeUso(): any[] {
-    return this._casosDeUso;
+  public get atividades(): any[] {
+    return this._atividades;
   }
 
-  public set casosDeUso(casosDeUso: any[]) {
-    this._casosDeUso = casosDeUso;
+  public set atividades(casosDeUso: any[]) {
+    this._atividades = casosDeUso;
   }
 
   public get integrantes(): any[] {

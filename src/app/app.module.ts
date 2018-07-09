@@ -53,6 +53,9 @@ import { IntegranteCardComponent } from './componentes/integrante-card/integrant
 import { TrocaSenhaComponent } from './componentes/troca-senha/troca-senha.component';
 import { EsqueceuSenhaComponent } from './componentes/esqueceu-senha/esqueceu-senha.component';
 import { ValidarCodigoComponent } from './componentes/validar-codigo/validar-codigo.component';
+import { IntegrantesComponent } from './componentes/integrantes/integrantes.component';
+import { DetalheIntegranteComponent } from './componentes/detalhe-integrante/detalhe-integrante.component';
+import { DetalheAtividadeComponent } from './componentes/detalhe-atividade/detalhe-atividade.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +86,10 @@ import { ValidarCodigoComponent } from './componentes/validar-codigo/validar-cod
     IntegranteCardComponent,
     TrocaSenhaComponent,
     EsqueceuSenhaComponent,
-    ValidarCodigoComponent
+    ValidarCodigoComponent,
+    IntegrantesComponent,
+    DetalheIntegranteComponent,
+    DetalheAtividadeComponent
   ],
   imports: [
     DropdownModule,

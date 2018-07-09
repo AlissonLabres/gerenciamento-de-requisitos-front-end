@@ -54,6 +54,7 @@ export class AtividadesComponent implements OnInit {
    * @param id - id da atividade.
    */
   detalheAtividade(id: number): void {
-    this.router.navigate([id, '/detalhe-atividade']);
+    const rota = id + '/detalhe-atividade';
+    this.router.navigate([rota]);
   }
 }

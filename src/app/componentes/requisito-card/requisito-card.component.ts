@@ -39,11 +39,9 @@ export class RequisitoCardComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['requisito'].currentValue) {
+    if (changes['requisito'] && changes['requisito'].currentValue) {
       this.initRequisito();
-      if (this.requisito && this.edit) {
-        this.initForm();
-      }
+      this.initForm();
     }
   }
 

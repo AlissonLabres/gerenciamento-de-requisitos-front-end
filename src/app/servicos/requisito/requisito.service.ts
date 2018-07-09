@@ -12,13 +12,13 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import { URLSERVER } from '../../../environments/environment';
 import { Integrante } from '../../models/integrante';
+import { IIntegrante } from '../../interfaces/integrante.inteface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RequisitoService {
   public static requisitoSelecionado = new EventEmitter<string>();
-  private urlServer = 'http://localhost:3000/';
 
   constructor(private http: HttpClient) { }
 
@@ -77,12 +77,12 @@ export class RequisitoService {
    */
   addRequisito(requisito: Requisito): Observable<IRequisito> {
     const iRequisito = {
-      idRequisito: '1',
-      nome: 'Requisito',
-      descricao: 'Manter requisito em um projeto.',
-      importancia: 'Importante',
-      fonte: 'Cliente',
-      categoria: 'Funcional'
+      idRequisito: requisito.idRequisito,
+      nome: requisito.nome,
+      descricao: requisito.descricao,
+      importancia: requisito.importancia,
+      fonte: requisito.fonte,
+      categoria: requisito.categoria
     };
 
     return this.http.post<IRequisito>(`${URLSERVER}/${localStorage['id']}/projeto/${localStorage['projetoId']}/requisito`, iRequisito);
@@ -94,17 +94,17 @@ export class RequisitoService {
    * @param id - id do requisito.
    * @param requisito - requisito com as informações já editadas.
    */
-  editRequisito(id: number, requisito: Requisito): Observable<boolean> {
+  editRequisito(id: number, requisito: Requisito): Observable<IRequisito> {
     const iRequisito = {
-      idRequisito: '1',
-      nome: 'Requisito',
-      descricao: 'Manter requisito em um projeto.',
-      importancia: 'Importante',
-      fonte: 'Cliente',
-      categoria: 'Funcional'
+      idRequisito: requisito.idRequisito,
+      nome: requisito.nome,
+      descricao: requisito.descricao,
+      importancia: requisito.importancia,
+      fonte: requisito.fonte,
+      categoria: requisito.categoria
     };
 
-    return this.http.put<boolean>(this.urlServer + `requisitos/${id}`, iRequisito);
+    return this.http.put<IRequisito>(`${URLSERVER}/${localStorage['id']}/projeto/${localStorage['projetoId']}/requisito/${id}`, iRequisito);
   }
 
   /**
@@ -112,7 +112,7 @@ export class RequisitoService {
    *
    * @param id - id do requisito a ser deletado.
    */
-  deleteRequisito(id: number): Observable<boolean> {
-    return this.http.delete<boolean>(this.urlServer + `requisitos/${id}`);
+  deleteRequisito(id: number): Observable<any> {
+    return this.http.delete<any>(`${URLSERVER}/${localStorage['id']}/projeto/${localStorage['projetoId']}/requisito/${id}`);
   }
 }

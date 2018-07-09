@@ -13,6 +13,7 @@ export class DetalheRequisitoComponent implements OnInit {
   protected requisito: Requisito;
   protected edit = false;
   protected blockedPanel = false;
+  protected permissao: boolean;
 
   constructor(
     private location: Location,
@@ -23,16 +24,21 @@ export class DetalheRequisitoComponent implements OnInit {
 
   ngOnInit() {
     this.getRequisito();
+    if (localStorage['perfilIntegrante'] === 'Gerente' || localStorage['perfilIntegrante'] === 'Analista') {
+      this.permissao = true;
+    } else { this.permissao = false; }
   }
 
   /**
    * Busca requisito pegando id da url.
    */
   getRequisito(): void {
+    this.blockedPanel = true;
     const id: number = +this.route.snapshot.paramMap.get('idRequisito');
     this.requisitoService.getRequisito(id)
       .subscribe(
         (rqt: Requisito) => {
+          this.blockedPanel = false;
           this.requisito = rqt;
           this.requisito.id = id;
           if (this.requisito === undefined) {

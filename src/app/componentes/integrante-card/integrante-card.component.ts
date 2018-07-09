@@ -14,6 +14,8 @@ export class IntegranteCardComponent implements OnInit, OnChanges {
   public edit: boolean;
   @Input()
   public integrante: Integrante;
+  @Input()
+  public novo: boolean;
   @Output()
   public emitUsuarioSelecionado: EventEmitter<Usuario> = new EventEmitter<Usuario>();
 
@@ -51,11 +53,9 @@ export class IntegranteCardComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['integrante'].currentValue) {
+    if (changes['integrante'] && changes['integrante'].currentValue) {
       this.initIntegrante();
-      if (this.integrante && this.edit) {
-        this.initForm();
-      }
+      this.initForm();
     }
   }
 

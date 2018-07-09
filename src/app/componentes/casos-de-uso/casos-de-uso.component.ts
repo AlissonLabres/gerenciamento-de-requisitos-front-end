@@ -15,7 +15,8 @@ export class CasosDeUsoComponent implements OnInit {
   protected casosDeUso: CasoDeUso[];
   protected cols: any = [
     { field: 'idCasoDeUso', header: 'UC' },
-    { field: 'titulo', header: 'Titulo' },
+    { field: 'nome', header: 'Nome' },
+    { field: 'nivel', header: 'Nivel' },
     { field: 'acoes', header: 'Ações' }
   ];
 

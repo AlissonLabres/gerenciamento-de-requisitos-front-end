@@ -5,6 +5,9 @@ import { URLSERVER } from '../../../environments/environment';
 import { IAtividade } from '../../interfaces/atividade.interface';
 import { Atividade } from '../../models/atividade';
 import { Integrante } from '../../models/integrante';
+import { Requisito } from '../../models/requisito';
+import { IRequisito } from '../../interfaces/requisito.interface';
+import { IIntegrante } from '../../interfaces/integrante.inteface';
 
 @Injectable({
   providedIn: 'root'
@@ -59,16 +62,51 @@ export class AtividadeService {
    * @param id - id da atividade.
    */
   getAtividade(id: number): Observable<Atividade> {
-    return this.http.get<IAtividade>(this.urlServer + `atividades?projetoId=${id}`).map(
+    return this.http.get<IAtividade>(
+      `${URLSERVER}/${localStorage['id']}/projeto/${localStorage['projetoId']}/requisito/0/atividade/${id}`
+    ).map(
       (iAtividade: IAtividade) => {
-        // const atividade: Atividade = new Atividade(
-        //   iAtividade.id,
-        //   iAtividade.requisito.id,
-        //   iAtividade.nome,
-        //   iAtividade.criador.nome,
-        //   iAtividade.desenvolvedor[iAtividade.desenvolvedor.length - 1].nome
-        // );
-        return null;
+        const iIntCri: IIntegrante = iAtividade.criador;
+        const criador: Integrante = new Integrante(
+          iIntCri.id,
+          iIntCri.nome,
+          iIntCri.perfilIntegrante,
+          null
+        );
+
+        const iIntDes: IIntegrante = iAtividade.desenvolvedores[iAtividade.desenvolvedores.length - 1];
+        const desenvolvedor: Integrante = new Integrante(
+          iIntDes.id,
+          iIntDes.nome,
+          iIntDes.perfilIntegrante,
+          null
+        );
+
+        const iReq: IRequisito = iAtividade.requisito;
+        const requisito: Requisito = new Requisito(
+          iReq.id,
+          iReq.idRequisito,
+          iReq.nome,
+          iReq.descricao,
+          iReq.importancia,
+          iReq.fonte,
+          iReq.categoria,
+          null,
+          null
+        );
+
+        return new Atividade(
+          iAtividade.id,
+          iAtividade.nome,
+          iAtividade.descricao,
+          iAtividade.status,
+          iAtividade.dataInicio,
+          iAtividade.dataFim,
+          iAtividade.dataConclusao,
+          requisito,
+          criador,
+          desenvolvedor
+        );
       }
     );
   }

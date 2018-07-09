@@ -13,6 +13,7 @@ export class DetalheCasoDeUsoComponent implements OnInit {
   protected edit = false;
   protected blockedPanel = false;
   protected casoDeUso: CasoDeUso;
+  protected permissao: boolean;
 
   constructor(
     private location: Location,
@@ -23,6 +24,9 @@ export class DetalheCasoDeUsoComponent implements OnInit {
 
   ngOnInit() {
     this.getCasoDeUso();
+    if (localStorage['perfilIntegrante'] === 'Gerente' || localStorage['perfilIntegrante'] === 'Analista') {
+      this.permissao = true;
+    } else { this.permissao = false; }
   }
 
   /**
@@ -31,15 +35,15 @@ export class DetalheCasoDeUsoComponent implements OnInit {
   getCasoDeUso(): void {
     const id: number = +this.route.snapshot.paramMap.get('idCasoDeUso');
     this.cduService.getCasoDeUso(id)
-    .subscribe(
-      (cdu: CasoDeUso) => {
-        this.casoDeUso = cdu;
-        this.casoDeUso.idCasoDeUso = id;
-        if (this.casoDeUso === undefined) {
-          this.router.navigate(['not-found']);
+      .subscribe(
+        (cdu: CasoDeUso) => {
+          this.casoDeUso = cdu;
+          this.casoDeUso.idCasoDeUso = id;
+          if (this.casoDeUso === undefined) {
+            this.router.navigate(['not-found']);
+          }
         }
-      }
-    );
+      );
   }
 
   /**
@@ -58,7 +62,7 @@ export class DetalheCasoDeUsoComponent implements OnInit {
       .subscribe((auxCdu => {
         this.location.back();
       })
-    );
+      );
   }
 
   /**

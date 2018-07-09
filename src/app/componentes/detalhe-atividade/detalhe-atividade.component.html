@@ -1,15 +1,23 @@
 <p-card #pnl>
   <div class="text-center">
-    <h2>{{ requisito?.nome }}</h2>
+    <h2>{{ atividade?.nome }}</h2>
   </div>
-  <app-requisito-card [requisito]="requisito" [edit]="edit" #card></app-requisito-card>
+  <app-atividade-card [edit]="edit" [atividade]="atividade" #card></app-atividade-card>
+  <br>
   <div class="text-center">
-    <button *ngIf="edit && card.requisitoForm" pButton class="ui-button-success" label="Salvar" icon="fa fa-fw fa-save" id="btnSalvar"
-      [disabled]="!card.requisitoForm.valid" (click)="card.salvarDados(); salvarEdicao()"></button>
+    <button *ngIf="edit" pButton class="ui-button-success" label="Salvar" icon="fa fa-fw fa-save" id="btnSalvar" [disabled]="!card.atividadeForm.valid"
+      (click)="card.salvarDados(); salvarEdicao()"></button>
     <button *ngIf="!edit && permissao" pButton class="ui-button-warning" label="Editar" icon="fa fa-edit" id="btnEditar" (click)="edit = true"></button>
     <button *ngIf="!edit" pButton label="Voltar" icon="fa fa-long-arrow-left" class="ui-button-danger" id="btnVoltar" (click)="cancelar()"></button>
     <button *ngIf="edit" pButton label="Cancelar" icon="fa fa-fw fa-times-circle" class="ui-button-danger" id="btnCancelar" (click)="edit = false"></button>
     <button label="Deletar" *ngIf="!edit && permissao" id="deletarBtn" pButton icon="fa fa-trash" class="ui-button-danger" (click)="deletar()"></button>
+  </div>
+  <br>
+  <div class="text-center">
+    <app-log-erro *ngIf="edit" [mostraErro]="!card.atividadeForm.valid" msgErro="Os campos sao obrigatorios"></app-log-erro>
+  </div>
+  <div class="text-center" *ngIf="deletarAtividadeLog">
+    <app-log-erro [mostraErro]="erroDeletarAtividade" [msgErro]="' '+msgErroDeletarAtividade" class="col-12 my-1"></app-log-erro>
   </div>
 </p-card>
 <p-blockUI [target]="pnl" [blocked]="blockedPanel">

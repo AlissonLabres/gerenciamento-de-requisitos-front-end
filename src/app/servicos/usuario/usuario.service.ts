@@ -71,6 +71,7 @@ export class UsuarioService {
     delete localStorage['token'];
     delete localStorage['id'];
     delete localStorage['projetoId'];
+    delete localStorage['perfilIntegrante'];
     location.reload();
   }
 

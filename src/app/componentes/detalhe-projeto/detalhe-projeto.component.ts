@@ -12,6 +12,7 @@ export class DetalheProjetoComponent implements OnInit {
   protected blockedPanel = false;
   protected edit = false;
   protected projeto: Projeto;
+  protected permissao: boolean;
 
   constructor(
     private router: Router,
@@ -21,6 +22,9 @@ export class DetalheProjetoComponent implements OnInit {
 
   ngOnInit() {
     this.getProjeto();
+    if (localStorage['perfilIntegrante'] === 'Gerente' || localStorage['perfilIntegrante'] === 'Analista') {
+      this.permissao = true;
+    } else { this.permissao = false; }
   }
 
   /**

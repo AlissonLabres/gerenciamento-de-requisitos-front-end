@@ -22,7 +22,6 @@ export class NovoCasoDeUsoComponent implements OnInit {
   ngOnInit() {
     this.casoDeUso = new CasoDeUso(
       undefined,
-      this.idProjeto,
       '',
       '',
       '',
@@ -31,8 +30,6 @@ export class NovoCasoDeUsoComponent implements OnInit {
       '',
       '',
       '',
-      localStorage['nome'],
-      ''
     );
   }
 
@@ -53,7 +50,7 @@ export class NovoCasoDeUsoComponent implements OnInit {
       .subscribe((auxCdu => {
         this.location.back();
       }
-    ));
+      ));
   }
 
 }

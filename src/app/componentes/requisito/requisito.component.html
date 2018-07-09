@@ -19,6 +19,7 @@
       <tr [pSelectableRow]="rowData">
         <td>{{ rowData['idRequisito'] }}</td>
         <td>{{ rowData['nome'] }}</td>
+        <td>{{ rowData['categoria'] }}</td>
         <td>{{ rowData['importancia'] }}</td>
         <td class="text-center">
           <button id="editarBtn" pButton icon="fa fa-edit" (click)="detalheRequisito(rowData['id'])" class="ui-button-warning"></button>

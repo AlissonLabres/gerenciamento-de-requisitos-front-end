@@ -12,4 +12,5 @@ export interface IAtividade {
   requisito: IRequisito;
   criador: IIntegrante;
   desenvolvedor: IIntegrante;
+  desenvolvedores: IIntegrante[];
 }

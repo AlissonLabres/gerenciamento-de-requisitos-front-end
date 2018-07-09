@@ -17,6 +17,7 @@ export class RequisitoComponent implements OnInit {
   protected cols: any = [
     { field: 'idRequisito', header: 'ID do requisito' },
     { field: 'nome', header: 'Nome' },
+    { field: 'categoria', header: 'Categoria' },
     { field: 'impotancia', header: 'Prioridade' },
     { field: 'acao', header: 'Ação' }
   ];

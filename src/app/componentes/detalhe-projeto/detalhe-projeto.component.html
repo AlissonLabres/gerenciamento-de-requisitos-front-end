@@ -7,10 +7,10 @@
   <div class="text-center">
     <button *ngIf="edit" pButton class="ui-button-success" label="Salvar" icon="fa fa-fw fa-save" id="btnSalvar" [disabled]="!card.projetoForm.valid"
       (click)="card.salvarDados(); salvarEdicao()"></button>
-    <button *ngIf="!edit" pButton class="ui-button-warning" label="Editar" icon="fa fa-edit" id="btnEditar" (click)="edit = true"></button>
+    <button *ngIf="!edit && permissao" pButton class="ui-button-warning" label="Editar" icon="fa fa-edit" id="btnEditar" (click)="edit = true"></button>
     <button *ngIf="!edit" pButton label="Voltar" icon="fa fa-long-arrow-left" class="ui-button-danger" id="btnVoltar" (click)="cancelar()"></button>
     <button *ngIf="edit" pButton label="Cancelar" icon="fa fa-fw fa-times-circle" class="ui-button-danger" id="btnCancelar" (click)="edit = false"></button>
-    <button label="Deletar" *ngIf="!edit" id="deletarBtn" pButton icon="fa fa-trash" class="ui-button-danger" (click)="deletar()"></button>
+    <button label="Deletar" *ngIf="!edit && permissao" id="deletarBtn" pButton icon="fa fa-trash" class="ui-button-danger" (click)="deletar()"></button>
   </div>
   <br>
   <div class="text-center">

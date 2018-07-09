@@ -8,6 +8,7 @@ import { RequisitoService } from '../../servicos/requisito/requisito.service';
 import { Projeto } from '../../models/projeto';
 import { Requisito } from '../../models/requisito';
 import { CasoDeUso } from '../../models/caso-de-uso';
+import { Atividade } from '../../models/atividade';
 
 @Component({
   selector: 'app-inicio',
@@ -17,7 +18,7 @@ import { CasoDeUso } from '../../models/caso-de-uso';
 export class InicioComponent implements OnInit {
   protected projeto: Projeto;
   protected requisitos: Requisito[];
-  protected casosDeUso: CasoDeUso[];
+  protected atividades: Atividade[];
   protected integrantes: Integrante[];
 
   constructor(
@@ -38,7 +39,7 @@ export class InicioComponent implements OnInit {
     this.projetoService.getProjeto(id).subscribe(proj => {
       this.projeto = proj;
       this.requisitos = proj.requisitos;
-      this.casosDeUso = proj.casosDeUso;
+      this.atividades = proj.atividades;
       this.integrantes = proj.integrantes;
     });
   }

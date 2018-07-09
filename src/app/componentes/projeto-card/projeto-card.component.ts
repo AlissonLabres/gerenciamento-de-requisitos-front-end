@@ -18,11 +18,9 @@ export class ProjetoCardComponent implements OnChanges {
   constructor(private fb: FormBuilder) { }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['projeto'].currentValue) {
+    if (changes['projeto'] && changes['projeto'].currentValue) {
       this.initProjeto();
-      if (this.projeto && this.edit) {
-        this.initForm();
-      }
+      this.initForm();
     }
   }
 
@@ -62,7 +60,7 @@ export class ProjetoCardComponent implements OnChanges {
       this.projeto.dataInicio,
       this.projeto.dataFim,
       this.projeto.requisitos,
-      this.projeto.casosDeUso,
+      this.projeto.atividades,
       this.projeto.integrantes
     );
   }

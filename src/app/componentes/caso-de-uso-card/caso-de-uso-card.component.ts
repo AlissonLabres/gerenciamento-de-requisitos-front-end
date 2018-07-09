@@ -19,16 +19,17 @@ export class CasoDeUsoCardComponent implements OnChanges {
 
   constructor(private fb: FormBuilder) {
     this.nivel = [
-      {label: 'Selecione', value: null},
-      {label: 'Muito', value: 'muito'},
-      {label: 'Médio', value: 'medio'},
-      {label: 'Pouco', value: 'pouco'},
+      { label: 'Selecione', value: null },
+      { label: 'Essencial', value: 'Essencial' },
+      { label: 'Muito', value: 'Muito' },
+      { label: 'Médio', value: 'Medio' },
+      { label: 'Pouco', value: 'Pouco' },
     ];
-   }
+  }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.initCasoDeUso();
-    if (this.casoDeUso && this.edit) {
+    if (changes['casoDeUso'] && changes['casoDeUso'].currentValue) {
+      this.initCasoDeUso();
       this.initForm();
     }
   }
@@ -39,17 +40,14 @@ export class CasoDeUsoCardComponent implements OnChanges {
   initCasoDeUso(): void {
     this.casoDeUsoAux = new CasoDeUso(
       this.casoDeUso.idCasoDeUso,
-      this.casoDeUso.projetoId,
-      this.casoDeUso.titulo,
+      this.casoDeUso.nome,
       this.casoDeUso.escopo,
       this.casoDeUso.nivel,
       this.casoDeUso.atorPrincipal,
-      this.casoDeUso.preCondicoes,
-      this.casoDeUso.posCondicoes,
+      this.casoDeUso.preCondicao,
+      this.casoDeUso.posCondicao,
       this.casoDeUso.cenarioPrincipal,
       this.casoDeUso.extensao,
-      this.casoDeUso.criador,
-      this.casoDeUso.dataCriacao
     );
   }
 
@@ -57,23 +55,15 @@ export class CasoDeUsoCardComponent implements OnChanges {
    * Inicia formulario.
    */
   initForm(): void {
-    let dataCriacao;
-    if (!this.casoDeUsoAux.dataCriacao) {
-      dataCriacao = null;
-    } else {
-      dataCriacao = new Date(this.casoDeUsoAux.dataCriacao);
-    }
     this.casoDeUsoForm = this.fb.group({
-      titulo: [this.casoDeUsoAux.titulo, [Validators.required]],
+      nome: [this.casoDeUsoAux.nome, [Validators.required]],
       escopo: [this.casoDeUsoAux.escopo, [Validators.required]],
       nivel: [this.casoDeUsoAux.nivel, [Validators.required]],
       atorPrincipal: [this.casoDeUsoAux.atorPrincipal, [Validators.required]],
-      preCondicoes: [this.casoDeUsoAux.preCondicoes, [Validators.required]],
-      posCondicoes: [this.casoDeUsoAux.posCondicoes, [Validators.required]],
+      preCondicao: [this.casoDeUsoAux.preCondicao, [Validators.required]],
+      posCondicao: [this.casoDeUsoAux.posCondicao, [Validators.required]],
       cenarioPrincipal: [this.casoDeUsoAux.cenarioPrincipal, [Validators.required]],
       extensao: [this.casoDeUsoAux.extensao, [Validators.required]],
-      criador: [this.casoDeUsoAux.criador, [Validators.required]],
-      dataCriacao: [this.casoDeUsoAux.dataCriacao, [Validators.required]]
     });
   }
 
@@ -81,16 +71,14 @@ export class CasoDeUsoCardComponent implements OnChanges {
    * Caso de uso passado do componente de novo caso de uso recebe os dados do formulario.
    */
   salvarDados(): void {
-    this.casoDeUso.titulo = this.casoDeUsoForm.get('titulo').value;
+    this.casoDeUso.nome = this.casoDeUsoForm.get('nome').value;
     this.casoDeUso.escopo = this.casoDeUsoForm.get('escopo').value;
     this.casoDeUso.nivel = this.casoDeUsoForm.get('nivel').value;
     this.casoDeUso.atorPrincipal = this.casoDeUsoForm.get('atorPrincipal').value;
-    this.casoDeUso.preCondicoes = this.casoDeUsoForm.get('preCondicoes').value;
-    this.casoDeUso.posCondicoes = this.casoDeUsoForm.get('posCondicoes').value;
+    this.casoDeUso.preCondicao = this.casoDeUsoForm.get('preCondicao').value;
+    this.casoDeUso.posCondicao = this.casoDeUsoForm.get('posCondicao').value;
     this.casoDeUso.cenarioPrincipal = this.casoDeUsoForm.get('cenarioPrincipal').value;
     this.casoDeUso.extensao = this.casoDeUsoForm.get('extensao').value;
-    this.casoDeUso.criador = this.casoDeUsoForm.get('criador').value;
-    this.casoDeUso.dataCriacao = this.casoDeUsoForm.get('dataCriacao').value;
   }
 
 }

@@ -13,8 +13,21 @@ export class IntegranteService {
 
   getIntegrantes(): Observable<any> {
     return this.http.get(`${URLSERVER}/${localStorage['id']}/projeto/${localStorage['projetoId']}/integrante/list`).map(
-      (iRequisitos) => {
-        return iRequisitos;
+      (iIntegrantes) => {
+        return iIntegrantes;
+      }
+    );
+  }
+
+  getIntegrante(id: number): Observable<Integrante> {
+    return this.http.get(`${URLSERVER}/${localStorage['id']}/projeto/${localStorage['projetoId']}/integrante/${id}`).map(
+      (iIntegrante: IIntegrante) => {
+        return new Integrante(
+          iIntegrante.id,
+          iIntegrante.nome,
+          iIntegrante.perfilIntegrante,
+          null
+        );
       }
     );
   }
@@ -25,6 +38,20 @@ export class IntegranteService {
     };
 
     return this.http.post<IIntegrante>(`${URLSERVER}/${idUsuario}/projeto/${localStorage['projetoId']}/integrante`, iIntegrante);
+  }
+
+  editIntegrante(id: number, integrante: Integrante): Observable<IIntegrante> {
+    const iIntegrante = {
+      perfilIntegrante: integrante.perfil
+    };
+
+    return this.http.post<IIntegrante>(
+      `${URLSERVER}/${localStorage['id']}/projeto/${localStorage['projetoId']}/integrante/${id}`, iIntegrante
+    );
+  }
+
+  deleteIntegrante(id: number): Observable<any> {
+    return this.http.delete<any>(`${URLSERVER}/${localStorage['id']}/projeto/${localStorage['projetoId']}/integrante/${id}`);
   }
 
   private handleError(error: any) {

@@ -5,13 +5,12 @@ import { Observable } from 'rxjs/Observable';
 
 import { ICasoDeUso } from '../../interfaces/casoDeUso.interface';
 import { CasoDeUso } from '../../models/caso-de-uso';
+import { URLSERVER } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CasoDeUsoService {
-  private urlServer = 'http://localhost:3000/';
-
   constructor(private http: HttpClient) { }
 
   /**
@@ -19,22 +18,21 @@ export class CasoDeUsoService {
    */
   getCasosDeUso(): Observable<CasoDeUso[]> {
     const idProjeto = localStorage['projetoId'];
-    return this.http.get<ICasoDeUso[]>(this.urlServer + `casosDeUso?projetoId=${idProjeto}`).map(
+    return this.http.get<ICasoDeUso[]>(
+      `${URLSERVER}/${localStorage['id']}/projeto/${localStorage['projetoId']}/casoDeUso/list`
+    ).map(
       (iCasosDeUsos: ICasoDeUso[]) => {
         const casosDeUso: CasoDeUso[] = iCasosDeUsos.map(
           (iCasosUso: ICasoDeUso) => new CasoDeUso(
             iCasosUso.id,
-            iCasosUso.projetoId,
-            iCasosUso.titulo,
+            iCasosUso.nome,
             iCasosUso.escopo,
             iCasosUso.nivel,
             iCasosUso.atorPrincipal,
-            iCasosUso.preCondicoes,
-            iCasosUso.posCondicoes,
+            iCasosUso.preCondicao,
+            iCasosUso.posCondicao,
             iCasosUso.cenarioPrincipal,
-            iCasosUso.extensao,
-            iCasosUso.criador,
-            iCasosUso.dataCriacao
+            iCasosUso.extensao
           )
         );
         return casosDeUso;
@@ -48,52 +46,23 @@ export class CasoDeUsoService {
    * @param id - id do caso de uso.
    */
   getCasoDeUso(id: number): Observable<CasoDeUso> {
-    return this.http.get<ICasoDeUso[]>(this.urlServer + `casosDeUso?projetoId=${id}`).map(
-      (iCasoDeUsos: ICasoDeUso[]) => {
-        if (!iCasoDeUsos || !iCasoDeUsos[0]) {
-          return undefined;
-        }
-        const casoDeUso: CasoDeUso = new CasoDeUso (
-          iCasoDeUsos[0].id,
-          iCasoDeUsos[0].projetoId,
-          iCasoDeUsos[0].titulo,
-          iCasoDeUsos[0].escopo,
-          iCasoDeUsos[0].nivel,
-          iCasoDeUsos[0].atorPrincipal,
-          iCasoDeUsos[0].preCondicoes,
-          iCasoDeUsos[0].posCondicoes,
-          iCasoDeUsos[0].cenarioPrincipal,
-          iCasoDeUsos[0].extensao,
-          iCasoDeUsos[0].criador,
-          iCasoDeUsos[0].dataCriacao
+    return this.http.get<ICasoDeUso>(
+      `${URLSERVER}/${localStorage['id']}/projeto/${localStorage['projetoId']}/casoDeUso/${id}`
+    ).map(
+      (iCasoDeUso: ICasoDeUso) => {
+        return new CasoDeUso(
+          iCasoDeUso.id,
+          iCasoDeUso.nome,
+          iCasoDeUso.escopo,
+          iCasoDeUso.nivel,
+          iCasoDeUso.atorPrincipal,
+          iCasoDeUso.preCondicao,
+          iCasoDeUso.posCondicao,
+          iCasoDeUso.cenarioPrincipal,
+          iCasoDeUso.extensao,
         );
-        return casoDeUso;
       }
     );
-  }
-
-  /**
-   * Gera uma interface de um modelo de caso de uso para enviar para o back-end.
-   *
-   * @param casoDeUso - model caso de uso.
-   */
-  private geraInterfaceCasoDeUso(casoDeUso: CasoDeUso): ICasoDeUso {
-    const projetoId = localStorage['projetoId'];
-    const iCasoDeUso: ICasoDeUso = {
-      id: undefined,
-      projetoId: projetoId,
-      titulo: casoDeUso.titulo,
-      escopo: casoDeUso.escopo,
-      nivel: casoDeUso.nivel,
-      atorPrincipal: casoDeUso.atorPrincipal,
-      preCondicoes: casoDeUso.preCondicoes,
-      posCondicoes: casoDeUso.posCondicoes,
-      cenarioPrincipal: casoDeUso.cenarioPrincipal,
-      extensao: casoDeUso.extensao,
-      criador: casoDeUso.criador,
-      dataCriacao: casoDeUso.dataCriacao
-    };
-    return iCasoDeUso;
   }
 
   /**
@@ -102,8 +71,18 @@ export class CasoDeUsoService {
    * @param casoDeUso - caso de uso a ser adicionado.
    */
   addCasoDeUso(casoDeUso: CasoDeUso): Observable<ICasoDeUso> {
-    const iCasoDeUso: ICasoDeUso = this.geraInterfaceCasoDeUso(casoDeUso);
-    return this.http.post<ICasoDeUso>(this.urlServer + `casosDeUso`, iCasoDeUso);
+    const iCasoDeUso = {
+      'nome': casoDeUso.nome,
+      'escopo': casoDeUso.escopo,
+      'nivel': casoDeUso.nivel,
+      'preCondicao': casoDeUso.preCondicao,
+      'posCondicao': casoDeUso.posCondicao,
+      'cenarioPrincipal': casoDeUso.cenarioPrincipal,
+      'extensao': casoDeUso.extensao,
+      'atorPrincipal': casoDeUso.atorPrincipal
+    };
+
+    return this.http.post<ICasoDeUso>(`${URLSERVER}/${localStorage['id']}/projeto/${localStorage['projetoId']}/casoDeUso/`, iCasoDeUso);
   }
 
 
@@ -114,8 +93,18 @@ export class CasoDeUsoService {
    * @param casoDeUso - objeto caso de uso com as informacoes ja editadas.
    */
   editCasoDeUso(id: number, casoDeUso: CasoDeUso): Observable<boolean> {
-    const iCasoDeUso: ICasoDeUso = this.geraInterfaceCasoDeUso(casoDeUso);
-    return this.http.put<boolean>(this.urlServer + `casosDeUso/${id}`, iCasoDeUso);
+    const iCasoDeUso = {
+      'nome': casoDeUso.nome,
+      'escopo': casoDeUso.escopo,
+      'nivel': casoDeUso.nivel,
+      'preCondicao': casoDeUso.preCondicao,
+      'posCondicao': casoDeUso.posCondicao,
+      'cenarioPrincipal': casoDeUso.cenarioPrincipal,
+      'extensao': casoDeUso.extensao,
+      'atorPrincipal': casoDeUso.atorPrincipal
+    };
+
+    return this.http.put<boolean>(`${URLSERVER}/${localStorage['id']}/projeto/${localStorage['projetoId']}/casoDeUso/${id}`, iCasoDeUso);
   }
 
   /**
@@ -124,6 +113,6 @@ export class CasoDeUsoService {
    * @param id - id do caso de uso que sera deletado.
    */
   deleteCasoDeUso(id: number): Observable<boolean> {
-    return this.http.delete<boolean>(this.urlServer + `casosDeUso/${id}`);
+    return this.http.delete<boolean>(`${URLSERVER}/${localStorage['id']}/projeto/${localStorage['projetoId']}/casoDeUso/${id}`);
   }
 }

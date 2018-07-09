@@ -2,7 +2,8 @@
   <div class="text-center">
     <h2>Novo Integrante</h2>
   </div>
-  <app-integrante-card [edit]="edit" [integrante]="integrante" (emitUsuarioSelecionado)="atualizarUsuario($event)" #card></app-integrante-card>
+  <app-integrante-card [novo]="true" [edit]="edit" [integrante]="integrante" (emitUsuarioSelecionado)="atualizarUsuario($event)"
+    #card></app-integrante-card>
   <br>
   <div class="text-center">
     <button pButton class="ui-button-success" label="Salvar" icon="fa fa-fw fa-save" id="btnSalvar" (click)="card.salvarDados(); salvarIntegrante()"

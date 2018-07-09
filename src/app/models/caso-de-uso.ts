@@ -1,43 +1,34 @@
 export class CasoDeUso {
   private _id: number;
-  private _projetoId: number;
-  private _titulo: string;
+  private _nome: string;
   private _escopo: string;
   private _nivel: string;
   private _atorPrincipal: string;
-  private _preCondicoes: string;
-  private _posCondicoes: string;
+  private _preCondicao: string;
+  private _posCondicao: string;
   private _cenarioPrincipal: string;
   private _extensao: string;
-  private _criador: string;
-  private _dataCriacao: string;
 
   constructor(
     id: number,
-    projetoId: number,
-    titulo: string,
+    nome: string,
     escopo: string,
     nivel: string,
     atorPrincipal: string,
-    preCondicoes: string,
-    posCondicoes: string,
+    preCondicao: string,
+    posCondicao: string,
     cenarioPrincipal: string,
     extensao: string,
-    criador: string,
-    dataCriacao: string
   ) {
     this.idCasoDeUso = id;
-    this.projetoId = projetoId;
-    this.titulo = titulo;
+    this.nome = nome;
     this.escopo = escopo;
     this.nivel = nivel;
     this.atorPrincipal = atorPrincipal;
-    this.preCondicoes = preCondicoes;
-    this.posCondicoes = posCondicoes;
+    this.preCondicao = preCondicao;
+    this.posCondicao = posCondicao;
     this.cenarioPrincipal = cenarioPrincipal;
     this.extensao = extensao;
-    this.criador = criador;
-    this.dataCriacao = dataCriacao;
   }
 
   public get idCasoDeUso(): number {
@@ -48,20 +39,12 @@ export class CasoDeUso {
     this._id = id;
   }
 
-  public get projetoId(): number {
-    return this._projetoId;
+  public get nome(): string {
+    return this._nome;
   }
 
-  public set projetoId(projetoId: number) {
-    this._projetoId = projetoId;
-  }
-
-  public get titulo(): string {
-    return this._titulo;
-  }
-
-  public set titulo(titulo: string) {
-    this._titulo = titulo;
+  public set nome(nome: string) {
+    this._nome = nome;
   }
 
   public get escopo(): string {
@@ -88,20 +71,20 @@ export class CasoDeUso {
     this._atorPrincipal = atorPrincipal;
   }
 
-  public get preCondicoes(): string {
-    return this._preCondicoes;
+  public get preCondicao(): string {
+    return this._preCondicao;
   }
 
-  public set preCondicoes(preCondicoes: string) {
-    this._preCondicoes = preCondicoes;
+  public set preCondicao(preCondicoes: string) {
+    this._preCondicao = preCondicoes;
   }
 
-  public get posCondicoes(): string {
-    return this._posCondicoes;
+  public get posCondicao(): string {
+    return this._posCondicao;
   }
 
-  public set posCondicoes(posCondicoes: string) {
-    this._posCondicoes = posCondicoes;
+  public set posCondicao(posCondicoes: string) {
+    this._posCondicao = posCondicoes;
   }
 
   public get cenarioPrincipal(): string {
@@ -118,21 +101,5 @@ export class CasoDeUso {
 
   public set extensao(extensao: string) {
     this._extensao = extensao;
-  }
-
-  public get criador(): string {
-    return this._criador;
-  }
-
-  public set criador(criador: string) {
-    this._criador = criador;
-  }
-
-  public get dataCriacao(): string {
-    return this._dataCriacao;
-  }
-
-  public set dataCriacao(dataCriacao: string) {
-    this._dataCriacao = dataCriacao;
   }
 }

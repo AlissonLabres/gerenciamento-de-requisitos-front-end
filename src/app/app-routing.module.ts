@@ -1,3 +1,5 @@
+import { DetalheAtividadeComponent } from './componentes/detalhe-atividade/detalhe-atividade.component';
+import { DetalheIntegranteComponent } from './componentes/detalhe-integrante/detalhe-integrante.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 
@@ -19,6 +21,7 @@ import { NovaAtividadeComponent } from './componentes/nova-atividade/nova-ativid
 import { NovoIntegranteComponent } from './componentes/novo-integrante/novo-integrante.component';
 import { TrocaSenhaComponent } from './componentes/troca-senha/troca-senha.component';
 import { ValidarCodigoComponent } from './componentes/validar-codigo/validar-codigo.component';
+import { IntegrantesComponent } from './componentes/integrantes/integrantes.component';
 
 const APP_ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
@@ -29,10 +32,13 @@ const APP_ROUTES: Routes = [
   { path: ':idProjeto/requisitos', component: RequisitoComponent, canActivate: [LoginGuard] },
   { path: ':idProjeto/casos-de-uso', component: CasosDeUsoComponent, canActivate: [LoginGuard] },
   { path: ':idProjeto/atividades', component: AtividadesComponent, canActivate: [LoginGuard] },
+  { path: ':idProjeto/integrantes', component: IntegrantesComponent, canActivate: [LoginGuard] },
   { path: 'not-found', component: NotFoundComponent, canActivate: [LoginGuard] },
   { path: ':idProjeto/detalhe-projeto', component: DetalheProjetoComponent, canActivate: [LoginGuard] },
   { path: ':idRequisito/detalhe-requisito', component: DetalheRequisitoComponent, canActivate: [LoginGuard] },
   { path: ':idCasoDeUso/detalhe-caso-de-uso', component: DetalheCasoDeUsoComponent, canActivate: [LoginGuard] },
+  { path: ':idIntegrante/detalhe-integrante', component: DetalheIntegranteComponent, canActivate: [LoginGuard] },
+  { path: ':idAtividade/detalhe-atividade', component: DetalheAtividadeComponent, canActivate: [LoginGuard] },
   { path: 'nova-atividade', component: NovaAtividadeComponent, canActivate: [LoginGuard] },
   { path: 'novo-integrante', component: NovoIntegranteComponent, canActivate: [LoginGuard] },
   { path: 'novo-projeto', component: NovoProjetoComponent, canActivate: [LoginGuard] },

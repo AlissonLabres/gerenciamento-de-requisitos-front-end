@@ -16,8 +16,10 @@ export class AtividadeCardComponent implements OnInit, OnChanges {
   @Input()
   public edit: boolean;
   @Input()
-
   public atividade: Atividade;
+  @Input()
+  public novo: boolean;
+
   protected atividadeAux: Atividade;
   protected atividadeForm: FormGroup;
 
@@ -70,8 +72,8 @@ export class AtividadeCardComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.initAtividade();
-    if (this.atividade && this.edit) {
+    if (changes['atividade'] && changes['atividade'].currentValue) {
+      this.initAtividade();
       this.initForm();
     }
   }
@@ -104,9 +106,33 @@ export class AtividadeCardComponent implements OnInit, OnChanges {
       status: [this.atividadeAux.status, [Validators.required]],
       dataInicio: [this.atividadeAux.dataInicio, [Validators.required]],
       dataFim: [this.atividadeAux.dataFim, [Validators.required]],
+      dataConclusao: [this.atividadeAux.dataConclusao],
       requisito: [this.atividadeAux.requisito, [Validators.required]],
       desenvolvedor: [this.atividadeAux.desenvolvedor, [Validators.required]]
     });
+
+    this.atividadeForm.get('status').valueChanges.subscribe((value: string) => {
+      if (this.novo) {
+        this.status.forEach(s => {
+          if (s.value === 'Concluido') {
+            const index = this.status.indexOf(s);
+            if (index > -1) {
+              this.status.splice(index, 1);
+            }
+          }
+        });
+      }
+      if (value === 'Concluido') {
+        this.atividadeForm.get('dataConclusao').setErrors({ 'required': true });
+      } else {
+        this.atividadeForm.get('dataConclusao').setErrors(null);
+      }
+    });
+
+    if (!this.novo) {
+      this.atividadeForm.get('requisito').setErrors(null);
+      this.atividadeForm.get('desenvolvedor').setErrors(null);
+    }
   }
 
   /**

@@ -9,6 +9,8 @@ import { IProjeto } from '../../interfaces/projeto.interface';
 import { Projeto } from '../../models/projeto';
 import { Requisito } from '../../models/requisito';
 import { Integrante } from '../../models/integrante';
+import { IAtividade } from '../../interfaces/atividade.interface';
+import { Atividade } from '../../models/atividade';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +37,7 @@ export class ProjetoService {
               iProjeto.dataInicio,
               iProjeto.dataFim,
               null,
-              iProjeto.casosDeUso,
+              null,
               null
             );
           }
@@ -98,38 +100,64 @@ export class ProjetoService {
   }
 
   private mapInterfaceToModelProjeto(iProjeto: IProjeto, id: number) {
-    const iReqs = iProjeto.requisito;
+    const iReqs = iProjeto.requisitos;
+    const iAtvs = iProjeto.atividades;
     const iInts = iProjeto.integrantes;
-
     const requisitos: Requisito[] = [];
+    const atividades: Atividade[] = [];
     const integrantes: Integrante[] = [];
 
-    iReqs.forEach((iReq: IRequisito) => {
-      requisitos.push(
-        new Requisito(
-          iReq.id,
-          iReq.idRequisito,
-          iReq.nome,
-          iReq.descricao,
-          iReq.importancia,
-          iReq.fonte,
-          iReq.categoria,
-          null,
-          null
-        )
-      );
-    });
+    localStorage.setItem('perfilIntegrante', iProjeto.perfilIntegranteProjeto);
 
-    iInts.forEach((iInt: IIntegrante) => {
-      integrantes.push(
-        new Integrante(
-          iInt.id,
-          iInt.nome,
-          iInt.perfilIntegrante,
-          null
-        )
-      );
-    });
+    if (iReqs) {
+      iReqs.forEach((iReq: IRequisito) => {
+        requisitos.push(
+          new Requisito(
+            iReq.id,
+            iReq.idRequisito,
+            iReq.nome,
+            iReq.descricao,
+            iReq.importancia,
+            iReq.fonte,
+            iReq.categoria,
+            null,
+            null
+          )
+        );
+      });
+    }
+
+    if (iInts) {
+      iInts.forEach((iInt: IIntegrante) => {
+        integrantes.push(
+          new Integrante(
+            iInt.id,
+            iInt.nome,
+            iInt.perfilIntegrante,
+            null
+          )
+        );
+      });
+    }
+
+    if (iAtvs) {
+      iAtvs.forEach((iAtv: IAtividade) => {
+        atividades.push(
+          new Atividade(
+            iAtv.id,
+            iAtv.nome,
+            iAtv.descricao,
+            iAtv.status,
+            iAtv.dataInicio,
+            iAtv.dataFim,
+            iAtv.dataConclusao,
+            null,
+            null,
+            null
+          )
+        );
+      });
+    }
 
     return new Projeto(
       id,
@@ -137,7 +165,7 @@ export class ProjetoService {
       iProjeto.dataInicio,
       iProjeto.dataFim,
       requisitos,
-      iProjeto.casosDeUso,
+      atividades,
       integrantes
     );
   }
