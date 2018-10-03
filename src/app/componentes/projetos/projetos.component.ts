@@ -13,6 +13,7 @@ import { ProjetoService } from '../../servicos/projeto/projeto.service';
 })
 export class ProjetosComponent implements OnInit {
   protected projetos: Projeto[];
+  protected blockedPanel = false;
   private usuarioId: number;
   private projetoSelecionado: Projeto;
   protected cols: any = [
@@ -31,10 +32,11 @@ export class ProjetosComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.blockedPanel = true;
     ProjetoService.projetoSelecionado.next(undefined);
     delete localStorage['projetoId'];
     this.projetoService.getProjetos()
-      .subscribe(projs => this.projetos = projs);
+      .subscribe(projs => (this.projetos = projs, this.blockedPanel = false), () => this.blockedPanel = false);
   }
 
   /**

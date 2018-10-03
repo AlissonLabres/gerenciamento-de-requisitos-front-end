@@ -53,10 +53,15 @@ export class NovoRequisitoComponent implements OnInit {
         this.location.back(),
         this.blockedPanel = false
       ),
-      erroRequisito => (
-        this.msgErroRequisito = erroRequisito.error,
-        this.blockedPanel = false
-      )
+      erroRequisito => {
+        if (erroRequisito.error === 'org.hibernate.exception.ConstraintViolationException: could not execute statement') {
+          this.msgErroRequisito = ' Digite apenas número no ID requisito',
+            this.blockedPanel = false;
+        } else {
+          this.msgErroRequisito = erroRequisito.error;
+          this.blockedPanel = false;
+        }
+      }
     );
   }
 

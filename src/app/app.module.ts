@@ -56,6 +56,7 @@ import { ValidarCodigoComponent } from './componentes/validar-codigo/validar-cod
 import { IntegrantesComponent } from './componentes/integrantes/integrantes.component';
 import { DetalheIntegranteComponent } from './componentes/detalhe-integrante/detalhe-integrante.component';
 import { DetalheAtividadeComponent } from './componentes/detalhe-atividade/detalhe-atividade.component';
+import { NumberDirective } from './number.directive';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { DetalheAtividadeComponent } from './componentes/detalhe-atividade/detal
     ValidarCodigoComponent,
     IntegrantesComponent,
     DetalheIntegranteComponent,
-    DetalheAtividadeComponent
+    DetalheAtividadeComponent,
+    NumberDirective
   ],
   imports: [
     DropdownModule,

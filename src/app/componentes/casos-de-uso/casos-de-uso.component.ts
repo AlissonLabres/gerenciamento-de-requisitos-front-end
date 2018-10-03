@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class CasosDeUsoComponent implements OnInit {
   protected projeto: Projeto;
   protected casosDeUso: CasoDeUso[];
+  protected blockedPanel = false;
   protected cols: any = [
     { field: 'idCasoDeUso', header: 'UC' },
     { field: 'nome', header: 'Nome' },
@@ -35,8 +36,14 @@ export class CasosDeUsoComponent implements OnInit {
    * Busca os casos de uso do servidor através do serviço.
    */
   getCasosDeUso(): void {
+    this.blockedPanel = true;
     this.cduService.getCasosDeUso()
-      .subscribe(csdu => this.casosDeUso = csdu);
+      .subscribe(
+        csdu => {
+          this.casosDeUso = csdu;
+          this.blockedPanel = false;
+        }, () => this.blockedPanel = false
+      );
   }
 
   /**

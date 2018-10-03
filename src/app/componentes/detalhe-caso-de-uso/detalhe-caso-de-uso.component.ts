@@ -33,16 +33,18 @@ export class DetalheCasoDeUsoComponent implements OnInit {
    * Busca caso de uso pegando id da url.
    */
   getCasoDeUso(): void {
+    this.blockedPanel = true;
     const id: number = +this.route.snapshot.paramMap.get('idCasoDeUso');
     this.cduService.getCasoDeUso(id)
       .subscribe(
         (cdu: CasoDeUso) => {
+          this.blockedPanel = false;
           this.casoDeUso = cdu;
           this.casoDeUso.idCasoDeUso = id;
           if (this.casoDeUso === undefined) {
             this.router.navigate(['not-found']);
           }
-        }
+        }, () => this.blockedPanel = false
       );
   }
 

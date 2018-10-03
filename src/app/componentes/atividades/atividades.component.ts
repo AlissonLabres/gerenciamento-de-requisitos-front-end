@@ -13,6 +13,7 @@ import { AtividadeService } from '../../servicos/atividade/atividade.service';
 export class AtividadesComponent implements OnInit {
   protected projeto: Projeto;
   protected atividades: Atividade[];
+  protected blockedPanel = false;
   protected cols: any = [
     { field: 'idAtividade', header: 'ID' },
     { field: 'nome', header: 'Nome' },
@@ -38,7 +39,10 @@ export class AtividadesComponent implements OnInit {
    * Buscas atividades do projeto atraves do metodo do servico de atividades.
    */
   getAtividades(): void {
-    this.atvService.getAtividades().subscribe(atvs => this.atividades = atvs);
+    this.blockedPanel = true;
+    this.atvService.getAtividades().subscribe(
+      atvs => (this.atividades = atvs, this.blockedPanel = false), () => this.blockedPanel = false
+    );
   }
 
   /**

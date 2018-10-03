@@ -38,14 +38,16 @@ export class DetalheProjetoComponent implements OnInit {
    * Busca projeto selecionado pela id através da url.
    */
   getProjeto(): void {
+    this.blockedPanel = true;
     const id: number = +this.route.snapshot.paramMap.get('idProjeto');
     this.projetoService.getProjeto(id).subscribe(
       (proj: Projeto) => {
         this.projeto = proj;
+        this.blockedPanel = false;
         if (this.projeto === undefined) {
           this.router.navigate(['not-fount']);
         }
-      }
+      }, () => this.blockedPanel = false
     );
   }
 

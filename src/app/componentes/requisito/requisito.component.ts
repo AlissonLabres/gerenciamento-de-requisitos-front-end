@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class RequisitoComponent implements OnInit {
   protected projeto: Observable<Projeto>;
+  protected blockedPanel = false;
   protected requisitos: Requisito[];
   protected cols: any = [
     { field: 'idRequisito', header: 'ID do requisito' },
@@ -36,7 +37,10 @@ export class RequisitoComponent implements OnInit {
    * Método que busca os requisitos para listar.
    */
   getRequisitos(): void {
-    this.requisitoService.getRequisitos().subscribe(reqs => this.requisitos = reqs);
+    this.blockedPanel = true;
+    this.requisitoService.getRequisitos().subscribe(
+      reqs => (this.requisitos = reqs, this.blockedPanel = false), () => this.blockedPanel = false
+    );
   }
 
   /**

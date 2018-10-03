@@ -44,7 +44,7 @@ export class DetalheRequisitoComponent implements OnInit {
           if (this.requisito === undefined) {
             this.router.navigate(['not-found']);
           }
-        }
+        }, () => this.blockedPanel = false
       );
   }
 

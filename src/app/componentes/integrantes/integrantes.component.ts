@@ -13,6 +13,7 @@ import { ProjetoService } from '../../servicos/projeto/projeto.service';
 export class IntegrantesComponent implements OnInit {
   protected projeto: Projeto;
   protected integrantes: Integrante[];
+  protected blockedPanel = false;
   protected cols: any = [
     { field: 'id', header: 'ID' },
     { field: 'nome', header: 'Nome' },
@@ -34,7 +35,11 @@ export class IntegrantesComponent implements OnInit {
    * Buscas integrantes do projeto atraves do metodo do servico de integrantes.
    */
   getIntegrantes(): void {
-    this.intService.getIntegrantes().subscribe(ints => this.integrantes = ints);
+    this.blockedPanel = true;
+    this.intService.getIntegrantes().subscribe(
+      ints => (this.integrantes = ints, this.blockedPanel = false),
+      () => this.blockedPanel = false
+    );
   }
 
   /**
