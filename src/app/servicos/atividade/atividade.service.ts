@@ -13,7 +13,7 @@ import { IIntegrante } from '../../interfaces/integrante.inteface';
   providedIn: 'root'
 })
 export class AtividadeService {
-  private urlServer = 'http://localhost:3000/';
+  private urlServer = 'http://35.198.9.180:8080/api/';
 
   constructor(private http: HttpClient) { }
 

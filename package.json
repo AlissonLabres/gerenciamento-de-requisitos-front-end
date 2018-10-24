@@ -5,7 +5,7 @@
     "server": "node json-server/server.js",
     "compodoc": "compodoc -p tsconfig.json -s -w --disablePrivate --disableInternal --disableLifeCycleHooks",
     "ng": "ng",
-    "start": "concurrently --success first --kill-others \"npm run server\" \"ng serve\"",
+    "start": "ng serve",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
