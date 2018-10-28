@@ -1,15 +1,17 @@
-import { IIntegrante } from './../../interfaces/integrante.inteface';
-import { IRequisito } from './../../interfaces/requisito.interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { ReplaySubject, Subject } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
+
 import { URLSERVER } from '../../../environments/environment';
 import { IProjeto } from '../../interfaces/projeto.interface';
 import { Projeto } from '../../models/projeto';
 import { Requisito } from '../../models/requisito';
 import { Integrante } from '../../models/integrante';
 import { IAtividade } from '../../interfaces/atividade.interface';
+import { IIntegrante } from './../../interfaces/integrante.inteface';
+import { IRequisito } from './../../interfaces/requisito.interface';
 import { Atividade } from '../../models/atividade';
 
 @Injectable({
@@ -20,7 +22,9 @@ export class ProjetoService {
   public static projeto = new ReplaySubject<Projeto>(1);
   private subProjsResultado: Subject<Projeto[]> = new Subject<Projeto[]>();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    ProjetoService.projetoSelecionado.next(localStorage['projetoId']);
+  }
 
   /**
    * Busca os projeto para listar.
@@ -86,7 +90,7 @@ export class ProjetoService {
       dataFim: projeto.dataFim,
     };
 
-    return this.http.put<boolean>(`projetos/${id}`, iProjeto);
+    return this.http.put<boolean>(`${URLSERVER}/projetos/${id}`, iProjeto);
   }
 
   /**
@@ -96,11 +100,12 @@ export class ProjetoService {
    * @param id - id do projeto.
    */
   deleteProjeto(id: number): Observable<boolean> {
-    return this.http.delete<boolean>(`projetos/${id}`);
+    console.log(id);
+    return this.http.delete<boolean>(`${URLSERVER}/projetos/${id}`);
   }
 
   private mapInterfaceToModelProjeto(iProjeto: IProjeto, id: number) {
-    const iReqs = iProjeto.requisitos;
+    const iReqs = iProjeto.requisito;
     const iAtvs = iProjeto.atividades;
     const iInts = iProjeto.integrantes;
     const requisitos: Requisito[] = [];

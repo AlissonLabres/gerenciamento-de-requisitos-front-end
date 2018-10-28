@@ -76,26 +76,26 @@ export class ProjetosComponent implements OnInit {
    *
    * @param id - passa o id do projeto que será deletado.
    */
-  // deletar(id: number) {
-  //   this.projetoService.deleteProjeto(id).subscribe(
-  //     deletou => console.log('deletou')
-  //   );
-  // }
+  deletar(id: number) {
+    this.projetoService.deleteProjeto(id).subscribe(
+      deletou => console.log('deletou')
+    );
+  }
 
   /**
    * TODO: Método do primeng, onde abre popup para confirmação da exclusão.
    */
-  // confirmar() {
-  //   this.confirmationService.confirm({
-  //       message: 'Are you sure that you want to proceed?',
-  //       header: 'Confirmation',
-  //       icon: 'pi pi-exclamation-triangle',
-  //       accept: () => {
-  //           this.msgs = [{severity: 'info', summary: 'Confirmed', detail: 'You have accepted'}];
-  //       },
-  //       reject: () => {
-  //           this.msgs = [{severity: 'info', summary: 'Rejected', detail: 'You have rejected'}];
-  //       }
-  //   });
-  // }
+  confirmar() {
+    this.confirmationService.confirm({
+        message: 'Are you sure that you want to proceed?',
+        header: 'Confirmation',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => {
+            this.msgs = [{severity: 'info', summary: 'Confirmed', detail: 'You have accepted'}];
+        },
+        reject: () => {
+            this.msgs = [{severity: 'info', summary: 'Rejected', detail: 'You have rejected'}];
+        }
+    });
+  }
 }

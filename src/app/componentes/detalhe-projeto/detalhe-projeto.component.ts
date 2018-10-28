@@ -1,7 +1,9 @@
-import { Projeto } from './../../models/projeto';
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ProjetoService } from '../../servicos/projeto/projeto.service';
 import { Router, ActivatedRoute } from '@angular/router';
+
+import { ProjetoService } from '../../servicos/projeto/projeto.service';
+import { Projeto } from './../../models/projeto';
 
 @Component({
   selector: 'app-detalhe-projeto',
@@ -15,6 +17,7 @@ export class DetalheProjetoComponent implements OnInit {
   protected permissao: boolean;
 
   constructor(
+    private location: Location,
     private router: Router,
     private route: ActivatedRoute,
     private projetoService: ProjetoService
@@ -31,7 +34,7 @@ export class DetalheProjetoComponent implements OnInit {
    * Redireciona para página inicial caso clique em cancelar.
    */
   cancelar(): void {
-    this.router.navigate(['/']);
+    this.location.back();
   }
 
   /**

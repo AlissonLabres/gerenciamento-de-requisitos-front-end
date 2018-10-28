@@ -18,8 +18,8 @@ export class AtividadesComponent implements OnInit {
     { field: 'idAtividade', header: 'ID' },
     { field: 'nome', header: 'Nome' },
     { field: 'status', header: 'Status' },
-    { field: 'dataInicio', header: 'Data para Iniciar' },
-    { field: 'dataFim', header: 'Data para Finalizar' },
+    { field: 'dataInicio', header: 'Data inicial' },
+    { field: 'dataFim', header: 'Data final' },
     { field: 'criador', header: 'Criador' },
     { field: 'desenvolvedor', header: 'Desenvolvio por' },
     { field: 'acoes', header: 'Ações' }

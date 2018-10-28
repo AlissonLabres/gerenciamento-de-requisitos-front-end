@@ -9,7 +9,7 @@ export interface IProjeto {
   dataInicio: string;
   dataFim: string;
   perfilIntegranteProjeto: string;
-  requisitos: IRequisito[];
+  requisito: IRequisito[];
   atividades: IAtividade[];
   integrantes: IIntegrante[];
 }

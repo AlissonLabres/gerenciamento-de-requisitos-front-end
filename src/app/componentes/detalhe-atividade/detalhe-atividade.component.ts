@@ -1,6 +1,8 @@
 import { Atividade } from './../../models/atividade';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+
 import { AtividadeService } from '../../servicos/atividade/atividade.service';
 
 @Component({
@@ -19,6 +21,7 @@ export class DetalheAtividadeComponent implements OnInit {
   protected msgErroDeletarAtividade: string;
 
   constructor(
+    private location: Location,
     private router: Router,
     private route: ActivatedRoute,
     private atividadeService: AtividadeService
@@ -35,7 +38,7 @@ export class DetalheAtividadeComponent implements OnInit {
    * Redireciona para página inicial caso clique em cancelar.
    */
   cancelar(): void {
-    this.router.navigate(['/']);
+    this.location.back();
   }
 
   /**

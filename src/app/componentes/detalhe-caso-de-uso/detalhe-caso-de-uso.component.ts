@@ -1,8 +1,9 @@
-import { CasoDeUsoService } from './../../servicos/casoDeUso/caso-de-uso.service';
 import { Component, OnInit } from '@angular/core';
-import { CasoDeUso } from '../../models/caso-de-uso';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
+
+import { CasoDeUsoService } from './../../servicos/casoDeUso/caso-de-uso.service';
+import { CasoDeUso } from '../../models/caso-de-uso';
 
 @Component({
   selector: 'app-detalhe-caso-de-uso',

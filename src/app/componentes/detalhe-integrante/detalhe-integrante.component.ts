@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Integrante } from '../../models/integrante';
+import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
+
+import { Integrante } from '../../models/integrante';
 import { IntegranteService } from '../../servicos/integrante/integrante.service';
 
 @Component({
@@ -19,6 +21,7 @@ export class DetalheIntegranteComponent implements OnInit {
   protected msgErroDeletarIntegrante: string;
 
   constructor(
+    private location: Location,
     private router: Router,
     private route: ActivatedRoute,
     private integranteService: IntegranteService
@@ -35,7 +38,7 @@ export class DetalheIntegranteComponent implements OnInit {
    * Redireciona para página inicial caso clique em cancelar.
    */
   cancelar(): void {
-    this.router.navigate(['/']);
+    this.location.back();
   }
 
   /**
