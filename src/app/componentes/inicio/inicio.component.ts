@@ -1,13 +1,10 @@
-import { Integrante } from './../../models/integrante';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { CasoDeUsoService } from './../../servicos/casoDeUso/caso-de-uso.service';
 import { ProjetoService } from './../../servicos/projeto/projeto.service';
-import { RequisitoService } from '../../servicos/requisito/requisito.service';
+import { Integrante } from './../../models/integrante';
 import { Projeto } from '../../models/projeto';
 import { Requisito } from '../../models/requisito';
-import { CasoDeUso } from '../../models/caso-de-uso';
 import { Atividade } from '../../models/atividade';
 
 @Component({
@@ -16,6 +13,9 @@ import { Atividade } from '../../models/atividade';
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent implements OnInit {
+  protected reqAtvInt: any;
+  protected timeLine: any;
+  protected atvStatus: any;
   protected projeto: Projeto;
   protected requisitos: Requisito[];
   protected atividades: Atividade[];
@@ -25,7 +25,18 @@ export class InicioComponent implements OnInit {
     private projetoService: ProjetoService,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {
+    this.reqAtvInt = {
+      labels: ['carregando...'],
+      datasets: [
+        {
+          data: [100],
+          backgroundColor: ['#FF6384'],
+          hoverBackgroundColor: ['#FF6384']
+        }
+      ]
+    };
+  }
 
   ngOnInit() {
     this.getProjeto();
@@ -41,10 +52,78 @@ export class InicioComponent implements OnInit {
       this.requisitos = proj.requisitos;
       this.atividades = proj.atividades;
       this.integrantes = proj.integrantes;
+      this.updateGraph();
     });
   }
 
   novoIntegrante() {
     this.router.navigate(['novo-integrante']);
+  }
+
+  updateGraph(): void {
+    this.reqAtvInt = {
+      labels: ['Requisitos', 'Atividades', 'Integrantes'],
+      datasets: [
+        {
+          data: [
+            this.requisitos.length,
+            this.atividades.length,
+            this.integrantes.length
+          ],
+          backgroundColor: [
+            '#FF6384',
+            '#36A2EB',
+            '#FFCE56'
+          ],
+          hoverBackgroundColor: [
+            '#FF6384',
+            '#36A2EB',
+            '#FFCE56'
+          ]
+        }
+      ]
+    };
+    this.timeLine = {
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      datasets: [
+        {
+          label: 'First Dataset',
+          data: [65, 59, 80, 81, 56, 55, 40],
+          fill: false,
+          borderColor: '#4bc0c0'
+        },
+        {
+          label: 'Second Dataset',
+          data: [28, 48, 40, 19, 86, 27, 90],
+          fill: false,
+          borderColor: '#565656'
+        }
+      ]
+    };
+    const rf = this.requisitos.filter(req => req.categoria === 'Funcional');
+    const rnf = this.requisitos.filter(req => req.categoria === 'Nao Funcional');
+    this.atvStatus = {
+      labels: ['Requisitos'],
+      datasets: [
+        {
+          label: 'Total',
+          backgroundColor: '#42A5F5',
+          borderColor: '#1E88E5',
+          data: [this.requisitos.length, rf.length, rnf.length]
+        },
+        {
+          label: 'Funcional',
+          backgroundColor: '#9CCC65',
+          borderColor: '#7CB342',
+          data: [rf.length]
+        },
+        {
+          label: 'Não funcional',
+          backgroundColor: '#FFCE56',
+          borderColor: '#7CB342',
+          data: [rnf.length]
+        }
+      ]
+    };
   }
 }
