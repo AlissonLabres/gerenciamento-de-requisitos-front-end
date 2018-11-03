@@ -101,7 +101,7 @@ export class InicioComponent implements OnInit {
       ]
     };
     const rf = this.requisitos.filter(req => req.categoria === 'Funcional');
-    const rnf = this.requisitos.filter(req => req.categoria === 'Nao Funcional');
+    const rnf = this.requisitos.filter(req => req.categoria === 'Não Funcional');
     this.atvStatus = {
       labels: ['Requisitos'],
       datasets: [

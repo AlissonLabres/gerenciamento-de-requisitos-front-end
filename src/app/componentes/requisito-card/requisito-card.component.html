@@ -67,8 +67,14 @@
         ID do Requisito:
       </strong>
       <div class="col-sm-8">
-        <input pTooltip="ID de uma funcionadade ou sub-funcionalide. Ex.: (Para Funcionadade Principal) 1 - (Para Sub Funcionadade) 1.1" tooltipPosition="right" tooltipEvent="focus" class="col-sm-8" pInputText
-         formControlName="idRequisito">
+        <input
+          pTooltip="ID de uma funcionadade ou sub-funcionalide. Ex.: (Para Funcionadade Principal) 1 - (Para Sub Funcionadade) 1.1"
+          tooltipPosition="right"
+          tooltipEvent="focus"
+          class="col-sm-8"
+          pInputText
+          formControlName="idRequisito"
+        >
       </div>
     </div>
     <div class="form-group row mb-0">
@@ -76,8 +82,14 @@
         Nome:
       </strong>
       <div class="col-sm-8">
-        <input pTooltip="Nome de uma funcionadade. Ex.: 'Cadastro de requisito.'" tooltipPosition="right" tooltipEvent="focus" class="col-sm-8" pInputText
-          formControlName="nome">
+        <input
+          pTooltip="Nome de uma funcionadade. Ex.: 'Cadastro de requisito.'"
+          tooltipPosition="right"
+          tooltipEvent="focus"
+          class="col-sm-8"
+          pInputText
+          formControlName="nome"
+        >
       </div>
     </div>
     <div class="form-group row mb-0">
@@ -85,8 +97,18 @@
         Descricao:
       </strong>
       <div class="col-sm-8">
-        <textarea pTooltip="Descricao de uma funcionaliade. Ex.: 'Permitir usuário logado cadastrar requisitos.'" tooltipPosition="right" tooltipEvent="focus" pInputTextarea
-          formControlName="descricao" required type="text" id="descricaoInp" class="col-sm-8"></textarea>
+        <textarea
+          pTooltip="Descricao de uma funcionaliade. Ex.: 'Permitir usuário logado cadastrar requisitos.'"
+          tooltipPosition="right"
+          tooltipEvent="focus"
+          pInputTextarea
+          formControlName="descricao"
+          required
+          type="text"
+          id="descricaoInp"
+          class="col-sm-8"
+        >
+        </textarea>
       </div>
     </div>
     <div class="form-group row mb-0">
@@ -94,7 +116,12 @@
         Importancia:
       </strong>
       <div class="col-sm-8">
-        <p-dropdown formControlName="importancia" [options]="importancia" [(ngModel)]="importanciaSelecionada"></p-dropdown>
+        <p-dropdown
+          formControlName="importancia"
+          [options]="importancia"
+          [(ngModel)]="importanciaSelecionada"
+        >
+        </p-dropdown>
       </div>
     </div>
     <div class="form-group row mb-0">
@@ -102,8 +129,14 @@
         Fonte:
       </strong>
       <div class="col-sm-8">
-        <input pTooltip="quem necessita? Ex.: Cliente" tooltipPosition="right" tooltipEvent="focus" class="col-sm-8" pInputText
-          formControlName="fonte">
+        <input
+          pTooltip="quem necessita? Ex.: Cliente"
+          tooltipPosition="right"
+          tooltipEvent="focus"
+          class="col-sm-8"
+          pInputText
+          formControlName="fonte"
+        >
       </div>
     </div>
     <div class="form-group row mb-0">
@@ -111,7 +144,12 @@
         Categoria:
       </strong>
       <div class="col-sm-8">
-        <p-dropdown formControlName="categoria" [options]="categoria" [(ngModel)]="categoriaSelecionada"></p-dropdown>
+        <p-dropdown
+          formControlName="categoria"
+          [options]="categoria"
+          [(ngModel)]="categoriaSelecionada"
+        >
+        </p-dropdown>
       </div>
     </div>
   </form>

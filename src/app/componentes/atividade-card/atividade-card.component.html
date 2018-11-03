@@ -77,8 +77,16 @@
         Nome:
       </strong>
       <div class="col-sm-8">
-        <input pTooltip="Titulo da atividade" tooltipPosition="right" tooltipEvent="focus" class="col-sm-8" pInput formControlName="nome"
-          required type="text" id="nomeInp">
+        <input
+          pTooltip="Titulo da atividade"
+          tooltipPosition="right"
+          tooltipEvent="focus"
+          class="col-sm-8"
+          pInput
+          formControlName="nome"
+          required
+          type="text"
+          id="nomeInp">
       </div>
     </div>
     <div class="form-group row mb-0">
@@ -86,8 +94,17 @@
         Descricao:
       </strong>
       <div class="col-sm-8">
-        <input pTooltip="Descrição da atividade" tooltipPosition="right" tooltipEvent="focus" class="col-sm-8" pInput formControlName="descricao"
-          required type="text" id="nomeInp">
+        <input
+          pTooltip="Descrição da atividade"
+          tooltipPosition="right"
+          tooltipEvent="focus"
+          class="col-sm-8"
+          pInput
+          formControlName="descricao"
+          required
+          type="text"
+          id="nomeInp"
+        >
       </div>
     </div>
     <div class="form-group row mb-0">
@@ -95,7 +112,12 @@
         Status:
       </strong>
       <div class="col-sm-8">
-        <p-dropdown formControlName="status" [options]="status" [(ngModel)]="statusSelecionado"></p-dropdown>
+        <p-dropdown
+          formControlName="status"
+          [options]="status"
+          [(ngModel)]="statusSelecionado"
+        >
+        </p-dropdown>
       </div>
     </div>
     <div class="form-group row mb-0">
@@ -103,7 +125,11 @@
         Data inicio:
       </strong>
       <div class="col-sm-8">
-        <p-calendar dateFormat="dd/mm/yy" formControlName="dataInicio"></p-calendar>
+        <p-calendar
+          dateFormat="dd/mm/yy"
+          formControlName="dataInicio"
+        >
+        </p-calendar>
       </div>
     </div>
     <div class="form-group row mb-0">
@@ -111,31 +137,58 @@
         Data fim:
       </strong>
       <div class="col-sm-8">
-        <p-calendar dateFormat="dd/mm/yy" formControlName="dataFim"></p-calendar>
+        <p-calendar
+          dateFormat="dd/mm/yy"
+          formControlName="dataFim"
+        >
+        </p-calendar>
       </div>
     </div>
-    <div class="form-group row mb-0" *ngIf="!novo">
+    <div
+      class="form-group row mb-0"
+      *ngIf="!novo"
+    >
       <strong class="col-sm-4 col-form-label text-right">
         Atividade concluida em:
       </strong>
       <div class="col-sm-8">
-        <p-calendar dateFormat="dd/mm/yy" formControlName="dataConclusao"></p-calendar>
+        <p-calendar
+          dateFormat="dd/mm/yy"
+          formControlName="dataConclusao"
+        >
+        </p-calendar>
       </div>
     </div>
-    <div class="form-group row mb-0" *ngIf="novo">
+    <div
+      class="form-group row mb-0"
+      *ngIf="novo"
+    >
       <strong class="col-sm-4 col-form-label text-right">
         Requisito:
       </strong>
       <div class="col-sm-8">
-        <p-dropdown formControlName="requisito" [options]="requisitos" [(ngModel)]="requisitoSelecionado"></p-dropdown>
+        <p-dropdown
+          formControlName="requisito"
+          [options]="requisitos"
+          [(ngModel)]="requisitoSelecionado"
+        >
+        </p-dropdown>
       </div>
     </div>
-    <div class="form-group row mb-0" *ngIf="novo">
+    <div
+      class="form-group row mb-0"
+      *ngIf="novo"
+    >
       <strong class="col-sm-4 col-form-label text-right">
         Desenvolvedor:
       </strong>
       <div class="col-sm-8">
-        <p-dropdown formControlName="desenvolvedor" [options]="desenvolvedores" [(ngModel)]="desenvolvedorSelecionado"></p-dropdown>
+        <p-dropdown
+          formControlName="desenvolvedor"
+          [options]="desenvolvedores"
+          [(ngModel)]="desenvolvedorSelecionado"
+        >
+        </p-dropdown>
       </div>
     </div>
   </form>

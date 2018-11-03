@@ -3,8 +3,9 @@
   <div class="col-sm-6">
     <button
       icon="fa fa-plus"
-      pButton label="Novo Integrante"
-      class="ui-button-success float-right"
+      pButton
+      label="Novo Integrante"
+      class="ui-button-success float-right my-1"
       (click)="novoIntegrante()"
     >
     </button>
@@ -67,7 +68,7 @@
           class="text-center"
           *ngIf="integrantes?.length === 0"
         >
-          Este projeto nao possui integrantes.
+          Este projeto não possui integrantes.
         </div>
       </ul>
       <div class="card-footer text-center">
@@ -102,7 +103,7 @@
           class="text-center"
           *ngIf="requisitos?.length === 0"
         >
-          Este projeto nao possui requisitos.
+          Este projeto não possui requisitos.
         </div>
       </ul>
       <div class="card-footer text-center">
@@ -137,7 +138,7 @@
           class="text-center"
           *ngIf="atividades?.length === 0"
         >
-          Este projeto nao possui atividades.
+          Este projeto não possui atividades.
         </div>
       </ul>
       <div class="card-footer text-center">

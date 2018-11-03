@@ -34,7 +34,7 @@ export class RequisitoCardComponent implements OnInit, OnChanges {
     this.categoria = [
       { label: 'Selecione', value: null },
       { label: 'Funcional', value: 'Funcional' },
-      { label: 'Não Funcional', value: 'Nao Funcional' }
+      { label: 'Não Funcional', value: 'Não Funcional' }
     ];
   }
 
