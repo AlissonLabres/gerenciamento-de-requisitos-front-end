@@ -1,0 +1,36 @@
+<p-card #pnl>
+  <div class="text-center">
+    <h2>Novo Artefato</h2>
+  </div>
+  <app-artefato-card>
+  </app-artefato-card>
+  <br>
+  <div class="text-center">
+    <button
+      pButton
+      class="ui-button-success"
+      label="Salvar"
+      icon="fa fa-fw fa-save"
+      id="btnSalvar"
+    >
+    </button>
+    <button
+      pButton
+      label="Cancelar"
+      icon="fa fa-fw fa-times-circle"
+      class="ui-button-danger"
+      id="btnCancelar"
+    >
+    </button>
+  </div>
+  <br>
+</p-card>
+<p-blockUI
+  [target]="pnl"
+  [blocked]="blockedPanel"
+>
+  <div class="text-center align-middle">
+    <i class="fa fa-pulse fa-spinner">
+    </i>
+  </div>
+</p-blockUI>
