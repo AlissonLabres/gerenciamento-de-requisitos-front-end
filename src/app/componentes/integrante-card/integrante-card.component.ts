@@ -62,15 +62,14 @@ export class IntegranteCardComponent implements OnInit, OnChanges {
 
           this.usuarios.unshift({ label: 'Selecione', value: null });
         }
-      });
+      }
+    );
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.cdr.detectChanges();
     if (changes['integrante'] && changes['integrante'].currentValue) {
       this.initIntegrante();
       this.initForm();
-      this.cdr.detectChanges();
     }
     this.cdr.detectChanges();
   }

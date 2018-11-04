@@ -17,7 +17,8 @@
       id="btnSalvar"
       [disabled]="!card.casoDeUsoForm.valid"
       (click)="card.salvarDados(); salvarCasoDeUso()"
-    ></button>
+    >
+    </button>
     <button
       pButton
       label="Cancelar"
@@ -25,17 +26,14 @@
       class="ui-button-danger"
       id="btnCancelar"
       (click)="cancelar()"
-    ></button>
+    >
+    </button>
   </div>
 </p-card>
 <p-blockUI
   [target]="pnl"
   [blocked]="blockedPanel"
 >
-  <i
-    class="fa fa-lock fa-5x"
-    style="position:absolute;top:100%;left:100%"
-  ></i>
   <div class="text-center">
     <i
       class="fa fa-pulse fa-spinner"

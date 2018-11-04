@@ -43,9 +43,7 @@ export class AtividadeCardComponent implements OnInit, OnChanges {
     private fb: FormBuilder,
     private requisitoService: RequisitoService,
     private integranteService: IntegranteService
-  ) { }
-
-  ngOnInit() {
+  ) {
     this.status = [
       { label: 'Selecione', value: null },
       { label: 'Iniciar', value: 'Ha iniciar' },
@@ -54,6 +52,9 @@ export class AtividadeCardComponent implements OnInit, OnChanges {
       { label: 'Parado', value: 'Parado' },
       { label: 'Concluido', value: 'Concluido' },
     ];
+  }
+
+  ngOnInit() {
 
     this.requisitoService.getRequisitos().subscribe(
       (requisitos: Requisito[]) => {
@@ -83,11 +84,9 @@ export class AtividadeCardComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.cdr.detectChanges();
     if (changes['atividade'] && changes['atividade'].currentValue) {
       this.initAtividade();
       this.initForm();
-      this.cdr.detectChanges();
     }
     this.cdr.detectChanges();
   }

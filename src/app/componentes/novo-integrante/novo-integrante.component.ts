@@ -44,8 +44,6 @@ export class NovoIntegranteComponent implements OnInit {
    */
   atualizarUsuario(event: Usuario) {
     this.usuarioSelecionado = event;
-    console.log(event);
-    console.log(this.usuarioSelecionado);
   }
 
   /**
@@ -57,7 +55,6 @@ export class NovoIntegranteComponent implements OnInit {
     this.integranteService.addIntegrante(this.integrante, this.usuarioSelecionado.id).subscribe(
       () => (this.blockedPanel = false, this.router.navigate(['/'])),
       errorIntegrante => {
-        console.log(errorIntegrante);
         (
           this.blockedPanel = false,
           this.msgErroIntegrante = errorIntegrante.error,

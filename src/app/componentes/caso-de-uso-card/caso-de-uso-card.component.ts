@@ -31,11 +31,9 @@ export class CasoDeUsoCardComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.cdr.detectChanges();
     if (changes['casoDeUso'] && changes['casoDeUso'].currentValue) {
       this.initCasoDeUso();
       this.initForm();
-      this.cdr.detectChanges();
     }
     this.cdr.detectChanges();
   }

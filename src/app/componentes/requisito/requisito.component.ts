@@ -5,6 +5,7 @@ import { ProjetoService } from '../../servicos/projeto/projeto.service';
 import { RequisitoService } from '../../servicos/requisito/requisito.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-requisito',
@@ -65,9 +66,7 @@ export class RequisitoComponent implements OnInit {
    * @param id - id do requisito que será deletado.
    */
   deletar(id: number) {
-    this.requisitoService.deleteRequisito(id).subscribe(
-      deletou => console.log('deletou')
-    );
+    this.requisitoService.deleteRequisito(id).pipe(take(1)).subscribe();
   }
 
 }

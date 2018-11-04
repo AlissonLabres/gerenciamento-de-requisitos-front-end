@@ -1,5 +1,11 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { MessageService } from 'primeng/components/common/messageservice';
+import {
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  ChangeDetectorRef
+} from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-artefato-card',
@@ -10,26 +16,42 @@ export class ArtefatoCardComponent implements OnChanges {
 
   @Input()
   public edit: boolean;
-
+  protected artefatoForm: FormGroup;
   protected uploadedFiles: any[] = [];
 
-  constructor(private messageService: MessageService) { }
+  constructor(
+    private fb: FormBuilder,
+    private cdr: ChangeDetectorRef
+  ) { }
 
   ngOnChanges(changes: SimpleChanges) {
+    this.cdr.detectChanges();
+    if (changes) {
+      this.initForm();
+      this.cdr.detectChanges();
+    }
+    this.cdr.detectChanges();
   }
 
-  protected onUpload(event) {
+  /**
+   * Seta arquivos para inviar.
+   *
+   * @param event Evento de upload.
+   */
+  protected onUpload(event): void {
     for (const file of event.files) {
         this.uploadedFiles.push(file);
     }
+  }
 
-    this.messageService.add(
-      {
-        severity: 'info',
-        summary: 'Arquivo enviado!',
-        detail: ''
-      }
-    );
+  /**
+   * Inicia formulário.
+   */
+  protected initForm(): void {
+    this.artefatoForm = this.fb.group({
+      nome: ['', [Validators.required]],
+      descricao: ['', [Validators.required]],
+    });
   }
 
 }
