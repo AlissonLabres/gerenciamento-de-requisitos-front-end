@@ -1,6 +1,6 @@
 <ng-container *ngIf="!edit; else editIntegrante">
   <div class="form-group row mb-0">
-    <strong class="col-sm-4 col-form-label text-right">
+    <strong class="col-sm-4 col-form-label text-sm-right text-md-right">
       Nome:
     </strong>
     <div class="col-sm-8">
@@ -10,7 +10,7 @@
     </div>
   </div>
   <div class="form-group row mb-0">
-    <strong class="col-sm-4 col-form-label text-right">
+    <strong class="col-sm-4 col-form-label text-sm-right text-md-right">
       Perfil no projeto:
     </strong>
     <div class="col-sm-8">
@@ -22,21 +22,34 @@
 </ng-container>
 <ng-template #editIntegrante>
   <form [formGroup]="integranteForm">
-    <div class="form-group row mb-0" *ngIf="novo">
-      <strong class="col-sm-4 col-form-label text-right">
+    <div
+      class="form-group row mb-0"
+      *ngIf="novo"
+    >
+      <strong class="col-sm-4 col-form-label text-sm-right text-md-right">
         Usuario:
       </strong>
       <div class="col-sm-8">
-        <p-dropdown [options]="usuarios" [(ngModel)]="usuarioSelecionado" (ngModelChange)="emitUsuarioSelecionado.emit(usuarioSelecionado)"
-          [ngModelOptions]="{standalone: true}"></p-dropdown>
+        <p-dropdown
+          [options]="usuarios"
+          [(ngModel)]="usuarioSelecionado"
+          (ngModelChange)="emitUsuarioSelecionado.emit(usuarioSelecionado)"
+          [ngModelOptions]="{standalone: true}"
+        >
+        </p-dropdown>
       </div>
     </div>
     <div class="form-group row mb-0">
-      <strong class="col-sm-4 col-form-label text-right">
+      <strong class="col-sm-4 col-form-label text-sm-right text-md-right">
         Perfil:
       </strong>
       <div class="col-sm-8">
-        <p-dropdown formControlName="perfil" [options]="perfis" [(ngModel)]="perfilSelecionado"></p-dropdown>
+        <p-dropdown
+          formControlName="perfil"
+          [options]="perfis"
+          [(ngModel)]="perfilSelecionado"
+        >
+        </p-dropdown>
       </div>
     </div>
   </form>
