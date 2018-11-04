@@ -1,10 +1,16 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  ChangeDetectorRef
+} from '@angular/core';
 import { Atividade } from '../../models/atividade';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Requisito } from '../../models/requisito';
 import { Integrante } from '../../models/integrante';
 import { RequisitoService } from '../../servicos/requisito/requisito.service';
-import { Observable } from 'rxjs';
 import { IntegranteService } from '../../servicos/integrante/integrante.service';
 
 @Component({
@@ -32,7 +38,12 @@ export class AtividadeCardComponent implements OnInit, OnChanges {
   protected desenvolvedores: any;
   protected desenvolvedorSelecionado: Integrante;
 
-  constructor(private fb: FormBuilder, private requisitoService: RequisitoService, private integranteService: IntegranteService) { }
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private fb: FormBuilder,
+    private requisitoService: RequisitoService,
+    private integranteService: IntegranteService
+  ) { }
 
   ngOnInit() {
     this.status = [
@@ -72,10 +83,13 @@ export class AtividadeCardComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    this.cdr.detectChanges();
     if (changes['atividade'] && changes['atividade'].currentValue) {
       this.initAtividade();
       this.initForm();
+      this.cdr.detectChanges();
     }
+    this.cdr.detectChanges();
   }
 
   /**

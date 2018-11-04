@@ -1,4 +1,13 @@
-import { Component, OnInit, Input, SimpleChanges, OnChanges, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  SimpleChanges,
+  OnChanges,
+  Output,
+  EventEmitter,
+  ChangeDetectorRef
+} from '@angular/core';
 import { Integrante } from '../../models/integrante';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Usuario } from '../../models/usuario';
@@ -28,7 +37,11 @@ export class IntegranteCardComponent implements OnInit, OnChanges {
   protected perfis: any;
   protected perfilSelecionado: string;
 
-  constructor(private fb: FormBuilder, private usuarioService: UsuarioService) { }
+  constructor(
+    private fb: FormBuilder,
+    private usuarioService: UsuarioService,
+    private cdr: ChangeDetectorRef
+  ) { }
 
   ngOnInit() {
     this.perfis = [
@@ -53,10 +66,13 @@ export class IntegranteCardComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    this.cdr.detectChanges();
     if (changes['integrante'] && changes['integrante'].currentValue) {
       this.initIntegrante();
       this.initForm();
+      this.cdr.detectChanges();
     }
+    this.cdr.detectChanges();
   }
 
   /**

@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./novo-artefato.component.css']
 })
 export class NovoArtefatoComponent implements OnInit {
+  protected blockedPanel = false;
+  protected edit = true;
 
   constructor() { }
 

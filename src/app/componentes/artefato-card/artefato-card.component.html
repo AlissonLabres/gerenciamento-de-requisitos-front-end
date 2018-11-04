@@ -1,3 +1,84 @@
-<p>
-  artefato-card works!
-</p>
+<ng-container *ngIf="!edit; else editForm">
+  <div class="form-group row mb-0">
+    <strong class="col-sm-5 col-form-label text-right">
+      Nome:
+    </strong>
+    <div class="col-sm-7">
+      <span class="form-control-plaintext text-left">
+        teste
+      </span>
+    </div>
+  </div>
+  <div class="form-group row mb-0">
+    <strong class="col-sm-5 col-form-label text-right">
+      Descrição:
+    </strong>
+    <div class="col-sm-7">
+      <span class="form-control-plaintext text-left">
+        teste
+      </span>
+    </div>
+  </div>
+  <div class="form-group row mb-0">
+    <strong class="col-sm-5 col-form-label text-right">
+      Artefato:
+    </strong>
+    <div class="col-sm-7">
+      <span class="form-control-plaintext text-left">
+        teste
+      </span>
+    </div>
+  </div>
+</ng-container>
+<ng-template #editForm>
+  <form>
+    <div class="form-group row mb-0">
+      <strong class="col-sm-5 col-form-label text-right">
+        Nome:
+      </strong>
+      <div class="col-sm-7">
+        <input
+          pTooltip="nome do artefato"
+          tooltipPosition="right"
+          tooltipEvent="focus"
+          pInputText
+          required
+          type="text"
+          id="nomeInp"
+        >
+      </div>
+    </div>
+    <div class="form-group row mb-0">
+      <strong class="col-sm-5 col-form-label text-right">
+        Descrição:
+      </strong>
+      <div class="col-sm-7">
+        <p-calendar
+          dateFormat="dd/mm/yy"
+        >
+        </p-calendar>
+      </div>
+    </div>
+    <div class="form-group row mb-0">
+      <strong class="col-sm-5 col-form-label text-right">
+        Artefato:
+      </strong>
+      <div class="col-sm-7">
+        <p-fileUpload
+          name="demo[]"
+          url="./upload.php"
+          (onUpload)="onUpload($event)"
+          multiple="multiple"
+          accept="image/*"
+          maxFileSize="1000000"
+        >
+          <ng-template pTemplate="content">
+            <ul *ngIf="uploadedFiles.length">
+              <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+            </ul>
+          </ng-template>
+        </p-fileUpload>
+      </div>
+    </div>
+  </form>
+</ng-template>

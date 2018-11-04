@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { FileUploadModule } from 'primeng/fileupload';
 import { ChartModule } from 'primeng/chart';
 import { DropdownModule } from 'primeng/dropdown';
 import { TooltipModule } from 'primeng/tooltip';
@@ -101,6 +102,7 @@ import { ArtefatoCardComponent } from './componentes/artefato-card/artefato-card
     NumberDirective
   ],
   imports: [
+    FileUploadModule,
     ChartModule,
     DropdownModule,
     TooltipModule,

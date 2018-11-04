@@ -87,8 +87,17 @@
         Nome:
       </strong>
       <div class="col-sm-8">
-        <input pTooltip="titulo caso de uso, geralmente ligado com um requisito" tooltipPosition="right" tooltipEvent="focus" class="col-sm-8"
-          pInput formControlName="nome" required type="text" id="nomeInp">
+        <input
+          pTooltip="titulo caso de uso, geralmente ligado com um requisito"
+          tooltipPosition="right"
+          tooltipEvent="focus"
+          class="col-sm-8"
+          pInput
+          formControlName="nome"
+          required
+          type="text"
+          id="nomeInp"
+        >
       </div>
     </div>
     <div class="form-group row mb-0">
@@ -96,8 +105,16 @@
         Escopo:
       </strong>
       <div class="col-sm-8">
-        <textarea pTooltip="abrangencia dentro do projeto" tooltipPosition="right" tooltipEvent="focus" class="col-sm-8" pInputTextArea
-          required formControlName="escopo"></textarea>
+        <textarea
+          pTooltip="abrangencia dentro do projeto"
+          tooltipPosition="right"
+          tooltipEvent="focus"
+          class="col-sm-8"
+          pInputTextArea
+          required
+          formControlName="escopo"
+        >
+        </textarea>
       </div>
     </div>
     <div class="form-group row mb-0">
@@ -105,7 +122,12 @@
         Nivel:
       </strong>
       <div class="col-sm-8">
-        <p-dropdown formControlName="nivel" [options]="nivel" [(ngModel)]="nivelSelecionado"></p-dropdown>
+        <p-dropdown
+          formControlName="nivel"
+          [options]="nivel"
+          [(ngModel)]="nivelSelecionado"
+        >
+        </p-dropdown>
       </div>
 
     </div>
@@ -114,7 +136,14 @@
         Ator Principal:
       </strong>
       <div class="col-sm-8">
-        <input pTooltip="quem fara a ação" tooltipPosition="right" tooltipEvent="focus" class="col-sm-8" pInputText formControlName="atorPrincipal">
+        <input
+          pTooltip="quem fara a ação"
+          tooltipPosition="right"
+          tooltipEvent="focus"
+          class="col-sm-8"
+          pInputText
+          formControlName="atorPrincipal"
+        >
       </div>
     </div>
     <div class="form-group row mb-0">
@@ -122,8 +151,14 @@
         Pré-condicão:
       </strong>
       <div class="col-sm-8">
-        <input pTooltip="requisitos ou condicoes para executar a acao" tooltipPosition="right" tooltipEvent="focus" class="col-sm-8"
-          pInputText formControlName="preCondicao">
+        <input
+          pTooltip="requisitos ou condicoes para executar a ação"
+          tooltipPosition="right"
+          tooltipEvent="focus"
+          class="col-sm-8"
+          pInputText
+          formControlName="preCondicao"
+        >
       </div>
     </div>
     <div class="form-group row mb-0">
@@ -131,7 +166,11 @@
         Pós-condicão:
       </strong>
       <div class="col-sm-8">
-        <input pTooltip="o que acontecera depois de executar a acao" tooltipPosition="right" tooltipEvent="focus" class="col-sm-8"
+        <input
+          pTooltip="o que acontecerá depois de executar a ação"
+          tooltipPosition="right"
+          tooltipEvent="focus"
+          class="col-sm-8"
           pInputText formControlName="posCondicao">
       </div>
     </div>
@@ -140,8 +179,15 @@
         Cenario principal:
       </strong>
       <div class="col-sm-8">
-        <textarea pTooltip="descrever o que o ator principal ira fazer para realizar com sucesso a acao" tooltipPosition="right"
-          tooltipEvent="focus" class="col-sm-8" pInputTextArea formControlName="cenarioPrincipal"></textarea>
+        <textarea
+          pTooltip="descrever o que o ator principal irá fazer para realizar com sucesso a ação"
+          tooltipPosition="right"
+          tooltipEvent="focus"
+          class="col-sm-8"
+          pInputTextArea
+          formControlName="cenarioPrincipal"
+        >
+        </textarea>
       </div>
     </div>
     <div class="form-group row mb-0">
@@ -149,8 +195,14 @@
         Extensão:
       </strong>
       <div class="col-sm-8">
-        <input pTooltip="cenario alternativo / sem sucesso. Ex.: perder a conexao com o sistema" tooltipPosition="right" tooltipEvent="focus"
-          class="col-sm-8" pInputText formControlName="extensao">
+        <input
+          pTooltip="cenario alternativo / sem sucesso. Ex.: perder a conexão com o sistema"
+          tooltipPosition="right"
+          tooltipEvent="focus"
+          class="col-sm-8"
+          pInputText
+          formControlName="extensao"
+        >
       </div>
     </div>
   </form>
