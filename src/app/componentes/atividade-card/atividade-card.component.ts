@@ -1,10 +1,16 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  ChangeDetectorRef
+} from '@angular/core';
 import { Atividade } from '../../models/atividade';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Requisito } from '../../models/requisito';
 import { Integrante } from '../../models/integrante';
 import { RequisitoService } from '../../servicos/requisito/requisito.service';
-import { Observable } from 'rxjs';
 import { IntegranteService } from '../../servicos/integrante/integrante.service';
 
 @Component({
@@ -32,9 +38,12 @@ export class AtividadeCardComponent implements OnInit, OnChanges {
   protected desenvolvedores: any;
   protected desenvolvedorSelecionado: Integrante;
 
-  constructor(private fb: FormBuilder, private requisitoService: RequisitoService, private integranteService: IntegranteService) { }
-
-  ngOnInit() {
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private fb: FormBuilder,
+    private requisitoService: RequisitoService,
+    private integranteService: IntegranteService
+  ) {
     this.status = [
       { label: 'Selecione', value: null },
       { label: 'Iniciar', value: 'Ha iniciar' },
@@ -43,6 +52,9 @@ export class AtividadeCardComponent implements OnInit, OnChanges {
       { label: 'Parado', value: 'Parado' },
       { label: 'Concluido', value: 'Concluido' },
     ];
+  }
+
+  ngOnInit() {
 
     this.requisitoService.getRequisitos().subscribe(
       (requisitos: Requisito[]) => {
@@ -76,6 +88,7 @@ export class AtividadeCardComponent implements OnInit, OnChanges {
       this.initAtividade();
       this.initForm();
     }
+    this.cdr.detectChanges();
   }
 
   /**

@@ -50,7 +50,6 @@ export class DetalheAtividadeComponent implements OnInit {
     this.atividadeService.getAtividade(id).subscribe(
       (atv: Atividade) => {
         this.blockedPanel = false;
-        console.log(atv);
         this.atividade = atv;
         if (this.atividade === undefined) {
           this.router.navigate(['not-fount']);

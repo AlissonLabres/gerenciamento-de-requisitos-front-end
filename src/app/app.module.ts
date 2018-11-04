@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { FileUploadModule } from 'primeng/fileupload';
 import { ChartModule } from 'primeng/chart';
 import { DropdownModule } from 'primeng/dropdown';
 import { TooltipModule } from 'primeng/tooltip';
@@ -58,9 +59,15 @@ import { IntegrantesComponent } from './componentes/integrantes/integrantes.comp
 import { DetalheIntegranteComponent } from './componentes/detalhe-integrante/detalhe-integrante.component';
 import { DetalheAtividadeComponent } from './componentes/detalhe-atividade/detalhe-atividade.component';
 import { NumberDirective } from './number.directive';
+import { DetalheArtefatoComponent } from './componentes/detalhe-artefato/detalhe-artefato.component';
+import { NovoArtefatoComponent } from './componentes/novo-artefato/novo-artefato.component';
+import { ArtefatoCardComponent } from './componentes/artefato-card/artefato-card.component';
 
 @NgModule({
   declarations: [
+    ArtefatoCardComponent,
+    DetalheArtefatoComponent,
+    NovoArtefatoComponent,
     AtividadeCardComponent,
     NovaAtividadeComponent,
     AppComponent,
@@ -95,6 +102,7 @@ import { NumberDirective } from './number.directive';
     NumberDirective
   ],
   imports: [
+    FileUploadModule,
     ChartModule,
     DropdownModule,
     TooltipModule,

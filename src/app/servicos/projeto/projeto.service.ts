@@ -100,7 +100,6 @@ export class ProjetoService {
    * @param id - id do projeto.
    */
   deleteProjeto(id: number): Observable<boolean> {
-    console.log(id);
     return this.http.delete<boolean>(`${URLSERVER}/projetos/${id}`);
   }
 

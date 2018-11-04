@@ -5,44 +5,43 @@
     </strong>
     <div class="col-sm-7">
       <span class="form-control-plaintext text-left">
-        {{ projetoAux?.nome }}
+        teste
       </span>
     </div>
   </div>
   <div class="form-group row mb-0">
     <strong class="col-sm-5 col-form-label text-sm-right text-md-right">
-      Data inicio:
+      Descrição:
     </strong>
     <div class="col-sm-7">
       <span class="form-control-plaintext text-left">
-        {{ projetoAux?.dataInicio }}
+        teste
       </span>
     </div>
   </div>
   <div class="form-group row mb-0">
     <strong class="col-sm-5 col-form-label text-sm-right text-md-right">
-      Data fim:
+      Artefato:
     </strong>
     <div class="col-sm-7">
       <span class="form-control-plaintext text-left">
-        {{ projetoAux?.dataFim }}
+        teste
       </span>
     </div>
   </div>
 </ng-container>
 <ng-template #editForm>
-  <form [formGroup]="projetoForm">
+  <form>
     <div class="form-group row mb-0">
       <strong class="col-sm-5 col-form-label text-sm-right text-md-right">
         Nome:
       </strong>
       <div class="col-sm-7">
         <input
-          pTooltip="nome do projeto"
+          pTooltip="nome do artefato"
           tooltipPosition="right"
           tooltipEvent="focus"
           pInputText
-          formControlName="nome"
           required
           type="text"
           id="nomeInp"
@@ -51,26 +50,39 @@
     </div>
     <div class="form-group row mb-0">
       <strong class="col-sm-5 col-form-label text-sm-right text-md-right">
-        Data inicio:
+        Descrição:
       </strong>
       <div class="col-sm-7">
-        <p-calendar
-          dateFormat="dd/mm/yy"
-          formControlName="dataInicio"
+        <textarea
+          pTooltip="descrição do artefato em detalhes"
+          tooltipPosition="right"
+          tooltipEvent="focus"
+          class="col-sm-8"
+          pInputTextArea
+          required
         >
-        </p-calendar>
+        </textarea>
       </div>
     </div>
     <div class="form-group row mb-0">
       <strong class="col-sm-5 col-form-label text-sm-right text-md-right">
-        Data fim:
+        Artefato:
       </strong>
       <div class="col-sm-7">
-        <p-calendar
-          dateFormat="dd/mm/yy"
-          formControlName="dataFim"
+        <p-fileUpload
+          name="demo[]"
+          url="./upload.php"
+          (onUpload)="onUpload($event)"
+          multiple="multiple"
+          accept="image/*"
+          maxFileSize="1000000"
         >
-        </p-calendar>
+          <ng-template pTemplate="content">
+            <ul *ngIf="uploadedFiles.length">
+              <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+            </ul>
+          </ng-template>
+        </p-fileUpload>
       </div>
     </div>
   </form>

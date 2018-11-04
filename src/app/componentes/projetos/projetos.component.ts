@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, Message } from 'primeng/primeng';
+import { take } from 'rxjs/operators';
 
 import { Projeto } from './../../models/projeto';
 import { ProjetoService } from '../../servicos/projeto/projeto.service';
@@ -77,9 +78,7 @@ export class ProjetosComponent implements OnInit {
    * @param id - passa o id do projeto que será deletado.
    */
   deletar(id: number) {
-    this.projetoService.deleteProjeto(id).subscribe(
-      deletou => console.log('deletou')
-    );
+    this.projetoService.deleteProjeto(id).pipe(take(1)).subscribe();
   }
 
   /**

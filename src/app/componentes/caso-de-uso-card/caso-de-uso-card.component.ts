@@ -1,5 +1,5 @@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { CasoDeUso } from '../../models/caso-de-uso';
 
 @Component({
@@ -17,7 +17,10 @@ export class CasoDeUsoCardComponent implements OnChanges {
   protected nivel: any;
   protected nivelSelecionado: string;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private fb: FormBuilder
+  ) {
     this.nivel = [
       { label: 'Selecione', value: null },
       { label: 'Essencial', value: 'Essencial' },
@@ -32,6 +35,7 @@ export class CasoDeUsoCardComponent implements OnChanges {
       this.initCasoDeUso();
       this.initForm();
     }
+    this.cdr.detectChanges();
   }
 
   /**

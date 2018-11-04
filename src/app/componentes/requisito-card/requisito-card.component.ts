@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { Requisito } from '../../models/requisito';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -21,7 +21,10 @@ export class RequisitoCardComponent implements OnInit, OnChanges {
   protected categoria: any;
   protected categoriaSelecionada: string;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private fb: FormBuilder
+  ) { }
 
   ngOnInit(): void {
     this.importancia = [
@@ -34,7 +37,7 @@ export class RequisitoCardComponent implements OnInit, OnChanges {
     this.categoria = [
       { label: 'Selecione', value: null },
       { label: 'Funcional', value: 'Funcional' },
-      { label: 'Não Funcional', value: 'Nao Funcional' }
+      { label: 'Não Funcional', value: 'Não Funcional' }
     ];
   }
 
@@ -43,6 +46,7 @@ export class RequisitoCardComponent implements OnInit, OnChanges {
       this.initRequisito();
       this.initForm();
     }
+    this.cdr.detectChanges();
   }
 
   /**
