@@ -70,18 +70,12 @@
       </strong>
       <div class="col-sm-7">
         <p-fileUpload
-          name="demo[]"
-          url="./upload.php"
-          (onUpload)="onUpload($event)"
-          multiple="multiple"
+          mode="basic"
+          [name]="artefato.nome"
+          [url]="url"
           accept="image/*"
           maxFileSize="1000000"
         >
-          <ng-template pTemplate="content">
-            <ul *ngIf="uploadedFiles.length">
-              <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
-            </ul>
-          </ng-template>
         </p-fileUpload>
       </div>
     </div>

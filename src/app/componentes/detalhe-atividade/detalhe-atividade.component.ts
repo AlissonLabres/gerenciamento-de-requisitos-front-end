@@ -64,17 +64,17 @@ export class DetalheAtividadeComponent implements OnInit {
    */
   salvarEdicao(): void {
     this.blockedPanel = true;
-    this.atividadeService.editAtividade(this.atividade.idAtividade, this.atividade)
-      .subscribe((auxProj => {
+    this.atividadeService.editAtividade(this.atividade.idAtividade, this.atividade, this.atividade.requisito.id)
+      .subscribe((() => {
         this.router.navigate(['/']);
       })
-      );
+    );
   }
 
   deletar() {
     const id: number = +this.route.snapshot.paramMap.get('idAtividade');
-    this.atividadeService.deleteAtividade(id).subscribe(
-      deletou => this.router.navigate(['/']),
+    this.atividadeService.deleteAtividade(id, this.atividade.requisito.id).subscribe(
+      () => this.router.navigate(['/']),
       errorDeletar => (
         this.msgErroDeletarAtividade = errorDeletar.error,
         this.deletarAtividadeLog = true,

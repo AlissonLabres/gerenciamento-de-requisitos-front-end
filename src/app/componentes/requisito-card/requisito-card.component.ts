@@ -62,7 +62,8 @@ export class RequisitoCardComponent implements OnInit, OnChanges {
       this.requisito.fonte,
       this.requisito.categoria,
       this.requisito.integrante,
-      this.requisito.projeto
+      this.requisito.projeto,
+      this.requisito.artefatos
     );
   }
 

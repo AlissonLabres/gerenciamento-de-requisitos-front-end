@@ -13,7 +13,6 @@ import { IIntegrante } from '../../interfaces/integrante.inteface';
   providedIn: 'root'
 })
 export class AtividadeService {
-  private urlServer = 'http://35.198.9.180:8080/api/';
 
   constructor(private http: HttpClient) { }
 
@@ -92,7 +91,8 @@ export class AtividadeService {
           iReq.fonte,
           iReq.categoria,
           null,
-          null
+          null,
+          []
         );
 
         return new Atividade(
@@ -139,17 +139,19 @@ export class AtividadeService {
    * @param id - id da atividade editada.
    * @param atividade - objeto atividade com as propriedades ja editadas.
    */
-  editAtividade(id: number, atividade: Atividade): Observable<boolean> {
+  editAtividade(id: number, atividade: Atividade, idReq: number): Observable<boolean> {
     const iAtividade = {
-      'nome': 'Criar Atividade',
-      'descricao': 'Deverá criar a vinculação de uma atividade a um requisito',
-      'status': 'Desenvolvendo',
-      'dataInicio': '20/06/2018',
-      'dataFim': '18/07/2018',
-      'idDesenvolvedor': 1
+      'nome': atividade.nome,
+      'descricao': atividade.descricao,
+      'status': atividade.status,
+      'dataInicio': atividade.dataInicio,
+      'dataFim': atividade.dataFim,
+      'idDesenvolvedor': localStorage['id']
     };
 
-    return this.http.put<boolean>(this.urlServer + `atividades/${id}`, iAtividade);
+    return this.http.put<boolean>(
+      `${URLSERVER}/${localStorage['id']}/projeto/${localStorage['projetoId']}/requisito/${idReq}/atividade/${id}`, iAtividade
+    );
   }
 
   /**
@@ -157,8 +159,10 @@ export class AtividadeService {
    *
    * @param id - id da atividade a ser deletada.
    */
-  deleteAtividade(id: number): Observable<boolean> {
-    return this.http.delete<boolean>(this.urlServer + `atividades/${id}`);
+  deleteAtividade(id: number, idReq: number): Observable<boolean> {
+    return this.http.delete<boolean>(
+      `${URLSERVER}/${localStorage['id']}/projeto/${localStorage['projetoId']}/requisito/${idReq}/atividade/${id}`
+    );
   }
 
 }

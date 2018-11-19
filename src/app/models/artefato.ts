@@ -5,15 +5,21 @@ export class Artefato {
   private _descricao: string;
 
   constructor(
+    id: number,
     nome: string,
     descricao: string
   ) {
+    this.id = id;
     this.nome = nome;
     this.descricao = descricao;
   }
 
   public get id(): number {
     return this._id;
+  }
+
+  public set id(value: number) {
+    this._id = value;
   }
 
   public get nome(): string {

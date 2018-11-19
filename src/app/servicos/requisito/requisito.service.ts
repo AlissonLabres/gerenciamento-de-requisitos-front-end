@@ -13,6 +13,7 @@ import 'rxjs/add/operator/do';
 import { URLSERVER } from '../../../environments/environment';
 import { Integrante } from '../../models/integrante';
 import { IIntegrante } from '../../interfaces/integrante.inteface';
+import { Artefato } from '../../models/artefato';
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +41,8 @@ export class RequisitoService {
             iReq.fonte,
             iReq.categoria,
             null,
-            null
+            null,
+            [] // TODO
           )
         );
       }
@@ -65,7 +67,8 @@ export class RequisitoService {
         iReq.fonte,
         iReq.categoria,
         null,
-        null
+        null,
+        [] // TODO
       )
     );
   }
@@ -114,5 +117,14 @@ export class RequisitoService {
    */
   deleteRequisito(id: number): Observable<any> {
     return this.http.delete<any>(`${URLSERVER}/${localStorage['id']}/projeto/${localStorage['projetoId']}/requisito/${id}`);
+  }
+
+  addArtefato(artefato: Artefato): Observable<boolean> {
+    const iArtefato = {
+      nome: artefato.nome,
+      descricao: artefato.descricao
+    };
+
+    return this.http.post<boolean>(URLSERVER + `/${localStorage['id']}/projeto/${localStorage['projetoId']}/artefato`, iArtefato);
   }
 }

@@ -78,7 +78,7 @@ export class ProjetosComponent implements OnInit {
    * @param id - passa o id do projeto que será deletado.
    */
   deletar(id: number) {
-    this.projetoService.deleteProjeto(id).pipe(take(1)).subscribe();
+    this.projetoService.deleteProjeto(id).pipe(take(1)).subscribe(() => this.router.navigate(['/']));
   }
 
   /**

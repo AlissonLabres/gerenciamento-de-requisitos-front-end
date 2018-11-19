@@ -3,7 +3,9 @@
     <h2>Novo Artefato</h2>
   </div>
   <app-artefato-card
+    [artefato]="artefato"
     [edit]="edit"
+    #artefato
   >
   </app-artefato-card>
   <br>
@@ -14,6 +16,7 @@
       label="Salvar"
       icon="fa fa-fw fa-save"
       id="btnSalvar"
+      (click)="artefato.salvarDados(); salvarArtefato()"
     >
     </button>
     <button
@@ -22,6 +25,7 @@
       icon="fa fa-fw fa-times-circle"
       class="ui-button-danger"
       id="btnCancelar"
+      (click)="cancelar()"
     >
     </button>
   </div>

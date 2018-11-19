@@ -14,7 +14,6 @@ import { IUsuario } from '../../interfaces/usuario.interface';
 export class UsuarioService {
   public static msgErro = new Subject<string>();
   public static token = new ReplaySubject<string>(1);
-  private urlServer = 'http://35.198.9.180:8080/api/';
   constructor(
     private http: HttpClient,
     private router: Router

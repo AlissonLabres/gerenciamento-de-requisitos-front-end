@@ -30,6 +30,8 @@ export class ProjetoService {
    * Busca os projeto para listar.
    */
   getProjetos(): Observable<Projeto[]> {
+    console.log('testee');
+    this.http.get(`${URLSERVER}/listar`);
     return this.http
       .get<any>(`${URLSERVER}/${localStorage['id']}/projeto/list`)
       .map((iProjetos: IProjeto[]) => {
@@ -90,7 +92,7 @@ export class ProjetoService {
       dataFim: projeto.dataFim,
     };
 
-    return this.http.put<boolean>(`${URLSERVER}/projetos/${id}`, iProjeto);
+    return this.http.put<boolean>(`${URLSERVER}/${localStorage['id']}/projeto/${id}`, iProjeto);
   }
 
   /**
@@ -100,7 +102,7 @@ export class ProjetoService {
    * @param id - id do projeto.
    */
   deleteProjeto(id: number): Observable<boolean> {
-    return this.http.delete<boolean>(`${URLSERVER}/projetos/${id}`);
+    return this.http.delete<boolean>(`${URLSERVER}/${localStorage['id']}/projeto/${id}`);
   }
 
   private mapInterfaceToModelProjeto(iProjeto: IProjeto, id: number) {
@@ -125,7 +127,8 @@ export class ProjetoService {
             iReq.fonte,
             iReq.categoria,
             null,
-            null
+            null,
+            []
           )
         );
       });

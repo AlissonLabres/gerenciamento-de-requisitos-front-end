@@ -6,6 +6,8 @@ import {
   ChangeDetectorRef
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Artefato } from '../../models/artefato';
+import { URLSERVER } from 'src/environments/environment';
 
 @Component({
   selector: 'app-artefato-card',
@@ -18,6 +20,10 @@ export class ArtefatoCardComponent implements OnChanges {
   public edit: boolean;
   protected artefatoForm: FormGroup;
   protected uploadedFiles: any[] = [];
+  protected url: string;
+  @Input()
+  public artefato: Artefato;
+  protected artefatoAux: Artefato;
 
   constructor(
     private fb: FormBuilder,
@@ -27,6 +33,8 @@ export class ArtefatoCardComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     this.cdr.detectChanges();
     if (changes) {
+      this.url = `${URLSERVER}/${localStorage['id']}/projeto/${localStorage['projetoId']}/artefato/${this.artefato.id}/arquivo`;
+      this.initArtefato();
       this.initForm();
       this.cdr.detectChanges();
     }
@@ -34,24 +42,26 @@ export class ArtefatoCardComponent implements OnChanges {
   }
 
   /**
-   * Seta arquivos para inviar.
-   *
-   * @param event Evento de upload.
-   */
-  protected onUpload(event): void {
-    for (const file of event.files) {
-        this.uploadedFiles.push(file);
-    }
-  }
-
-  /**
    * Inicia formulário.
    */
   protected initForm(): void {
     this.artefatoForm = this.fb.group({
-      nome: ['', [Validators.required]],
-      descricao: ['', [Validators.required]],
+      nome: [this.artefatoAux.nome, [Validators.required]],
+      descricao: [this.artefatoAux.descricao, [Validators.required]],
     });
+  }
+
+  initArtefato() {
+    this.artefatoAux = new Artefato(
+      this.artefato.id,
+      this.artefato.nome,
+      this.artefato.descricao
+    );
+  }
+
+  public salvarDados() {
+    this.artefato.nome = this.artefatoForm.get('nome').value;
+    this.artefato.descricao = this.artefatoForm.get('descricao').value;
   }
 
 }

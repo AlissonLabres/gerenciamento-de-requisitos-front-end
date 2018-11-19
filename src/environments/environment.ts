@@ -6,7 +6,7 @@ export const environment = {
   production: false
 };
 
-export const URLSERVER = 'http://35.198.9.180:8080/api/usuario';
+export const URLSERVER = 'http://gdr.jhonylara.com.br/api/usuario';
 /*
  * In development mode, to ignore zone related error stack frames such as
  * `zone.run`, `zoneDelegate.invokeTask` for easier debugging, you can
