@@ -1,3 +1,4 @@
+import { Status } from './../../conts/status';
 import { Component, OnInit, Input, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { Requisito } from '../../models/requisito';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -15,11 +16,14 @@ export class RequisitoCardComponent implements OnInit, OnChanges {
   protected requisitoAux: Requisito;
   protected requisitoForm: FormGroup;
 
-  protected importancia: any;
+  protected importancia: { label: string, value: string }[];
   protected importanciaSelecionada: string;
 
-  protected categoria: any;
+  protected categoria: { label: string, value: string }[];
   protected categoriaSelecionada: string;
+
+  protected status: { label: string, value: string }[];
+  protected statusSelecionado: string;
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -27,6 +31,12 @@ export class RequisitoCardComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit(): void {
+    this.status = [];
+    this.status.push({ label: 'Selecione', value: null });
+    for (const status of Status) {
+      this.status.push({ label: status, value: status });
+    }
+
     this.importancia = [
       { label: 'Selecione', value: null },
       { label: 'Essencial', value: 'Essencial' },
@@ -37,7 +47,7 @@ export class RequisitoCardComponent implements OnInit, OnChanges {
     this.categoria = [
       { label: 'Selecione', value: null },
       { label: 'Funcional', value: 'Funcional' },
-      { label: 'Não Funcional', value: 'Não Funcional' }
+      { label: 'Não Funcional', value: 'Nao Funcional' }
     ];
   }
 
@@ -61,8 +71,9 @@ export class RequisitoCardComponent implements OnInit, OnChanges {
       this.requisito.importancia,
       this.requisito.fonte,
       this.requisito.categoria,
+      this.requisito.status,
       this.requisito.integrante,
-      this.requisito.projeto
+      this.requisito.projeto,
     );
   }
 
@@ -77,6 +88,7 @@ export class RequisitoCardComponent implements OnInit, OnChanges {
       importancia: [this.requisitoAux.importancia, [Validators.required]],
       fonte: [this.requisitoAux.fonte, [Validators.required]],
       categoria: [this.requisitoAux.categoria, [Validators.required]],
+      status: [this.requisitoAux.status, [Validators.required]],
     });
   }
 
@@ -90,6 +102,7 @@ export class RequisitoCardComponent implements OnInit, OnChanges {
     this.requisito.importancia = this.requisitoForm.get('importancia').value;
     this.requisito.fonte = this.requisitoForm.get('fonte').value;
     this.requisito.categoria = this.requisitoForm.get('categoria').value;
+    this.requisito.status = this.requisitoForm.get('status').value;
   }
 
 }

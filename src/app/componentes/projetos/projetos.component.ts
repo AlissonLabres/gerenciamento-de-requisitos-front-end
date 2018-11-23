@@ -34,10 +34,10 @@ export class ProjetosComponent implements OnInit {
 
   ngOnInit() {
     this.blockedPanel = true;
-    ProjetoService.projetoSelecionado.next(undefined);
+    ProjetoService.projetoSelecionado.next();
     delete localStorage['projetoId'];
     this.projetoService.getProjetos()
-      .subscribe(projs => (this.projetos = projs, this.blockedPanel = false), () => this.blockedPanel = false);
+      .subscribe(projs => { this.projetos = projs; this.blockedPanel = false; }, () => this.blockedPanel = false);
   }
 
   /**

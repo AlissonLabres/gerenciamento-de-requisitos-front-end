@@ -7,6 +7,7 @@ export class Projeto {
   private _nome: string;
   private _dataInicio: string;
   private _dataFim: string;
+  private _status: string;
   private _requisitos: Requisito[];
   private _atividades: Atividade[];
   private _integrantes: Integrante[];
@@ -16,6 +17,7 @@ export class Projeto {
     nome: string,
     dataInicio: string,
     dataFim: string,
+    status: string,
     requisitos: Requisito[],
     atividades: Atividade[],
     integrantes: Integrante[]
@@ -24,6 +26,7 @@ export class Projeto {
     this.nome = nome;
     this.dataInicio = dataInicio;
     this.dataFim = dataFim;
+    this.status = status;
     this.requisitos = requisitos;
     this.atividades = atividades;
     this.integrantes = integrantes;
@@ -55,6 +58,14 @@ export class Projeto {
 
   public get dataFim(): string {
     return this._dataFim;
+  }
+
+  public get status(): string {
+    return this._status;
+  }
+
+  public set status(value: string) {
+    this._status = value;
   }
 
   public set dataFim(dataFim: string) {

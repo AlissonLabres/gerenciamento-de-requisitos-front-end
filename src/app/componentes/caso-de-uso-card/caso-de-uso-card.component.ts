@@ -1,3 +1,4 @@
+import { Status } from './../../conts/status';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, Input, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { CasoDeUso } from '../../models/caso-de-uso';
@@ -17,10 +18,19 @@ export class CasoDeUsoCardComponent implements OnChanges {
   protected nivel: any;
   protected nivelSelecionado: string;
 
+  protected status: { label: string, value: string }[];
+  protected statusSelecionado: string;
+
   constructor(
     private cdr: ChangeDetectorRef,
     private fb: FormBuilder
   ) {
+    this.status = [];
+    this.status.push({ label: 'Selecione', value: null });
+    for (const status of Status) {
+      this.status.push({ label: status, value: status });
+    }
+
     this.nivel = [
       { label: 'Selecione', value: null },
       { label: 'Essencial', value: 'Essencial' },
@@ -52,6 +62,7 @@ export class CasoDeUsoCardComponent implements OnChanges {
       this.casoDeUso.posCondicao,
       this.casoDeUso.cenarioPrincipal,
       this.casoDeUso.extensao,
+      this.casoDeUso.status
     );
   }
 
@@ -68,6 +79,7 @@ export class CasoDeUsoCardComponent implements OnChanges {
       posCondicao: [this.casoDeUsoAux.posCondicao, [Validators.required]],
       cenarioPrincipal: [this.casoDeUsoAux.cenarioPrincipal, [Validators.required]],
       extensao: [this.casoDeUsoAux.extensao, [Validators.required]],
+      status: [this.casoDeUsoAux.status, [Validators.required]]
     });
   }
 
@@ -83,6 +95,7 @@ export class CasoDeUsoCardComponent implements OnChanges {
     this.casoDeUso.posCondicao = this.casoDeUsoForm.get('posCondicao').value;
     this.casoDeUso.cenarioPrincipal = this.casoDeUsoForm.get('cenarioPrincipal').value;
     this.casoDeUso.extensao = this.casoDeUsoForm.get('extensao').value;
+    this.casoDeUso.status = this.casoDeUsoForm.get('status').value;
   }
 
 }

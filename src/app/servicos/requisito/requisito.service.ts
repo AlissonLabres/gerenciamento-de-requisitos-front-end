@@ -39,6 +39,7 @@ export class RequisitoService {
             iReq.importancia,
             iReq.fonte,
             iReq.categoria,
+            iReq.status,
             null,
             null
           )
@@ -64,6 +65,7 @@ export class RequisitoService {
         iReq.importancia,
         iReq.fonte,
         iReq.categoria,
+        iReq.status,
         null,
         null
       )
@@ -82,7 +84,8 @@ export class RequisitoService {
       descricao: requisito.descricao,
       importancia: requisito.importancia,
       fonte: requisito.fonte,
-      categoria: requisito.categoria
+      categoria: requisito.categoria,
+      status: requisito.status
     };
 
     return this.http.post<IRequisito>(`${URLSERVER}/${localStorage['id']}/projeto/${localStorage['projetoId']}/requisito`, iRequisito);
@@ -101,7 +104,8 @@ export class RequisitoService {
       descricao: requisito.descricao,
       importancia: requisito.importancia,
       fonte: requisito.fonte,
-      categoria: requisito.categoria
+      categoria: requisito.categoria,
+      status: requisito.status
     };
 
     return this.http.put<IRequisito>(`${URLSERVER}/${localStorage['id']}/projeto/${localStorage['projetoId']}/requisito/${id}`, iRequisito);
