@@ -9,5 +9,6 @@ export interface ICasoDeUso {
   posCondicao: string;
   cenarioPrincipal: string;
   extensao: string;
+  status: string;
   integrante: IIntegrante;
 }

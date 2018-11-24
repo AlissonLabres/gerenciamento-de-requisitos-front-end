@@ -1,6 +1,7 @@
 import { IRequisito } from './requisito.interface';
 import { IIntegrante } from './integrante.inteface';
 import { IAtividade } from './atividade.interface';
+import { ICasoDeUso } from './casoDeUso.interface';
 
 export interface IProjeto {
   id: number;
@@ -9,7 +10,9 @@ export interface IProjeto {
   dataInicio: string;
   dataFim: string;
   perfilIntegranteProjeto: string;
-  requisito: IRequisito[];
+  status: string;
+  requisitos: IRequisito[];
+  casosDeUso: ICasoDeUso[];
   atividades: IAtividade[];
   integrantes: IIntegrante[];
 }

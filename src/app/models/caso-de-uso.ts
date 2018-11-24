@@ -8,6 +8,7 @@ export class CasoDeUso {
   private _posCondicao: string;
   private _cenarioPrincipal: string;
   private _extensao: string;
+  private _status: string;
 
   constructor(
     id: number,
@@ -19,6 +20,7 @@ export class CasoDeUso {
     posCondicao: string,
     cenarioPrincipal: string,
     extensao: string,
+    status: string
   ) {
     this.idCasoDeUso = id;
     this.nome = nome;
@@ -29,6 +31,7 @@ export class CasoDeUso {
     this.posCondicao = posCondicao;
     this.cenarioPrincipal = cenarioPrincipal;
     this.extensao = extensao;
+    this.status = status;
   }
 
   public get idCasoDeUso(): number {
@@ -101,5 +104,13 @@ export class CasoDeUso {
 
   public set extensao(extensao: string) {
     this._extensao = extensao;
+  }
+
+  public get status(): string {
+    return this._status;
+  }
+
+  public set status(value: string) {
+    this._status = value;
   }
 }

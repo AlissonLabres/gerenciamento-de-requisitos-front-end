@@ -32,7 +32,8 @@ export class CasoDeUsoService {
             iCasosUso.preCondicao,
             iCasosUso.posCondicao,
             iCasosUso.cenarioPrincipal,
-            iCasosUso.extensao
+            iCasosUso.extensao,
+            iCasosUso.status
           )
         );
         return casosDeUso;
@@ -60,6 +61,7 @@ export class CasoDeUsoService {
           iCasoDeUso.posCondicao,
           iCasoDeUso.cenarioPrincipal,
           iCasoDeUso.extensao,
+          iCasoDeUso.status
         );
       }
     );
@@ -79,7 +81,8 @@ export class CasoDeUsoService {
       'posCondicao': casoDeUso.posCondicao,
       'cenarioPrincipal': casoDeUso.cenarioPrincipal,
       'extensao': casoDeUso.extensao,
-      'atorPrincipal': casoDeUso.atorPrincipal
+      'atorPrincipal': casoDeUso.atorPrincipal,
+      'status': casoDeUso.status
     };
 
     return this.http.post<ICasoDeUso>(`${URLSERVER}/${localStorage['id']}/projeto/${localStorage['projetoId']}/casoDeUso/`, iCasoDeUso);
@@ -101,7 +104,8 @@ export class CasoDeUsoService {
       'posCondicao': casoDeUso.posCondicao,
       'cenarioPrincipal': casoDeUso.cenarioPrincipal,
       'extensao': casoDeUso.extensao,
-      'atorPrincipal': casoDeUso.atorPrincipal
+      'atorPrincipal': casoDeUso.atorPrincipal,
+      'status': casoDeUso.status
     };
 
     return this.http.put<boolean>(`${URLSERVER}/${localStorage['id']}/projeto/${localStorage['projetoId']}/casoDeUso/${id}`, iCasoDeUso);

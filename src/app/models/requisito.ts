@@ -10,6 +10,7 @@ export class Requisito {
   private _importancia: string;
   private _fonte: string;
   private _categoria: string;
+  private _status: string;
   private _integrante: Integrante;
   private _projeto: Projeto;
   private _artefatos: Artefato[];
@@ -22,6 +23,7 @@ export class Requisito {
     importancia: string,
     fonte: string,
     categoria: string,
+    status: string,
     integrante: Integrante,
     projeto: Projeto,
     artefatos: Artefato[]
@@ -33,6 +35,7 @@ export class Requisito {
     this.importancia = importancia;
     this.fonte = fonte;
     this.categoria = categoria;
+    this.status = status;
     this.integrante = integrante;
     this.projeto = projeto;
     this.artefatos = artefatos;
@@ -92,6 +95,14 @@ export class Requisito {
 
   public set categoria(categoria: string) {
     this._categoria = categoria;
+  }
+
+  public get status(): string {
+   return this._status;
+  }
+
+  public set status(value: string) {
+   this._status = value;
   }
 
   public get integrante(): Integrante {

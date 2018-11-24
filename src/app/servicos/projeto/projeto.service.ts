@@ -1,3 +1,4 @@
+import { Status } from './../../conts/status';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -33,7 +34,7 @@ export class ProjetoService {
     console.log('testee');
     this.http.get(`${URLSERVER}/listar`);
     return this.http
-      .get<any>(`${URLSERVER}/${localStorage['id']}/projeto/list`)
+      .get<IProjeto[]>(`${URLSERVER}/${localStorage['id']}/projeto/list`)
       .map((iProjetos: IProjeto[]) => {
         return iProjetos.map(
           (iProjeto: IProjeto) => {
@@ -42,6 +43,7 @@ export class ProjetoService {
               iProjeto.nome,
               iProjeto.dataInicio,
               iProjeto.dataFim,
+              '',
               null,
               null,
               null
@@ -60,7 +62,7 @@ export class ProjetoService {
     return this.http.get<IProjeto>(`${URLSERVER}/${localStorage['id']}/projeto/${id}`).map(
       (iProjeto: IProjeto) => {
         return this.mapInterfaceToModelProjeto(iProjeto, id);
-      }).do((proj: Projeto) => ProjetoService.projeto.next(proj));
+      }).do((proj: Projeto) => ProjetoService.projeto.next(proj)).do(console.log);
   }
 
   /**
@@ -73,9 +75,10 @@ export class ProjetoService {
       nome: projeto.nome,
       dataInicio: new Date(projeto.dataInicio).toLocaleDateString(),
       dataFim: new Date(projeto.dataFim).toLocaleDateString(),
+      status: projeto.status
     };
 
-    return this.http.post<IProjeto>(`${URLSERVER}/${localStorage['id']}/projeto`, iProjeto);
+    return this.http.post<IProjeto>(`${URLSERVER}/${localStorage.id}/projeto`, iProjeto);
   }
 
   /**
@@ -88,11 +91,12 @@ export class ProjetoService {
   editProjeto(id: number, projeto: Projeto): Observable<boolean> {
     const iProjeto = {
       nome: projeto.nome,
-      dataInicio: projeto.dataInicio,
-      dataFim: projeto.dataFim,
+      dataInicio: new Date(projeto.dataInicio).toLocaleDateString('pt-br'),
+      dataFim: new Date(projeto.dataFim).toLocaleDateString(),
+      status: projeto.status
     };
 
-    return this.http.put<boolean>(`${URLSERVER}/${localStorage['id']}/projeto/${id}`, iProjeto);
+    return this.http.put<boolean>(`${URLSERVER}/${localStorage.id}/projeto/${id}`, iProjeto);
   }
 
   /**
@@ -102,11 +106,11 @@ export class ProjetoService {
    * @param id - id do projeto.
    */
   deleteProjeto(id: number): Observable<boolean> {
-    return this.http.delete<boolean>(`${URLSERVER}/${localStorage['id']}/projeto/${id}`);
+    return this.http.delete<boolean>(`${URLSERVER}/${localStorage.id}/projeto/${id}`);
   }
 
   private mapInterfaceToModelProjeto(iProjeto: IProjeto, id: number) {
-    const iReqs = iProjeto.requisito;
+    const iReqs = iProjeto.requisitos;
     const iAtvs = iProjeto.atividades;
     const iInts = iProjeto.integrantes;
     const requisitos: Requisito[] = [];
@@ -126,6 +130,7 @@ export class ProjetoService {
             iReq.importancia,
             iReq.fonte,
             iReq.categoria,
+            iReq.status,
             null,
             null,
             []
@@ -171,6 +176,7 @@ export class ProjetoService {
       iProjeto.nome,
       iProjeto.dataInicio,
       iProjeto.dataFim,
+      iProjeto.status,
       requisitos,
       atividades,
       integrantes

@@ -10,6 +10,7 @@ export interface IRequisito {
   fonte: string;
   categoria: string;
   idUsuario: number;
+  status: string;
   integrante: IIntegrante;
   projeto: IProjeto;
 }
