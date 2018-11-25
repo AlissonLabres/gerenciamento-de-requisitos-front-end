@@ -109,6 +109,9 @@
           [url]="url"
           accept="image/*"
           maxFileSize="1000000"
+          [disabled]="!artefato.id"
+          [pTooltip]="!artefato.id ? 'Salve este artefato antes de anexar um arquivo' : 'Anexo de arquivo no artefato'"
+          chooseLabel="Anexar arquivo"
         >
         </p-fileUpload>
       </div>

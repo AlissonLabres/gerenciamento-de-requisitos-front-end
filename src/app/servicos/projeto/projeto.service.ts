@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { ReplaySubject, Subject } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
+import { take } from 'rxjs/operators';
 
 import { URLSERVER } from '../../../environments/environment';
 import { IProjeto } from '../../interfaces/projeto.interface';
@@ -23,6 +24,9 @@ export class ProjetoService {
   private subProjsResultado: Subject<Projeto[]> = new Subject<Projeto[]>();
 
   constructor(private http: HttpClient) {
+    if (localStorage.projetoId) {
+      this.getProjeto(localStorage.projetoId).pipe(take(1)).subscribe();
+    }
     ProjetoService.projetoSelecionado.next(localStorage['projetoId']);
   }
 
