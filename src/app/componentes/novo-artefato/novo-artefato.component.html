@@ -3,9 +3,9 @@
     <h2>Novo Artefato</h2>
   </div>
   <app-artefato-card
-    [artefato]="artefato"
     [edit]="edit"
-    #artefato
+    [artefato]="artefato"
+    #card
   >
   </app-artefato-card>
   <br>
@@ -16,8 +16,8 @@
       label="Salvar"
       icon="fa fa-fw fa-save"
       id="btnSalvar"
-      [disabled]="!artefato.artefatoForm.valid"
-      (click)="artefato.salvarDados(); salvarArtefato()"
+      [disabled]="!card.artefatoForm.valid"
+      (click)="card.salvarDados(); salvarArtefato()"
     >
     </button>
     <button
@@ -37,7 +37,7 @@
   [blocked]="blockedPanel"
 >
   <div class="text-center align-middle">
-    <i class="fa fa-pulse fa-spinner">
+    <i class="fa fa-pulse fa-spinner fa-5x">
     </i>
   </div>
 </p-blockUI>

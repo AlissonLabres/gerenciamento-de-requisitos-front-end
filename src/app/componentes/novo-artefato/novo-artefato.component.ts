@@ -23,7 +23,7 @@ export class NovoArtefatoComponent implements OnInit {
 
   ngOnInit() {
     this.artefato = new Artefato(
-      null,
+      undefined,
       '',
       '',
       null,
@@ -33,6 +33,7 @@ export class NovoArtefatoComponent implements OnInit {
 
   protected salvarArtefato() {
     this.blockedPanel = true;
+    console.log('novo artefato salvar', this.artefato.nome, '?');
     this.artefatoService.addArtefato(this.artefato).subscribe(() => {
       this.location.back();
       this.blockedPanel = false;

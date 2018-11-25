@@ -62,9 +62,11 @@ import { NumberDirective } from './number.directive';
 import { DetalheArtefatoComponent } from './componentes/detalhe-artefato/detalhe-artefato.component';
 import { NovoArtefatoComponent } from './componentes/novo-artefato/novo-artefato.component';
 import { ArtefatoCardComponent } from './componentes/artefato-card/artefato-card.component';
+import { ArtefatosComponent } from './componentes/artefatos/artefatos.component';
 
 @NgModule({
   declarations: [
+    ArtefatosComponent,
     ArtefatoCardComponent,
     DetalheArtefatoComponent,
     NovoArtefatoComponent,

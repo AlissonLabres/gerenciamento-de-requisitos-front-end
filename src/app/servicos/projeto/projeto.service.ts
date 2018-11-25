@@ -60,7 +60,7 @@ export class ProjetoService {
     return this.http.get<IProjeto>(`${URLSERVER}/${localStorage['id']}/projeto/${id}`).map(
       (iProjeto: IProjeto) => {
         return this.mapInterfaceToModelProjeto(iProjeto, id);
-      }).do((proj: Projeto) => ProjetoService.projeto.next(proj)).do(console.log);
+      }).do((proj: Projeto) => ProjetoService.projeto.next(proj));
   }
 
   /**

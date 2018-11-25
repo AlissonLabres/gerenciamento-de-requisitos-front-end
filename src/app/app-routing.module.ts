@@ -23,6 +23,7 @@ import { TrocaSenhaComponent } from './componentes/troca-senha/troca-senha.compo
 import { ValidarCodigoComponent } from './componentes/validar-codigo/validar-codigo.component';
 import { IntegrantesComponent } from './componentes/integrantes/integrantes.component';
 import { NovoArtefatoComponent } from './componentes/novo-artefato/novo-artefato.component';
+import { ArtefatosComponent } from './componentes/artefatos/artefatos.component';
 
 const APP_ROUTES: Routes = [
   {
@@ -125,6 +126,11 @@ const APP_ROUTES: Routes = [
   {
     path: 'novo-artefato',
     component: NovoArtefatoComponent,
+    canActivate: [LoginGuard]
+  },
+  {
+    path: 'artefatos',
+    component: ArtefatosComponent,
     canActivate: [LoginGuard]
   },
   {

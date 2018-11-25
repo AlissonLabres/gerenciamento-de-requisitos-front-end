@@ -31,7 +31,7 @@ export class ArtefatoCardComponent implements OnInit, OnChanges {
   protected uploadedFiles: any[] = [];
   protected url: string;
 
-  protected artefatoAux: Artefato;
+  public artefatoAux: Artefato;
 
   protected requisitos: any[];
   protected requisitoSelecionado: Requisito;
@@ -98,6 +98,7 @@ export class ArtefatoCardComponent implements OnInit, OnChanges {
   }
 
   initArtefato() {
+    console.log('initArtefato()', this.artefato);
     this.artefatoAux = new Artefato(
       this.artefato.id,
       this.artefato.nome,
@@ -112,6 +113,7 @@ export class ArtefatoCardComponent implements OnInit, OnChanges {
     this.artefato.descricao = this.artefatoForm.get('descricao').value;
     this.artefato.idRequisito = this.artefatoForm.get('requisito').value;
     this.artefato.idCasoDeUso = this.artefatoForm.get('casoDeUso').value;
+    console.log(`salvarDado()`, this.artefato.nome);
   }
 
 }
