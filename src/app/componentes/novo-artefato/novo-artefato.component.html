@@ -16,6 +16,7 @@
       label="Salvar"
       icon="fa fa-fw fa-save"
       id="btnSalvar"
+      [disabled]="!artefato.artefatoForm.valid"
       (click)="artefato.salvarDados(); salvarArtefato()"
     >
     </button>

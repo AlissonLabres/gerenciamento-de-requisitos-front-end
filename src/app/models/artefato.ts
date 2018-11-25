@@ -3,15 +3,21 @@ export class Artefato {
   private _id: number;
   private _nome: string;
   private _descricao: string;
+  private _idRequisito: number;
+  private _idCasoDeUso: number;
 
   constructor(
     id: number,
     nome: string,
-    descricao: string
+    descricao: string,
+    idRequisito: number,
+    idCasoDeUso: number
   ) {
     this.id = id;
     this.nome = nome;
     this.descricao = descricao;
+    this.idRequisito = idRequisito;
+    this.idCasoDeUso = idCasoDeUso;
   }
 
   public get id(): number {
@@ -36,5 +42,21 @@ export class Artefato {
 
   public set descricao(value: string) {
     this._descricao = value;
+  }
+
+  public get idRequisito(): number {
+    return this._idRequisito;
+  }
+
+  public set idRequisito(value: number) {
+    this._idRequisito = value;
+  }
+
+  public get idCasoDeUso(): number {
+    return this._idCasoDeUso;
+  }
+
+  public set idCasoDeUso(value: number) {
+    this._idCasoDeUso = value;
   }
 }

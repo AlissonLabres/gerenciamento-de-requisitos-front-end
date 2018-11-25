@@ -1,5 +1,7 @@
 export interface IArtefato {
-  id: number;
+  id?: number;
   nome: string;
   descricao: string;
+  idRequisito: number;
+  idCasoDeUso: number;
 }

@@ -1,8 +1,10 @@
 import { Location } from '@angular/common';
-import { Artefato } from './../../models/artefato';
 import { Component, OnInit } from '@angular/core';
-import { RequisitoService } from '../../servicos/requisito/requisito.service';
+
 import { take } from 'rxjs/operators';
+
+import { ArtefatoService } from 'src/app/servicos/artefato/artefato.service';
+import { Artefato } from './../../models/artefato';
 
 @Component({
   selector: 'app-novo-artefato',
@@ -15,22 +17,25 @@ export class NovoArtefatoComponent implements OnInit {
   protected artefato: Artefato;
 
   constructor(
-    private requisitoService: RequisitoService,
+    private artefatoService: ArtefatoService,
     private location: Location
   ) { }
 
   ngOnInit() {
     this.artefato = new Artefato(
-      1, // TODO
+      null,
       '',
-      ''
+      '',
+      null,
+      null
     );
   }
 
   protected salvarArtefato() {
-    this.requisitoService.addArtefato(this.artefato).pipe(take(1)).subscribe(() => {
-      this.blockedPanel = true;
+    this.blockedPanel = true;
+    this.artefatoService.addArtefato(this.artefato).subscribe(() => {
       this.location.back();
+      this.blockedPanel = false;
     });
   }
 

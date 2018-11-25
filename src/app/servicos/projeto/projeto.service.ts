@@ -1,4 +1,3 @@
-import { Status } from './../../conts/status';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -31,7 +30,6 @@ export class ProjetoService {
    * Busca os projeto para listar.
    */
   getProjetos(): Observable<Projeto[]> {
-    console.log('testee');
     this.http.get(`${URLSERVER}/listar`);
     return this.http
       .get<IProjeto[]>(`${URLSERVER}/${localStorage['id']}/projeto/list`)

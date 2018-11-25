@@ -31,13 +31,14 @@
   </div>
 </ng-container>
 <ng-template #editForm>
-  <form>
+  <form [formGroup]="artefatoForm">
     <div class="form-group row mb-0">
       <strong class="col-sm-5 col-form-label text-sm-right text-md-right">
         Nome:
       </strong>
       <div class="col-sm-7">
         <input
+          formControlName="nome"
           pTooltip="nome do artefato"
           tooltipPosition="right"
           tooltipEvent="focus"
@@ -54,6 +55,7 @@
       </strong>
       <div class="col-sm-7">
         <textarea
+          formControlName="descricao"
           pTooltip="descrição do artefato em detalhes"
           tooltipPosition="right"
           tooltipEvent="focus"
@@ -62,6 +64,38 @@
           required
         >
         </textarea>
+      </div>
+    </div>
+    <div
+      *ngIf="requisitos"
+      class="form-group row mb-0"
+    >
+      <strong class="col-sm-5 col-form-label text-sm-right text-md-right">
+        Requisito:
+      </strong>
+      <div class="col-sm-7">
+        <p-dropdown
+          formControlName="requisito"
+          [options]="requisitos"
+          [(ngModel)]="requisitoSelecionado"
+        >
+        </p-dropdown>
+      </div>
+    </div>
+    <div
+      *ngIf="cdus"
+      class="form-group row mb-0"
+    >
+      <strong class="col-sm-5 col-form-label text-sm-right text-md-right">
+        Caso de uso:
+      </strong>
+      <div class="col-sm-7">
+        <p-dropdown
+          formControlName="casoDeUso"
+          [options]="cdus"
+          [(ngModel)]="cduSelecionado"
+        >
+        </p-dropdown>
       </div>
     </div>
     <div class="form-group row mb-0">

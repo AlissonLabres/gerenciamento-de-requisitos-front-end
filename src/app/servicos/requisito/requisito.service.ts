@@ -120,15 +120,7 @@ export class RequisitoService {
    * @param id - id do requisito a ser deletado.
    */
   deleteRequisito(id: number): Observable<any> {
-    return this.http.delete<any>(`${URLSERVER}/${localStorage['id']}/projeto/${localStorage['projetoId']}/requisito/${id}`);
+    return this.http.delete<any>(`${URLSERVER}/${localStorage.id}/projeto/${localStorage.projetoId}/requisito/${id}`);
   }
 
-  addArtefato(artefato: Artefato): Observable<boolean> {
-    const iArtefato = {
-      nome: artefato.nome,
-      descricao: artefato.descricao
-    };
-
-    return this.http.post<boolean>(URLSERVER + `/${localStorage['id']}/projeto/${localStorage['projetoId']}/artefato`, iArtefato);
-  }
 }
