@@ -11,6 +11,7 @@ import { ProjetoService } from '../../servicos/projeto/projeto.service';
   styleUrls: ['./integrantes.component.css']
 })
 export class IntegrantesComponent implements OnInit {
+  protected permissao: boolean;
   protected projeto: Projeto;
   protected integrantes: Integrante[];
   protected blockedPanel = false;
@@ -29,6 +30,9 @@ export class IntegrantesComponent implements OnInit {
   ngOnInit() {
     ProjetoService.projeto.subscribe(proj => this.projeto = proj);
     this.getIntegrantes();
+    if (localStorage.perfilIntegrante === 'Gerente' || localStorage.perfilIntegrante === 'Analista') {
+      this.permissao = true;
+    } else { this.permissao = false; }
   }
 
   /**

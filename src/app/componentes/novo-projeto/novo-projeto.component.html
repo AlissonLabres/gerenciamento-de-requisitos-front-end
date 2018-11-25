@@ -2,19 +2,48 @@
   <div class="text-center">
     <h2>Novo Projeto</h2>
   </div>
-  <app-projeto-card [edit]="edit" [projeto]="projeto" #card></app-projeto-card>
+  <app-projeto-card
+    [edit]="edit"
+    [projeto]="projeto"
+    #card
+  >
+  </app-projeto-card>
   <br>
   <div class="text-center">
-    <button [disabled]="" pButton class="ui-button-success" label="Salvar" icon="fa fa-fw fa-save" id="btnSalvar" (click)="card.salvarDados(); salvarProjeto()"
-      [disabled]="!card.projetoForm.valid"></button>
-    <button pButton label="Cancelar" icon="fa fa-fw fa-times-circle" class="ui-button-danger" id="btnCancelar" (click)="cancelar()"></button>
+    <button
+      [disabled]=""
+      pButton
+      class="ui-button-success"
+      label="Salvar"
+      icon="fa fa-fw fa-save"
+      id="btnSalvar"
+      (click)="card.salvarDados(); salvarProjeto()"
+      [disabled]="!card.projetoForm.valid"
+    >
+    </button>
+    <button
+      pButton
+      label="Cancelar"
+      icon="fa fa-fw fa-times-circle"
+      class="ui-button-danger"
+      id="btnCancelar"
+      (click)="cancelar()"
+    >
+    </button>
   </div>
   <br>
   <div class="text-center">
-    <app-log-erro [mostraErro]="!card.projetoForm.valid" [msgErro]="msgErroProjeto"></app-log-erro>
+    <app-log-erro
+      [mostraErro]="!card.projetoForm.valid"
+      [msgErro]="msgErroProjeto"
+    >
+    </app-log-erro>
   </div>
 </p-card>
-<p-blockUI [target]="pnl" [blocked]="blockedPanel">
+<p-blockUI
+  [target]="pnl"
+  [blocked]="blockedPanel"
+>
   <div class="text-center align-middle">
     <i class="fa fa-pulse fa-spinner">
     </i>

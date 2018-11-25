@@ -1,4 +1,3 @@
-import { CasoDeUsoService } from './../../servicos/casoDeUso/caso-de-uso.service';
 import {
   Component,
   OnInit,
@@ -8,6 +7,8 @@ import {
   ChangeDetectorRef
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { CasoDeUsoService } from './../../servicos/casoDeUso/caso-de-uso.service';
 import { Artefato } from '../../models/artefato';
 import { URLSERVER } from 'src/environments/environment';
 import { Requisito } from 'src/app/models/requisito';

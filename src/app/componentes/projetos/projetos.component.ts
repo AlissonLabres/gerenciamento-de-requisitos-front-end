@@ -22,6 +22,7 @@ export class ProjetosComponent implements OnInit {
     { field: 'nome', header: 'Nome' },
     { field: 'dataInicio', header: 'Data inicial' },
     { field: 'dataFim', header: 'Data final' },
+    { field: 'status', header: 'Status' },
     { field: 'acao', header: 'Ação' }
   ];
   protected msgs: Message[] = [];

@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./casos-de-uso.component.css']
 })
 export class CasosDeUsoComponent implements OnInit {
+  protected permissao: boolean;
   protected projeto: Projeto;
   protected casosDeUso: CasoDeUso[];
   protected blockedPanel = false;
@@ -30,6 +31,9 @@ export class CasosDeUsoComponent implements OnInit {
     ProjetoService.projeto
       .subscribe(proj => this.projeto = proj);
     this.getCasosDeUso();
+    if (localStorage.perfilIntegrante === 'Gerente' || localStorage.perfilIntegrante === 'Analista') {
+      this.permissao = true;
+    } else { this.permissao = false; }
   }
 
   /**

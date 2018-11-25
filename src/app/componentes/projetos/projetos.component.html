@@ -48,6 +48,7 @@
           <td>{{ rowData['nome'] }}</td>
           <td>{{ rowData['dataInicio'] }}</td>
           <td>{{ rowData['dataFim'] }}</td>
+          <td>{{ rowData['status'] }}</td>
           <td class="text-center">
             <button
               id="editarBtn"
@@ -57,14 +58,6 @@
               class="ui-button-warning"
             >
             </button>
-            <!-- TODO: botao deletar -->
-            <button
-              id="deletarBtn"
-              pButton
-              icon="fa fa-trash"
-              class="ui-button-danger"
-              (click)="deletar(rowData['idProjeto'])"
-            ></button>
           </td>
         </tr>
       </ng-template>

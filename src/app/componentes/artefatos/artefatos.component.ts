@@ -11,6 +11,7 @@ import { Projeto } from '../../models/projeto';
   styleUrls: ['./artefatos.component.css']
 })
 export class ArtefatosComponent implements OnInit {
+  protected permissao: boolean;
   protected projeto: Projeto;
   protected artefatos: Artefato[];
   protected blockedPanel = false;
@@ -24,6 +25,9 @@ export class ArtefatosComponent implements OnInit {
   ngOnInit() {
     ProjetoService.projeto.subscribe((proj: Projeto) => this.projeto = proj);
     this.getArtefatos();
+    if (localStorage.perfilIntegrante === 'Gerente' || localStorage.perfilIntegrante === 'Analista') {
+      this.permissao = true;
+    } else { this.permissao = false; }
   }
 
   private getArtefatos(): void {

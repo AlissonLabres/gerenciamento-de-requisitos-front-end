@@ -13,6 +13,7 @@ import { Atividade } from '../../models/atividade';
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent implements OnInit {
+  protected permissao: boolean;
   protected reqAtvInt: any;
   protected timeLine: any;
   protected atvStatus: any;
@@ -40,6 +41,9 @@ export class InicioComponent implements OnInit {
 
   ngOnInit() {
     this.getProjeto();
+    if (localStorage['perfilIntegrante'] === 'Gerente' || localStorage['perfilIntegrante'] === 'Analista') {
+      this.permissao = true;
+    } else { this.permissao = false; }
   }
 
   /**

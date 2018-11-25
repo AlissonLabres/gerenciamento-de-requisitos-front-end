@@ -13,6 +13,7 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./requisito.component.css']
 })
 export class RequisitoComponent implements OnInit {
+  protected permissao: boolean;
   protected projeto: Observable<Projeto>;
   protected blockedPanel = false;
   protected requisitos: Requisito[];
@@ -32,6 +33,9 @@ export class RequisitoComponent implements OnInit {
   ngOnInit() {
     this.projeto = ProjetoService.projeto.asObservable();
     this.getRequisitos();
+    if (localStorage.perfilIntegrante === 'Gerente' || localStorage.perfilIntegrante === 'Analista') {
+      this.permissao = true;
+    } else { this.permissao = false; }
   }
 
   /**
