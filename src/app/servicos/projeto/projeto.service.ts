@@ -45,7 +45,7 @@ export class ProjetoService {
               iProjeto.nome,
               iProjeto.dataInicio,
               iProjeto.dataFim,
-              '',
+              iProjeto.status,
               null,
               null,
               null

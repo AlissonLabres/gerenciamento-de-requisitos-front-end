@@ -15,15 +15,12 @@ import { ProjetoService } from '../../servicos/projeto/projeto.service';
 export class ProjetosComponent implements OnInit {
   protected projetos: Projeto[];
   protected blockedPanel = false;
-  private usuarioId: number;
-  private projetoSelecionado: Projeto;
   protected cols: any = [
     { field: 'idProjeto', header: 'Id' },
     { field: 'nome', header: 'Nome' },
     { field: 'dataInicio', header: 'Data inicial' },
     { field: 'dataFim', header: 'Data final' },
-    { field: 'status', header: 'Status' },
-    { field: 'acao', header: 'Ação' }
+    { field: 'status', header: 'Status' }
   ];
   protected msgs: Message[] = [];
 
@@ -38,7 +35,9 @@ export class ProjetosComponent implements OnInit {
     ProjetoService.projetoSelecionado.next();
     delete localStorage['projetoId'];
     this.projetoService.getProjetos()
-      .subscribe(projs => { this.projetos = projs; this.blockedPanel = false; }, () => this.blockedPanel = false);
+      .subscribe(projs => {
+        this.projetos = projs; this.blockedPanel = false; console.log('onInit', projs[0].status);
+      }, () => this.blockedPanel = false);
   }
 
   /**

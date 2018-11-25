@@ -14,8 +14,11 @@ import { Atividade } from '../../models/atividade';
 })
 export class InicioComponent implements OnInit {
   protected permissao: boolean;
+  /**
+   * Requisitos, atividades e integrantes.
+   */
   protected reqAtvInt: any;
-  protected timeLine: any;
+  protected statusRequisitos: any;
   protected atvStatus: any;
   protected projeto: Projeto;
   protected requisitos: Requisito[];
@@ -87,20 +90,22 @@ export class InicioComponent implements OnInit {
         }
       ]
     };
-    this.timeLine = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    const requisitosConcluidos = this.requisitos.filter(req => req.status === 'Concluido').length;
+    this.statusRequisitos = {
+      labels: [
+        'Requisitos não concluídos',
+        'Requisitos concluídos'
+      ],
       datasets: [
         {
-          label: 'First Dataset',
-          data: [65, 59, 80, 81, 56, 55, 40],
-          fill: false,
-          borderColor: '#4bc0c0'
-        },
-        {
-          label: 'Second Dataset',
-          data: [28, 48, 40, 19, 86, 27, 90],
-          fill: false,
-          borderColor: '#565656'
+          backgroundColor: [
+            '#42A5F5',
+            '#7CB342'
+          ],
+          data: [
+            this.requisitos.length - requisitosConcluidos,
+            requisitosConcluidos
+          ]
         }
       ]
     };

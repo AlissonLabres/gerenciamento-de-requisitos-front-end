@@ -1,7 +1,7 @@
 <div class="row">
   <h2 class="col-sm-6">{{ projeto?.nome }}</h2>
   <div class="col-sm-6">
-    <button
+    <!-- <button
       icon="fa fa-plus"
       pButton
       label="Novo Integrante"
@@ -9,7 +9,7 @@
       (click)="novoIntegrante()"
       *ngIf="permissao"
     >
-    </button>
+    </button> -->
   </div>
 </div>
 <div class="row align-self-center">
@@ -32,6 +32,13 @@
         <p-chart
           type="bar"
           [data]="atvStatus"
+        >
+        </p-chart>
+      </div>
+      <div class="col-sm-4">
+        <p-chart
+          type="pie"
+          [data]="statusRequisitos"
         >
         </p-chart>
       </div>

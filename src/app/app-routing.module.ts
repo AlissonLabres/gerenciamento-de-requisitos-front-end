@@ -24,6 +24,7 @@ import { ValidarCodigoComponent } from './componentes/validar-codigo/validar-cod
 import { IntegrantesComponent } from './componentes/integrantes/integrantes.component';
 import { NovoArtefatoComponent } from './componentes/novo-artefato/novo-artefato.component';
 import { ArtefatosComponent } from './componentes/artefatos/artefatos.component';
+import { DetalheArtefatoComponent } from './componentes/detalhe-artefato/detalhe-artefato.component';
 
 const APP_ROUTES: Routes = [
   {
@@ -131,6 +132,11 @@ const APP_ROUTES: Routes = [
   {
     path: 'artefatos',
     component: ArtefatosComponent,
+    canActivate: [LoginGuard]
+  },
+  {
+    path: ':idArtefato/detalhe-artefato',
+    component: DetalheArtefatoComponent,
     canActivate: [LoginGuard]
   },
   {

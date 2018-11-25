@@ -42,15 +42,15 @@
         let-columns="columns"
       >
         <tr [pSelectableRow]="rowData">
-          <td>{{ rowData['idCasoDeUso'] }}</td>
-          <td>{{ rowData['nome'] }}</td>
-          <td>{{ rowData['nivel'] }}</td>
+          <td>{{ rowData.idCasoDeUso }}</td>
+          <td>{{ rowData.nome }}</td>
+          <td>{{ rowData.nivel }}</td>
           <td class="text-center">
             <button
               id="editarBtn"
               pButton
               icon="fa fa-edit"
-              (click)="detalheCasoDeUso(rowData['idCasoDeUso'])"
+              (click)="detalheCasoDeUso(rowData.idCasoDeUso)"
               class="ui-button-warning"
             >
             </button>
