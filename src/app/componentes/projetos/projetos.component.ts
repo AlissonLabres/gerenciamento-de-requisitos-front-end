@@ -15,14 +15,12 @@ import { ProjetoService } from '../../servicos/projeto/projeto.service';
 export class ProjetosComponent implements OnInit {
   protected projetos: Projeto[];
   protected blockedPanel = false;
-  private usuarioId: number;
-  private projetoSelecionado: Projeto;
   protected cols: any = [
     { field: 'idProjeto', header: 'Id' },
     { field: 'nome', header: 'Nome' },
     { field: 'dataInicio', header: 'Data inicial' },
     { field: 'dataFim', header: 'Data final' },
-    { field: 'acao', header: 'Ação' }
+    { field: 'status', header: 'Status' }
   ];
   protected msgs: Message[] = [];
 
@@ -34,10 +32,12 @@ export class ProjetosComponent implements OnInit {
 
   ngOnInit() {
     this.blockedPanel = true;
-    ProjetoService.projetoSelecionado.next(undefined);
+    ProjetoService.projetoSelecionado.next();
     delete localStorage['projetoId'];
     this.projetoService.getProjetos()
-      .subscribe(projs => (this.projetos = projs, this.blockedPanel = false), () => this.blockedPanel = false);
+      .subscribe(projs => {
+        this.projetos = projs; this.blockedPanel = false;
+      }, () => this.blockedPanel = false);
   }
 
   /**
@@ -78,7 +78,7 @@ export class ProjetosComponent implements OnInit {
    * @param id - passa o id do projeto que será deletado.
    */
   deletar(id: number) {
-    this.projetoService.deleteProjeto(id).pipe(take(1)).subscribe();
+    this.projetoService.deleteProjeto(id).pipe(take(1)).subscribe(() => this.router.navigate(['/']));
   }
 
   /**

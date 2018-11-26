@@ -13,6 +13,7 @@ import 'rxjs/add/operator/do';
 import { URLSERVER } from '../../../environments/environment';
 import { Integrante } from '../../models/integrante';
 import { IIntegrante } from '../../interfaces/integrante.inteface';
+import { Artefato } from '../../models/artefato';
 
 @Injectable({
   providedIn: 'root'
@@ -39,8 +40,10 @@ export class RequisitoService {
             iReq.importancia,
             iReq.fonte,
             iReq.categoria,
+            iReq.status,
             null,
-            null
+            null,
+            [] // TODO
           )
         );
       }
@@ -64,8 +67,10 @@ export class RequisitoService {
         iReq.importancia,
         iReq.fonte,
         iReq.categoria,
+        iReq.status,
         null,
-        null
+        null,
+        [] // TODO
       )
     );
   }
@@ -82,7 +87,8 @@ export class RequisitoService {
       descricao: requisito.descricao,
       importancia: requisito.importancia,
       fonte: requisito.fonte,
-      categoria: requisito.categoria
+      categoria: requisito.categoria,
+      status: requisito.status
     };
 
     return this.http.post<IRequisito>(`${URLSERVER}/${localStorage['id']}/projeto/${localStorage['projetoId']}/requisito`, iRequisito);
@@ -101,7 +107,8 @@ export class RequisitoService {
       descricao: requisito.descricao,
       importancia: requisito.importancia,
       fonte: requisito.fonte,
-      categoria: requisito.categoria
+      categoria: requisito.categoria,
+      status: requisito.status
     };
 
     return this.http.put<IRequisito>(`${URLSERVER}/${localStorage['id']}/projeto/${localStorage['projetoId']}/requisito/${id}`, iRequisito);
@@ -113,6 +120,7 @@ export class RequisitoService {
    * @param id - id do requisito a ser deletado.
    */
   deleteRequisito(id: number): Observable<any> {
-    return this.http.delete<any>(`${URLSERVER}/${localStorage['id']}/projeto/${localStorage['projetoId']}/requisito/${id}`);
+    return this.http.delete<any>(`${URLSERVER}/${localStorage.id}/projeto/${localStorage.projetoId}/requisito/${id}`);
   }
+
 }

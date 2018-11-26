@@ -1,65 +1,78 @@
-<ng-container #pnl>
-  <div class="row">
-    <h2 class="col-sm-6">{{ (projeto | async)?.nome }} - Requisitos</h2>
-    <div class="col-sm-6">
+<div *ngIf="!ocultar">
+  <ng-container #pnl>
+    <div class="row">
+      <h2 class="col-sm-4">{{ (projeto | async)?.nome }} - Requisitos</h2>
+      <div class="col-sm-4">
+        <button
+          icon="fa fa-plus"
+          pButton
+          label="Novo Requisito"
+          class="ui-button-success float-right"
+          (click)="novoRequisito()"
+          *ngIf="permissao"
+        >
+        </button>
+      </div>
+    <div class="col-sm-4">
       <button
-        icon="fa fa-plus"
         pButton
-        label="Novo Requisito"
-        class="ui-button-success float-right"
-        (click)="novoRequisito()"
+        label="Relatório"
+        routerLink="relatorio"
+        (click)="ocultar = true"
       >
       </button>
     </div>
-  </div>
-  <hr>
-  <div *ngIf="requisitos?.length > 0">
-    <p-table
-      paginator="true"
-      selectionMode="single"
-      [columns]="cols"
-      [value]="requisitos"
-      [rows]="10"
-      dataKey="descricao"
-      [responsive]="true"
-      [rowHover]="true"
-      id="listaRequisitos"
-    >
-      <ng-template
-        pTemplate="header"
-        let-columns
+    </div>
+    <hr>
+    <div *ngIf="requisitos?.length > 0">
+      <p-table
+        paginator="true"
+        selectionMode="single"
+        [columns]="cols"
+        [value]="requisitos"
+        [rows]="10"
+        dataKey="descricao"
+        [responsive]="true"
+        [rowHover]="true"
+        id="listaRequisitos"
       >
-        <tr>
-          <th *ngFor="let col of columns">
-            {{col.header}}
-          </th>
-        </tr>
-      </ng-template>
-      <ng-template
-        pTemplate="body"
-        let-rowData
-        let-columns="columns"
-      >
-        <tr [pSelectableRow]="rowData">
-          <td>{{ rowData['idRequisito'] }}</td>
-          <td>{{ rowData['nome'] }}</td>
-          <td>{{ rowData['categoria'] }}</td>
-          <td>{{ rowData['importancia'] }}</td>
-          <td class="text-center">
-            <button
-              id="editarBtn"
-              pButton
-              icon="fa fa-edit"
-              (click)="detalheRequisito(rowData['id'])"
-              class="ui-button-warning"
-            >
-            </button>
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
-  </div>
-  <div *ngIf="requisitos?.length < 1">
-    <p>Este projeto não possui requisitos.</p>
-  </div>
-</ng-container>
+        <ng-template
+          pTemplate="header"
+          let-columns
+        >
+          <tr>
+            <th *ngFor="let col of columns">
+              {{col.header}}
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template
+          pTemplate="body"
+          let-rowData
+          let-columns="columns"
+        >
+          <tr [pSelectableRow]="rowData">
+            <td>{{ rowData['idRequisito'] }}</td>
+            <td>{{ rowData['nome'] }}</td>
+            <td>{{ rowData['categoria'] }}</td>
+            <td>{{ rowData['importancia'] }}</td>
+            <td class="text-center">
+              <button
+                id="editarBtn"
+                pButton
+                icon="fa fa-edit"
+                (click)="detalheRequisito(rowData['id'])"
+                class="ui-button-warning"
+              >
+              </button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <div *ngIf="requisitos?.length < 1">
+      <p>Este projeto não possui requisitos.</p>
+    </div>
+  </ng-container>
+</div>
+<router-outlet></router-outlet>

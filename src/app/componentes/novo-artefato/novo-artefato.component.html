@@ -4,6 +4,8 @@
   </div>
   <app-artefato-card
     [edit]="edit"
+    [artefato]="artefato"
+    #card
   >
   </app-artefato-card>
   <br>
@@ -14,6 +16,8 @@
       label="Salvar"
       icon="fa fa-fw fa-save"
       id="btnSalvar"
+      [disabled]="!card.artefatoForm.valid"
+      (click)="card.salvarDados(); salvarArtefato()"
     >
     </button>
     <button
@@ -22,6 +26,7 @@
       icon="fa fa-fw fa-times-circle"
       class="ui-button-danger"
       id="btnCancelar"
+      (click)="cancelar()"
     >
     </button>
   </div>
@@ -32,7 +37,7 @@
   [blocked]="blockedPanel"
 >
   <div class="text-center align-middle">
-    <i class="fa fa-pulse fa-spinner">
+    <i class="fa fa-pulse fa-spinner fa-5x">
     </i>
   </div>
 </p-blockUI>

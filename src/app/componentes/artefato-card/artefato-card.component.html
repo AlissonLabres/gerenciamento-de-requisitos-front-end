@@ -5,7 +5,7 @@
     </strong>
     <div class="col-sm-7">
       <span class="form-control-plaintext text-left">
-        teste
+        {{ artefatoAux?.nome }}
       </span>
     </div>
   </div>
@@ -15,7 +15,7 @@
     </strong>
     <div class="col-sm-7">
       <span class="form-control-plaintext text-left">
-        teste
+        {{ artefatoAux?.descricao }}
       </span>
     </div>
   </div>
@@ -31,13 +31,14 @@
   </div>
 </ng-container>
 <ng-template #editForm>
-  <form>
+  <form [formGroup]="artefatoForm">
     <div class="form-group row mb-0">
       <strong class="col-sm-5 col-form-label text-sm-right text-md-right">
         Nome:
       </strong>
       <div class="col-sm-7">
         <input
+          formControlName="nome"
           pTooltip="nome do artefato"
           tooltipPosition="right"
           tooltipEvent="focus"
@@ -54,7 +55,8 @@
       </strong>
       <div class="col-sm-7">
         <textarea
-          pTooltip="descrição do artefato em detalhes"
+          formControlName="descricao"
+          pTooltip="descrição do artefato"
           tooltipPosition="right"
           tooltipEvent="focus"
           class="col-sm-8"
@@ -64,24 +66,53 @@
         </textarea>
       </div>
     </div>
+    <div
+      *ngIf="requisitos"
+      class="form-group row mb-0"
+    >
+      <strong class="col-sm-5 col-form-label text-sm-right text-md-right">
+        Requisito:
+      </strong>
+      <div class="col-sm-7">
+        <p-dropdown
+          formControlName="requisito"
+          [options]="requisitos"
+          [(ngModel)]="requisitoSelecionado"
+        >
+        </p-dropdown>
+      </div>
+    </div>
+    <div
+      *ngIf="cdus"
+      class="form-group row mb-0"
+    >
+      <strong class="col-sm-5 col-form-label text-sm-right text-md-right">
+        Caso de uso:
+      </strong>
+      <div class="col-sm-7">
+        <p-dropdown
+          formControlName="casoDeUso"
+          [options]="cdus"
+          [(ngModel)]="cduSelecionado"
+        >
+        </p-dropdown>
+      </div>
+    </div>
     <div class="form-group row mb-0">
       <strong class="col-sm-5 col-form-label text-sm-right text-md-right">
         Artefato:
       </strong>
       <div class="col-sm-7">
         <p-fileUpload
-          name="demo[]"
-          url="./upload.php"
-          (onUpload)="onUpload($event)"
-          multiple="multiple"
+          mode="basic"
+          [name]="artefato.nome"
+          [url]="url"
           accept="image/*"
           maxFileSize="1000000"
+          [disabled]="!artefato.id"
+          [pTooltip]="!artefato.id ? 'Salve este artefato antes de anexar um arquivo' : 'Anexo de arquivo no artefato'"
+          chooseLabel="Anexar arquivo"
         >
-          <ng-template pTemplate="content">
-            <ul *ngIf="uploadedFiles.length">
-              <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
-            </ul>
-          </ng-template>
         </p-fileUpload>
       </div>
     </div>

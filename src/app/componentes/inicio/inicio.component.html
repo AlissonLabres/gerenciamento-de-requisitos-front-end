@@ -1,155 +1,169 @@
-<div class="row">
-  <h2 class="col-sm-6">{{ projeto?.nome }}</h2>
-  <div class="col-sm-6">
-    <button
-      icon="fa fa-plus"
-      pButton
-      label="Novo Integrante"
-      class="ui-button-success float-right my-1"
-      (click)="novoIntegrante()"
-    >
-    </button>
-  </div>
-</div>
-<div class="row align-self-center">
-  <div
-    class="card"
-    style="width: 100%;"
-  >
-    <div class="card-header text-center">
-      VISÃO GERAL DO PROJETO
-    </div>
-    <div class="row">
-      <div class="col-sm-4">
-        <p-chart
-          type="pie"
-          [data]="reqAtvInt"
-        >
-        </p-chart>
-      </div>
-      <!-- <div class="col-sm-4">
-        <p-chart
-          type="line"
-          [data]="timeLine"
-        >
-        </p-chart>
-      </div> -->
-      <div class="col-sm-4">
-        <p-chart
-          type="bar"
-          [data]="atvStatus"
-        >
-        </p-chart>
-      </div>
+<div *ngIf="!ocultar">
+  <div class="row">
+    <h2 class="col-sm-6">{{ projeto?.nome }}</h2>
+    <div class="col-sm-6">
+      <button
+        pButton
+        label="Relatório"
+        (click)="ocultar = true"
+      >
+      </button>
     </div>
   </div>
-</div>
-<br>
-<div class="row justify-content-center">
-  <!-- Card integrantes -->
-  <div class="col-sm-4 col">
+  <div class="row align-self-center">
     <div
       class="card"
-      style="width: 22rem; margin: 1%;"
+      style="width: 100%;"
     >
       <div class="card-header text-center">
-        INTEGRANTES
+        VISÃO GERAL DO PROJETO
       </div>
-      <ul class="list-group list-group-flush">
-        <div *ngIf="integrantes?.length > 0">
-          <li
-            class="list-group-item"
-            *ngFor="let int of integrantes"
+      <div class="row">
+        <div class="col-sm-4">
+          <p-chart
+            type="pie"
+            [data]="reqAtvInt"
           >
-            {{ int?.nome }} - {{ int?.perfil }}
-          </li>
+          </p-chart>
         </div>
-        <div
-          class="text-center"
-          *ngIf="integrantes?.length === 0"
-        >
-          Este projeto não possui integrantes.
+        <div class="col-sm-4">
+          <p-chart
+            type="bar"
+            [data]="atvStatus"
+          >
+          </p-chart>
         </div>
-      </ul>
-      <div class="card-footer text-center">
-        <div *ngIf="integrantes?.length > 0">
-          <a [routerLink]="['../integrantes']">
-            <i class="fa fa-plus"></i>
-            Ver mais
-          </a>
+        <div class="col-sm-4">
+          <p-chart
+            type="pie"
+            [data]="statusRequisitos"
+          >
+          </p-chart>
         </div>
       </div>
     </div>
   </div>
-  <!-- Card requisitos -->
-  <div class="col-sm-4 col">
-    <div
-      class="card"
-      style="width: 22rem; margin: 1%;"
-    >
-      <div class="card-header text-center">
-        REQUISITOS
-      </div>
-      <ul class="list-group list-group-flush">
-        <div *ngIf="requisitos?.length > 0">
-          <li
-            class="list-group-item"
-            *ngFor="let req of requisitos"
+  <br>
+  <div class="row align-self-center">
+    <!-- Card integrantes -->
+    <div class="col-sm-4 col">
+      <div
+        class="card"
+        style="min-width: 11rem; margin: 1%"
+      >
+        <div class="card-header text-center">
+          INTEGRANTES
+        </div>
+        <ul class="list-group list-group-flush">
+          <div *ngIf="integrantes?.length > 0">
+            <li
+              class="list-group-item"
+              *ngFor="let int of integrantes"
+            >
+              {{ int?.nome }} - {{ int?.perfil }}
+            </li>
+          </div>
+          <div
+            class="text-center"
+            *ngIf="integrantes?.length === 0"
           >
-            {{ req.categoria === 'Funcional' ? 'RF ' + req?.idRequisito : 'RNF ' + req?.idRequisito }} - {{ req?.nome }}
-          </li>
+            Este projeto não possui integrantes.
+          </div>
+        </ul>
+        <div class="card-footer text-center">
+          <div *ngIf="integrantes?.length > 0">
+            <a [routerLink]="['../integrantes']">
+              <i class="fa fa-plus"></i>
+              Ver mais
+            </a>
+          </div>
         </div>
-        <div
-          class="text-center"
-          *ngIf="requisitos?.length === 0"
-        >
-          Este projeto não possui requisitos.
+      </div>
+    </div>
+    <!-- Card requisitos -->
+    <div class="col-sm-4 col">
+      <div
+        class="card"
+        style="min-width: 11rem; margin: 1%"
+      >
+        <div class="card-header text-center">
+          REQUISITOS
         </div>
-      </ul>
-      <div class="card-footer text-center">
-        <div *ngIf="requisitos?.length > 0">
-          <a [routerLink]="['../requisitos']">
-            <i class="fa fa-plus"></i>
-            Ver mais
-          </a>
+        <ul class="list-group list-group-flush">
+          <div *ngIf="requisitos?.length > 0">
+            <li
+              class="list-group-item"
+              *ngFor="let req of requisitos"
+            >
+              {{ req.categoria === 'Funcional' ? 'RF ' + req?.idRequisito : 'RNF ' + req?.idRequisito }} - {{ req?.nome }}
+            </li>
+          </div>
+          <div
+            class="text-center"
+            *ngIf="requisitos?.length === 0"
+          >
+            Este projeto não possui requisitos.
+          </div>
+        </ul>
+        <div class="card-footer text-center">
+          <div *ngIf="requisitos?.length > 0">
+            <a [routerLink]="['../requisitos']">
+              <i class="fa fa-plus"></i>
+              Ver mais
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Card atividades -->
+    <div class="col-sm-4 col">
+      <div
+        class="card"
+        style="min-width: 11rem; margin: 1%"
+      >
+        <div class="card-header text-center">
+          ATIVIDADES
+        </div>
+        <ul class="list-group list-group-flush">
+          <div *ngIf="atividades?.length > 0">
+            <li
+              class="list-group-item"
+              *ngFor="let atividade of atividades"
+            >
+              {{ atividade.nome }} - {{ atividade.status }}
+            </li>
+          </div>
+          <div
+            class="text-center"
+            *ngIf="atividades?.length === 0"
+          >
+            Este projeto não possui atividades.
+          </div>
+        </ul>
+        <div class="card-footer text-center">
+          <div *ngIf="atividades?.length > 0">
+            <a [routerLink]="['../atividades']">
+              <i class="fa fa-plus"></i>
+              Ver mais
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- Card atividades -->
-  <div class="col-sm-4 col">
-    <div
-      class="card"
-      style="width: 22rem; margin: 1%;"
-    >
-      <div class="card-header text-center">
-        ATIVIDADES
-      </div>
-      <ul class="list-group list-group-flush">
-        <div *ngIf="atividades?.length > 0">
-          <li
-            class="list-group-item"
-            *ngFor="let atividade of atividades"
-          >
-            {{ atividade.nome }} - {{ atividade.status }}
-          </li>
-        </div>
-        <div
-          class="text-center"
-          *ngIf="atividades?.length === 0"
-        >
-          Este projeto não possui atividades.
-        </div>
-      </ul>
-      <div class="card-footer text-center">
-        <div *ngIf="atividades?.length > 0">
-          <a [routerLink]="['../atividades']">
-            <i class="fa fa-plus"></i>
-            Ver mais
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
+  <br>
 </div>
-<br>
+<app-relatorio-projeto
+  *ngIf="ocultar"
+  [titulo]="projeto.nome"
+  [qtdRequisitos]="qtdRequisitos"
+  [qtdIntegrantes]="qtdIntegrantes"
+  [qtdAtividades]="qtdAtividades"
+  [qtdReqFuncionais]="qtdReqFuncionais"
+  [qtdReqNaoFuncionais]="qtdReqNaoFuncionais"
+  [qtdReqConcluidos]="qtdReqConcluidos"
+  [requisitos]="requisitos"
+  [cdus]="cdus"
+  [atvs]="atividades"
+>
+</app-relatorio-projeto>

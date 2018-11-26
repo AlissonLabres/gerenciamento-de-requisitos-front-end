@@ -1,3 +1,76 @@
-<p>
-  detalhe-artefato works!
-</p>
+<p-card #pnl>
+  <div class="text-center">
+    <h2>{{ artefato?.nome }}</h2>
+  </div>
+  <app-artefato-card
+    [artefato]="artefato"
+    [edit]="edit"
+    #card
+  >
+  </app-artefato-card>
+  <div class="text-center">
+    <button
+      *ngIf="edit && card.artefatoForm"
+      pButton
+      class="m-1 ui-button-success"
+      label="Salvar"
+      icon="fa fa=fw fa-save"
+      id="btnSalvar"
+      [disabled]="!card.artefatoForm.valid"
+      (click)="card.savarDados(); salvarEdicao()"
+    >
+    </button>
+    <button
+      *ngIf="!edit && permissao"
+      pButton
+      class="m-1 ui-button-warning"
+      label="Editar"
+      icon="fa fa-edit"
+      id="btnEditar"
+      (click)="edit = true"
+    >
+    </button>
+    <button
+      *ngIf="!edit"
+      pButton
+      label="Voltar"
+      icon="fa fa-long-arrow-left"
+      class="m-1 ui-button-danger"
+      id="btnVoltar"
+      (click)="cancelar()"
+    >
+    </button>
+    <button
+      *ngIf="edit"
+      pButton
+      label="Cancelar"
+      icon="fa fa-fw fa-times-circle"
+      class="m-1 ui-button-danger"
+      id="btnCancelar"
+      (click)="edit = false"
+    >
+    </button>
+    <button
+      label="Deletar"
+      *ngIf="!edit && permissao"
+      id="deletarBtn"
+      pButton
+      icon="fa fa-trash"
+      class="m-1 ui-button-danger"
+      (click)="deletar()"
+    >
+    </button>
+  </div>
+</p-card>
+<p-blockUI
+  [target]="pnl"
+  [blocked]="blockedPanel"
+>
+  <div class="text-center">
+    <i
+      class="fa fa-pulse fa-spinner"
+      style="font-size: 150px;"
+    >
+    </i>
+  </div>
+</p-blockUI>

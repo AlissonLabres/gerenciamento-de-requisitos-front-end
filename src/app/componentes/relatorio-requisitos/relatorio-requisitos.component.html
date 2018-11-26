@@ -1,0 +1,40 @@
+<div
+  id="imprimir"
+  class="print-only"
+>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">REQUISITO</th>
+        <th scope="col">CATEGORIA</th>
+        <th scope="col">IMPORTÂNCIA</th>
+        <th scope="col">FONTE</th>
+        <th scope="col">STATUS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let requisito of listarRequisitos">
+        <td >
+          {{requisito.descricao}}
+        </td>
+        <td>
+          {{requisito.categoria}}
+        </td>
+        <td>
+          {{requisito.importancia}}
+        </td>
+        <td>
+          {{requisito.fonte}}
+        </td>
+        <td>
+          {{requisito.status}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p-button
+  (click)="imprimir('imprimir')"
+  label="imprimir"
+>
+</p-button>

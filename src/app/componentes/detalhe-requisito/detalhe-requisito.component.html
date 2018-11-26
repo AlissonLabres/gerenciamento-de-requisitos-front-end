@@ -60,27 +60,12 @@
       (click)="deletar()"
     >
     </button>
-    <button
-      routerLink="/novo-artefato"
-      label="Adicionar artefato"
-      *ngIf="!edit && permissao"
-      id="addArtefatoBtn"
-      pButton
-      icon="fa fa-plus"
-      class="m-1 ui-button-primary"
-    >
-    </button>
   </div>
 </p-card>
 <p-blockUI
   [target]="pnl"
   [blocked]="blockedPanel"
 >
-  <i
-    class="fa fa-lock fa-5x"
-    style="position:absolute;top:100%;left:100%"
-  >
-  </i>
   <div class="text-center">
     <i
       class="fa fa-pulse fa-spinner"

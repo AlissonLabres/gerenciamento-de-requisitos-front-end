@@ -1,5 +1,6 @@
 import { Integrante } from './integrante';
 import { Projeto } from './projeto';
+import { Artefato } from './artefato';
 
 export class Requisito {
   private _id: number;
@@ -9,8 +10,10 @@ export class Requisito {
   private _importancia: string;
   private _fonte: string;
   private _categoria: string;
+  private _status: string;
   private _integrante: Integrante;
   private _projeto: Projeto;
+  private _artefatos: Artefato[];
 
   constructor(
     id: number,
@@ -20,8 +23,10 @@ export class Requisito {
     importancia: string,
     fonte: string,
     categoria: string,
+    status: string,
     integrante: Integrante,
-    projeto: Projeto
+    projeto: Projeto,
+    artefatos: Artefato[]
   ) {
     this.id = id;
     this.idRequisito = idRequisito;
@@ -30,8 +35,10 @@ export class Requisito {
     this.importancia = importancia;
     this.fonte = fonte;
     this.categoria = categoria;
+    this.status = status;
     this.integrante = integrante;
     this.projeto = projeto;
+    this.artefatos = artefatos;
   }
 
   public get id(): number {
@@ -90,6 +97,14 @@ export class Requisito {
     this._categoria = categoria;
   }
 
+  public get status(): string {
+   return this._status;
+  }
+
+  public set status(value: string) {
+   this._status = value;
+  }
+
   public get integrante(): Integrante {
     return this._integrante;
   }
@@ -104,5 +119,13 @@ export class Requisito {
 
   public set projeto(projeto: Projeto) {
     this._projeto = projeto;
+  }
+
+  public get artefatos(): Artefato[] {
+    return this._artefatos;
+  }
+
+  public set artefatos(value: Artefato[]) {
+    this._artefatos = value;
   }
 }

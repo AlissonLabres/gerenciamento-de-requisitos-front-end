@@ -1,8 +1,10 @@
+import { ICasoDeUso } from './../../interfaces/casoDeUso.interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { ReplaySubject, Subject } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
+import { take } from 'rxjs/operators';
 
 import { URLSERVER } from '../../../environments/environment';
 import { IProjeto } from '../../interfaces/projeto.interface';
@@ -13,6 +15,7 @@ import { IAtividade } from '../../interfaces/atividade.interface';
 import { IIntegrante } from './../../interfaces/integrante.inteface';
 import { IRequisito } from './../../interfaces/requisito.interface';
 import { Atividade } from '../../models/atividade';
+import { CasoDeUso } from 'src/app/models/caso-de-uso';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +26,9 @@ export class ProjetoService {
   private subProjsResultado: Subject<Projeto[]> = new Subject<Projeto[]>();
 
   constructor(private http: HttpClient) {
+    if (localStorage.projetoId) {
+      this.getProjeto(localStorage.projetoId).pipe(take(1)).subscribe();
+    }
     ProjetoService.projetoSelecionado.next(localStorage['projetoId']);
   }
 
@@ -30,8 +36,9 @@ export class ProjetoService {
    * Busca os projeto para listar.
    */
   getProjetos(): Observable<Projeto[]> {
+    this.http.get(`${URLSERVER}/listar`);
     return this.http
-      .get<any>(`${URLSERVER}/${localStorage['id']}/projeto/list`)
+      .get<IProjeto[]>(`${URLSERVER}/${localStorage['id']}/projeto/list`)
       .map((iProjetos: IProjeto[]) => {
         return iProjetos.map(
           (iProjeto: IProjeto) => {
@@ -40,6 +47,8 @@ export class ProjetoService {
               iProjeto.nome,
               iProjeto.dataInicio,
               iProjeto.dataFim,
+              iProjeto.status,
+              null,
               null,
               null,
               null
@@ -71,9 +80,10 @@ export class ProjetoService {
       nome: projeto.nome,
       dataInicio: new Date(projeto.dataInicio).toLocaleDateString(),
       dataFim: new Date(projeto.dataFim).toLocaleDateString(),
+      status: projeto.status
     };
 
-    return this.http.post<IProjeto>(`${URLSERVER}/${localStorage['id']}/projeto`, iProjeto);
+    return this.http.post<IProjeto>(`${URLSERVER}/${localStorage.id}/projeto`, iProjeto);
   }
 
   /**
@@ -86,11 +96,12 @@ export class ProjetoService {
   editProjeto(id: number, projeto: Projeto): Observable<boolean> {
     const iProjeto = {
       nome: projeto.nome,
-      dataInicio: projeto.dataInicio,
-      dataFim: projeto.dataFim,
+      dataInicio: new Date(projeto.dataInicio).toLocaleDateString('pt-br'),
+      dataFim: new Date(projeto.dataFim).toLocaleDateString(),
+      status: projeto.status
     };
 
-    return this.http.put<boolean>(`${URLSERVER}/projetos/${id}`, iProjeto);
+    return this.http.put<boolean>(`${URLSERVER}/${localStorage.id}/projeto/${id}`, iProjeto);
   }
 
   /**
@@ -100,16 +111,18 @@ export class ProjetoService {
    * @param id - id do projeto.
    */
   deleteProjeto(id: number): Observable<boolean> {
-    return this.http.delete<boolean>(`${URLSERVER}/projetos/${id}`);
+    return this.http.delete<boolean>(`${URLSERVER}/${localStorage.id}/projeto/${id}`);
   }
 
   private mapInterfaceToModelProjeto(iProjeto: IProjeto, id: number) {
-    const iReqs = iProjeto.requisito;
+    const iReqs = iProjeto.requisitos;
     const iAtvs = iProjeto.atividades;
     const iInts = iProjeto.integrantes;
+    const iCdus = iProjeto.casosDeUso;
     const requisitos: Requisito[] = [];
     const atividades: Atividade[] = [];
     const integrantes: Integrante[] = [];
+    const casosDeUso: CasoDeUso[] = [];
 
     localStorage.setItem('perfilIntegrante', iProjeto.perfilIntegranteProjeto);
 
@@ -124,8 +137,10 @@ export class ProjetoService {
             iReq.importancia,
             iReq.fonte,
             iReq.categoria,
+            iReq.status,
             null,
-            null
+            null,
+            []
           )
         );
       });
@@ -163,14 +178,35 @@ export class ProjetoService {
       });
     }
 
+    if (iCdus) {
+      iCdus.forEach((iCdu: ICasoDeUso) => {
+        casosDeUso.push(
+          new CasoDeUso(
+            iCdu.id,
+            iCdu.nome,
+            iCdu.escopo,
+            iCdu.nivel,
+            iCdu.atorPrincipal,
+            iCdu.preCondicao,
+            iCdu.posCondicao,
+            iCdu.cenarioPrincipal,
+            iCdu.extensao,
+            iCdu.status
+          )
+        );
+      });
+    }
+
     return new Projeto(
       id,
       iProjeto.nome,
       iProjeto.dataInicio,
       iProjeto.dataFim,
+      iProjeto.status,
       requisitos,
       atividades,
-      integrantes
+      integrantes,
+      casosDeUso
     );
   }
 }

@@ -1,3 +1,4 @@
+import { RelatorioCasosDeUsoComponent } from './componentes/relatorio-casos-de-uso/relatorio-casos-de-uso.component';
 import { DetalheAtividadeComponent } from './componentes/detalhe-atividade/detalhe-atividade.component';
 import { DetalheIntegranteComponent } from './componentes/detalhe-integrante/detalhe-integrante.component';
 import { Routes, RouterModule } from '@angular/router';
@@ -23,6 +24,9 @@ import { TrocaSenhaComponent } from './componentes/troca-senha/troca-senha.compo
 import { ValidarCodigoComponent } from './componentes/validar-codigo/validar-codigo.component';
 import { IntegrantesComponent } from './componentes/integrantes/integrantes.component';
 import { NovoArtefatoComponent } from './componentes/novo-artefato/novo-artefato.component';
+import { ArtefatosComponent } from './componentes/artefatos/artefatos.component';
+import { DetalheArtefatoComponent } from './componentes/detalhe-artefato/detalhe-artefato.component';
+import { RelatorioRequisitosComponent } from './componentes/relatorio-requisitos/relatorio-requisitos.component';
 
 const APP_ROUTES: Routes = [
   {
@@ -50,12 +54,24 @@ const APP_ROUTES: Routes = [
   {
     path: ':idProjeto/requisitos',
     component: RequisitoComponent,
-    canActivate: [LoginGuard]
+    canActivate: [LoginGuard],
+    children: [
+      {
+        path: 'relatorio',
+        component: RelatorioRequisitosComponent
+      }
+    ]
   },
   {
     path: ':idProjeto/casos-de-uso',
     component: CasosDeUsoComponent,
-    canActivate: [LoginGuard]
+    canActivate: [LoginGuard],
+    children: [
+      {
+        path: 'relatorio',
+        component: RelatorioCasosDeUsoComponent
+      }
+    ]
   },
   {
     path: ':idProjeto/atividades',
@@ -125,6 +141,16 @@ const APP_ROUTES: Routes = [
   {
     path: 'novo-artefato',
     component: NovoArtefatoComponent,
+    canActivate: [LoginGuard]
+  },
+  {
+    path: 'artefatos',
+    component: ArtefatosComponent,
+    canActivate: [LoginGuard]
+  },
+  {
+    path: ':idArtefato/detalhe-artefato',
+    component: DetalheArtefatoComponent,
     canActivate: [LoginGuard]
   },
   {

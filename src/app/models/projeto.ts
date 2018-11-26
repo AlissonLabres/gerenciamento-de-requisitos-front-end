@@ -1,32 +1,39 @@
 import { Atividade } from './atividade';
 import { Requisito } from './requisito';
 import { Integrante } from './integrante';
+import { CasoDeUso } from 'src/app/models/caso-de-uso';
 
 export class Projeto {
   private _id: number;
   private _nome: string;
   private _dataInicio: string;
   private _dataFim: string;
+  private _status: string;
   private _requisitos: Requisito[];
   private _atividades: Atividade[];
   private _integrantes: Integrante[];
+  private _casosDeUso: CasoDeUso[];
 
   constructor(
     id: number,
     nome: string,
     dataInicio: string,
     dataFim: string,
+    status: string,
     requisitos: Requisito[],
     atividades: Atividade[],
-    integrantes: Integrante[]
+    integrantes: Integrante[],
+    casosDeUso: CasoDeUso[]
   ) {
     this.idProjeto = id;
     this.nome = nome;
     this.dataInicio = dataInicio;
     this.dataFim = dataFim;
+    this.status = status;
     this.requisitos = requisitos;
     this.atividades = atividades;
     this.integrantes = integrantes;
+    this.casosDeUso = casosDeUso;
   }
 
   public get idProjeto(): number {
@@ -57,6 +64,14 @@ export class Projeto {
     return this._dataFim;
   }
 
+  public get status(): string {
+    return this._status;
+  }
+
+  public set status(value: string) {
+    this._status = value;
+  }
+
   public set dataFim(dataFim: string) {
     this._dataFim = dataFim;
   }
@@ -83,5 +98,13 @@ export class Projeto {
 
   public set integrantes(integrantes: any[]) {
     this._integrantes = integrantes;
+  }
+
+  public get casosDeUso(): CasoDeUso[] {
+    return this._casosDeUso;
+  }
+
+  public set casosDeUso(value: CasoDeUso[]) {
+    this._casosDeUso = value;
   }
 }

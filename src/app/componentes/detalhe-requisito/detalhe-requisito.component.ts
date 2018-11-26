@@ -61,7 +61,7 @@ export class DetalheRequisitoComponent implements OnInit {
   salvarEdicao(): void {
     this.blockedPanel = true;
     this.requisitoService.editRequisito(this.requisito.id, this.requisito)
-      .subscribe((auxRqt => {
+      .subscribe((() => {
         this.location.back();
       })
       );

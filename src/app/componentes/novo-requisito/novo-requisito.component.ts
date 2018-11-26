@@ -30,8 +30,10 @@ export class NovoRequisitoComponent implements OnInit {
       '',
       '',
       '',
+      '',
       null,
-      null
+      null,
+      []
     );
   }
 

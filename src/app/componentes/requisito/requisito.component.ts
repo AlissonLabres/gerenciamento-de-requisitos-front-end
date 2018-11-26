@@ -13,10 +13,12 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./requisito.component.css']
 })
 export class RequisitoComponent implements OnInit {
+  protected ocultar = false;
+  protected permissao: boolean;
   protected projeto: Observable<Projeto>;
   protected blockedPanel = false;
   protected requisitos: Requisito[];
-  protected cols: any = [
+  protected cols: { field: string, header: string }[] = [
     { field: 'idRequisito', header: 'ID do requisito' },
     { field: 'nome', header: 'Nome' },
     { field: 'categoria', header: 'Categoria' },
@@ -32,6 +34,9 @@ export class RequisitoComponent implements OnInit {
   ngOnInit() {
     this.projeto = ProjetoService.projeto.asObservable();
     this.getRequisitos();
+    if (localStorage.perfilIntegrante === 'Gerente' || localStorage.perfilIntegrante === 'Analista') {
+      this.permissao = true;
+    } else { this.permissao = false; }
   }
 
   /**
@@ -40,7 +45,7 @@ export class RequisitoComponent implements OnInit {
   getRequisitos(): void {
     this.blockedPanel = true;
     this.requisitoService.getRequisitos().subscribe(
-      reqs => (this.requisitos = reqs, this.blockedPanel = false), () => this.blockedPanel = false
+      reqs => { this.requisitos = reqs; this.blockedPanel = false; }, () => { this.blockedPanel = false; }
     );
   }
 

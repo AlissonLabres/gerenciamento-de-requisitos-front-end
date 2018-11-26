@@ -11,10 +11,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./casos-de-uso.component.css']
 })
 export class CasosDeUsoComponent implements OnInit {
+  protected ocultar = false;
+  protected permissao: boolean;
   protected projeto: Projeto;
   protected casosDeUso: CasoDeUso[];
   protected blockedPanel = false;
-  protected cols: any = [
+  protected cols: { field: string, header: string }[] = [
     { field: 'idCasoDeUso', header: 'UC' },
     { field: 'nome', header: 'Nome' },
     { field: 'nivel', header: 'Nivel' },
@@ -30,6 +32,9 @@ export class CasosDeUsoComponent implements OnInit {
     ProjetoService.projeto
       .subscribe(proj => this.projeto = proj);
     this.getCasosDeUso();
+    if (localStorage.perfilIntegrante === 'Gerente' || localStorage.perfilIntegrante === 'Analista') {
+      this.permissao = true;
+    } else { this.permissao = false; }
   }
 
   /**

@@ -1,0 +1,63 @@
+<ng-container #pnl>
+  <div class="row">
+    <h2 class="col-sm-6">{{ projeto?.nome }} - Artefatos</h2>
+    <div class="col-sm-6">
+      <button
+        icon="fa fa-plus"
+        pButton
+        label="Novo Artefato"
+        class="ui-button-success float-right"
+        routerLink="/novo-artefato"
+        *ngIf="permissao"
+      >
+      </button>
+    </div>
+  </div>
+  <hr>
+  <div *ngIf="artefatos?.length > 0">
+    <p-table
+      paginator="true"
+      selectionMode="single"
+      [columns]="cols"
+      [value]="artefatos"
+      [rows]="10"
+      dataKey="nome"
+      [responsive]="true"
+      [autoLayout]="true"
+      id="listaArtefatos">
+      <ng-template
+        pTemplate="header"
+        let-columns
+      >
+        <tr>
+          <th *ngFor="let col of columns">
+            {{col.header}}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template
+        pTemplate="body"
+        let-rowData
+        let-columns="columns"
+      >
+        <tr [pSelectableRow]="rowData">
+          <td>{{ rowData.id }}</td>
+          <td>{{ rowData.nome }}</td>
+          <td class="text-center">
+            <button
+              id="editarBtn"
+              pButton
+              icon="fa fa-edit"
+              (click)="detalheArtefato(rowData.id)"
+              class="ui-button-warning"
+            >
+            </button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <div *ngIf="atividades?.length < 1">
+    <p>Este projeto não possui artefatos.</p>
+  </div>
+</ng-container>

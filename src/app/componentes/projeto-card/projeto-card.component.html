@@ -73,5 +73,18 @@
         </p-calendar>
       </div>
     </div>
+    <div class="form-group row mb-0">
+      <strong class="col-sm-5 col-form-label text-sm-right text-md-right">
+        Status:
+      </strong>
+      <div class="col-sm-7">
+        <p-dropdown
+          formControlName="status"
+          [options]="status"
+          [(ngModel)]="statusSelecionado"
+        >
+        </p-dropdown>
+      </div>
+    </div>
   </form>
 </ng-template>

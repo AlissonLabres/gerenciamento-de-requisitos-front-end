@@ -25,6 +25,8 @@ export class NovoProjetoComponent implements OnInit {
       '',
       '',
       '',
+      '',
+      [],
       [],
       [],
       []
@@ -45,8 +47,8 @@ export class NovoProjetoComponent implements OnInit {
   salvarProjeto(): void {
     this.blockedPanel = true;
     this.projetoService.addProjeto(this.projeto).subscribe(
-      () => (this.blockedPanel = false, this.router.navigate(['/'])),
-      errorProjeto => (this.blockedPanel = false, this.msgErroProjeto = errorProjeto.error)
+      () => { this.blockedPanel = false; this.router.navigate(['/']); },
+      errorProjeto => { this.blockedPanel = false; this.msgErroProjeto = errorProjeto.error; }
     );
   }
 

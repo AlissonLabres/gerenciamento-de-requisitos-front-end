@@ -11,6 +11,7 @@ import { AtividadeService } from '../../servicos/atividade/atividade.service';
   styleUrls: ['./atividades.component.css']
 })
 export class AtividadesComponent implements OnInit {
+  protected permissao: boolean;
   protected projeto: Projeto;
   protected atividades: Atividade[];
   protected blockedPanel = false;
@@ -33,6 +34,9 @@ export class AtividadesComponent implements OnInit {
   ngOnInit() {
     ProjetoService.projeto.subscribe(proj => this.projeto = proj);
     this.getAtividades();
+    if (localStorage.perfilIntegrante === 'Gerente' || localStorage.perfilIntegrante === 'Analista') {
+      this.permissao = true;
+    } else { this.permissao = false; }
   }
 
   /**
