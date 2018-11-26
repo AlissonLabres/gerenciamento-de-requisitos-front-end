@@ -1,3 +1,4 @@
+import { RelatorioCasosDeUsoComponent } from './componentes/relatorio-casos-de-uso/relatorio-casos-de-uso.component';
 import { DetalheAtividadeComponent } from './componentes/detalhe-atividade/detalhe-atividade.component';
 import { DetalheIntegranteComponent } from './componentes/detalhe-integrante/detalhe-integrante.component';
 import { Routes, RouterModule } from '@angular/router';
@@ -25,6 +26,7 @@ import { IntegrantesComponent } from './componentes/integrantes/integrantes.comp
 import { NovoArtefatoComponent } from './componentes/novo-artefato/novo-artefato.component';
 import { ArtefatosComponent } from './componentes/artefatos/artefatos.component';
 import { DetalheArtefatoComponent } from './componentes/detalhe-artefato/detalhe-artefato.component';
+import { RelatorioRequisitosComponent } from './componentes/relatorio-requisitos/relatorio-requisitos.component';
 
 const APP_ROUTES: Routes = [
   {
@@ -52,12 +54,24 @@ const APP_ROUTES: Routes = [
   {
     path: ':idProjeto/requisitos',
     component: RequisitoComponent,
-    canActivate: [LoginGuard]
+    canActivate: [LoginGuard],
+    children: [
+      {
+        path: 'relatorio',
+        component: RelatorioRequisitosComponent
+      }
+    ]
   },
   {
     path: ':idProjeto/casos-de-uso',
     component: CasosDeUsoComponent,
-    canActivate: [LoginGuard]
+    canActivate: [LoginGuard],
+    children: [
+      {
+        path: 'relatorio',
+        component: RelatorioCasosDeUsoComponent
+      }
+    ]
   },
   {
     path: ':idProjeto/atividades',

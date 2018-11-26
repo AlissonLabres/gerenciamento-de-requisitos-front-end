@@ -13,6 +13,7 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./requisito.component.css']
 })
 export class RequisitoComponent implements OnInit {
+  protected ocultar = false;
   protected permissao: boolean;
   protected projeto: Observable<Projeto>;
   protected blockedPanel = false;

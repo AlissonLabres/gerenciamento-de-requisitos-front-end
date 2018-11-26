@@ -63,9 +63,14 @@ import { DetalheArtefatoComponent } from './componentes/detalhe-artefato/detalhe
 import { NovoArtefatoComponent } from './componentes/novo-artefato/novo-artefato.component';
 import { ArtefatoCardComponent } from './componentes/artefato-card/artefato-card.component';
 import { ArtefatosComponent } from './componentes/artefatos/artefatos.component';
+import { RelatorioCasosDeUsoComponent } from './componentes/relatorio-casos-de-uso/relatorio-casos-de-uso.component';
+import { RelatorioRequisitosComponent } from './componentes/relatorio-requisitos/relatorio-requisitos.component';
+import { RelatorioRequisitosgitComponent } from './componentes/relatorio-requisitosgit/relatorio-requisitosgit.component';
 
 @NgModule({
   declarations: [
+    RelatorioRequisitosComponent,
+    RelatorioCasosDeUsoComponent,
     ArtefatosComponent,
     ArtefatoCardComponent,
     DetalheArtefatoComponent,
@@ -101,7 +106,8 @@ import { ArtefatosComponent } from './componentes/artefatos/artefatos.component'
     IntegrantesComponent,
     DetalheIntegranteComponent,
     DetalheAtividadeComponent,
-    NumberDirective
+    NumberDirective,
+    RelatorioRequisitosgitComponent
   ],
   imports: [
     FileUploadModule,

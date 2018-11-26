@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./casos-de-uso.component.css']
 })
 export class CasosDeUsoComponent implements OnInit {
+  protected ocultar = false;
   protected permissao: boolean;
   protected projeto: Projeto;
   protected casosDeUso: CasoDeUso[];

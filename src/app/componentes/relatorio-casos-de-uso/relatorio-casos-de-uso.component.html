@@ -1,0 +1,48 @@
+<div
+  id="imprimir"
+  class="print-only"
+>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">CASO DE USO</th>
+        <th scope="col">ESCOPO</th>
+        <th scope="col">CENARIO PRINCIPAL</th>
+        <th scope="col">ATOR PRINCIPAL</th>
+        <th scope="col">EXTENSÃO</th>
+        <th scope="col">NIVEL</th>
+        <th scope="col">STATUS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let casodeuso of listarCasosdeuso">
+        <td >
+          {{casodeuso.nome}}
+        </td>
+        <td>
+          {{casodeuso.escopo}}
+        </td>
+        <td>
+          {{casodeuso.cenarioPrincipal}}
+        </td>
+        <td>
+          {{casodeuso.atorPrincipal}}
+        </td>
+        <td>
+          {{casodeuso.extensao}}
+        </td>
+        <td>
+          {{casodeuso.nivel}}
+        </td>
+        <td>
+          {{casodeuso.status}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p-button
+  (click)="imprimir('imprimir')"
+  label="imprimir"
+>
+</p-button>

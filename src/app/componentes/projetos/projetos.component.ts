@@ -36,7 +36,7 @@ export class ProjetosComponent implements OnInit {
     delete localStorage['projetoId'];
     this.projetoService.getProjetos()
       .subscribe(projs => {
-        this.projetos = projs; this.blockedPanel = false; console.log('onInit', projs[0].status);
+        this.projetos = projs; this.blockedPanel = false;
       }, () => this.blockedPanel = false);
   }
 
