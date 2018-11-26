@@ -6,6 +6,7 @@ import { Integrante } from './../../models/integrante';
 import { Projeto } from '../../models/projeto';
 import { Requisito } from '../../models/requisito';
 import { Atividade } from '../../models/atividade';
+import { CasoDeUso } from '../../models/caso-de-uso';
 
 @Component({
   selector: 'app-inicio',
@@ -13,6 +14,14 @@ import { Atividade } from '../../models/atividade';
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent implements OnInit {
+  protected ocultar = false;
+  // informacoes para relatorio:
+  protected qtdRequisitos: number;
+  protected qtdIntegrantes: number;
+  protected qtdAtividades: number;
+  protected qtdReqFuncionais: number;
+  protected qtdReqNaoFuncionais: number;
+  protected qtdReqConcluidos: number;
   protected permissao: boolean;
   /**
    * Requisitos, atividades e integrantes.
@@ -24,6 +33,7 @@ export class InicioComponent implements OnInit {
   protected requisitos: Requisito[];
   protected atividades: Atividade[];
   protected integrantes: Integrante[];
+  protected cdus: CasoDeUso[];
 
   constructor(
     private projetoService: ProjetoService,
@@ -47,6 +57,9 @@ export class InicioComponent implements OnInit {
     if (localStorage['perfilIntegrante'] === 'Gerente' || localStorage['perfilIntegrante'] === 'Analista') {
       this.permissao = true;
     } else { this.permissao = false; }
+    this.qtdRequisitos = this.requisitos.length;
+    this.qtdIntegrantes = this.integrantes.length;
+    this.qtdAtividades = this.atividades.length;
   }
 
   /**
@@ -59,6 +72,7 @@ export class InicioComponent implements OnInit {
       this.requisitos = proj.requisitos;
       this.atividades = proj.atividades;
       this.integrantes = proj.integrantes;
+      this.cdus = proj.casosDeUso;
       this.updateGraph();
     });
   }
@@ -91,6 +105,7 @@ export class InicioComponent implements OnInit {
       ]
     };
     const requisitosConcluidos = this.requisitos.filter(req => req.status === 'Concluido').length;
+    this.qtdReqConcluidos = requisitosConcluidos;
     this.statusRequisitos = {
       labels: [
         'Requisitos não concluídos',
@@ -111,6 +126,8 @@ export class InicioComponent implements OnInit {
     };
     const rf = this.requisitos.filter(req => req.categoria === 'Funcional');
     const rnf = this.requisitos.filter(req => req.categoria === 'Não Funcional');
+    this.qtdReqFuncionais = rf.length;
+    this.qtdReqNaoFuncionais = rnf.length;
     this.atvStatus = {
       labels: ['Requisitos'],
       datasets: [

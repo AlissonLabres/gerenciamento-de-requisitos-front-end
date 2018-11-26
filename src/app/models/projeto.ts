@@ -1,6 +1,7 @@
 import { Atividade } from './atividade';
 import { Requisito } from './requisito';
 import { Integrante } from './integrante';
+import { CasoDeUso } from 'src/app/models/caso-de-uso';
 
 export class Projeto {
   private _id: number;
@@ -11,6 +12,7 @@ export class Projeto {
   private _requisitos: Requisito[];
   private _atividades: Atividade[];
   private _integrantes: Integrante[];
+  private _casosDeUso: CasoDeUso[];
 
   constructor(
     id: number,
@@ -20,7 +22,8 @@ export class Projeto {
     status: string,
     requisitos: Requisito[],
     atividades: Atividade[],
-    integrantes: Integrante[]
+    integrantes: Integrante[],
+    casosDeUso: CasoDeUso[]
   ) {
     this.idProjeto = id;
     this.nome = nome;
@@ -30,6 +33,7 @@ export class Projeto {
     this.requisitos = requisitos;
     this.atividades = atividades;
     this.integrantes = integrantes;
+    this.casosDeUso = casosDeUso;
   }
 
   public get idProjeto(): number {
@@ -94,5 +98,13 @@ export class Projeto {
 
   public set integrantes(integrantes: any[]) {
     this._integrantes = integrantes;
+  }
+
+  public get casosDeUso(): CasoDeUso[] {
+    return this._casosDeUso;
+  }
+
+  public set casosDeUso(value: CasoDeUso[]) {
+    this._casosDeUso = value;
   }
 }

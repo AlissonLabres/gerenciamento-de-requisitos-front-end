@@ -1,3 +1,4 @@
+import { ICasoDeUso } from './../../interfaces/casoDeUso.interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -14,6 +15,7 @@ import { IAtividade } from '../../interfaces/atividade.interface';
 import { IIntegrante } from './../../interfaces/integrante.inteface';
 import { IRequisito } from './../../interfaces/requisito.interface';
 import { Atividade } from '../../models/atividade';
+import { CasoDeUso } from 'src/app/models/caso-de-uso';
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +48,7 @@ export class ProjetoService {
               iProjeto.dataInicio,
               iProjeto.dataFim,
               iProjeto.status,
+              null,
               null,
               null,
               null
@@ -115,9 +118,11 @@ export class ProjetoService {
     const iReqs = iProjeto.requisitos;
     const iAtvs = iProjeto.atividades;
     const iInts = iProjeto.integrantes;
+    const iCdus = iProjeto.casosDeUso;
     const requisitos: Requisito[] = [];
     const atividades: Atividade[] = [];
     const integrantes: Integrante[] = [];
+    const casosDeUso: CasoDeUso[] = [];
 
     localStorage.setItem('perfilIntegrante', iProjeto.perfilIntegranteProjeto);
 
@@ -173,6 +178,25 @@ export class ProjetoService {
       });
     }
 
+    if (iCdus) {
+      iCdus.forEach((iCdu: ICasoDeUso) => {
+        casosDeUso.push(
+          new CasoDeUso(
+            iCdu.id,
+            iCdu.nome,
+            iCdu.escopo,
+            iCdu.nivel,
+            iCdu.atorPrincipal,
+            iCdu.preCondicao,
+            iCdu.posCondicao,
+            iCdu.cenarioPrincipal,
+            iCdu.extensao,
+            iCdu.status
+          )
+        );
+      });
+    }
+
     return new Projeto(
       id,
       iProjeto.nome,
@@ -181,7 +205,8 @@ export class ProjetoService {
       iProjeto.status,
       requisitos,
       atividades,
-      integrantes
+      integrantes,
+      casosDeUso
     );
   }
 }

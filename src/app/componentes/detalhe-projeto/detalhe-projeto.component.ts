@@ -69,7 +69,7 @@ export class DetalheProjetoComponent implements OnInit {
   deletar() {
     const id: number = +this.route.snapshot.paramMap.get('idProjeto');
     this.projetoService.deleteProjeto(id).subscribe(
-      deletou => this.router.navigate(['/'])
+      () => this.router.navigate(['/'])
     );
   }
 

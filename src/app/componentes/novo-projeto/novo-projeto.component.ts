@@ -28,6 +28,7 @@ export class NovoProjetoComponent implements OnInit {
       '',
       [],
       [],
+      [],
       []
     );
   }

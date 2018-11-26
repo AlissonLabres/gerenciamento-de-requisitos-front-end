@@ -66,9 +66,11 @@ import { ArtefatosComponent } from './componentes/artefatos/artefatos.component'
 import { RelatorioCasosDeUsoComponent } from './componentes/relatorio-casos-de-uso/relatorio-casos-de-uso.component';
 import { RelatorioRequisitosComponent } from './componentes/relatorio-requisitos/relatorio-requisitos.component';
 import { RelatorioRequisitosgitComponent } from './componentes/relatorio-requisitosgit/relatorio-requisitosgit.component';
+import { RelatorioProjetoComponent } from './componentes/relatorio-projeto/relatorio-projeto.component';
 
 @NgModule({
   declarations: [
+    RelatorioProjetoComponent,
     RelatorioRequisitosComponent,
     RelatorioCasosDeUsoComponent,
     ArtefatosComponent,

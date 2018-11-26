@@ -76,6 +76,7 @@ export class ProjetoCardComponent implements OnInit, OnChanges {
       this.projeto.requisitos,
       this.projeto.atividades,
       this.projeto.integrantes,
+      this.projeto.casosDeUso
     );
   }
 

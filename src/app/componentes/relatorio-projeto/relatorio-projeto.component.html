@@ -1,0 +1,155 @@
+<div
+  id="imprimir"
+  class="print-only"
+>
+  <h2>Relatorio - Projeto: {{ titulo }}</h2>
+  <h3>Requisitos</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">REQUISITO</th>
+        <th scope="col">CATEGORIA</th>
+        <th scope="col">IMPORTÂNCIA</th>
+        <th scope="col">FONTE</th>
+        <th scope="col">STATUS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let requisito of requisitos">
+        <td >
+          {{requisito.descricao}}
+        </td>
+        <td>
+          {{requisito.categoria}}
+        </td>
+        <td>
+          {{requisito.importancia}}
+        </td>
+        <td>
+          {{requisito.fonte}}
+        </td>
+        <td>
+          {{requisito.status}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <h3>Casos de uso</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">CASO DE USO</th>
+        <th scope="col">ESCOPO</th>
+        <th scope="col">CENARIO PRINCIPAL</th>
+        <th scope="col">ATOR PRINCIPAL</th>
+        <th scope="col">EXTENSÃO</th>
+        <th scope="col">NIVEL</th>
+        <th scope="col">STATUS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let casodeuso of cdus">
+        <td >
+          {{casodeuso.nome}}
+        </td>
+        <td>
+          {{casodeuso.escopo}}
+        </td>
+        <td>
+          {{casodeuso.cenarioPrincipal}}
+        </td>
+        <td>
+          {{casodeuso.atorPrincipal}}
+        </td>
+        <td>
+          {{casodeuso.extensao}}
+        </td>
+        <td>
+          {{casodeuso.nivel}}
+        </td>
+        <td>
+          {{casodeuso.status}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <h3>Atividades</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <td scope="col">NOME</td>
+        <td scope="col">DESCRIÇÃO</td>
+        <td scope="col">STATUS</td>
+        <td scope="col">DATA INICIO</td>
+        <td scope="col">DATA FIM</td>
+        <td scope="col">DATA CONCLUSÃO</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let atv of atvs">
+        <td>
+          {{atv.nome}}
+        </td>
+        <td>
+          {{atv.descricao}}
+        </td>
+        <td>
+          {{atv.status}}
+        </td>
+        <td>
+          {{atv.dataInicio | date}}
+        </td>
+        <td>
+          {{atv.dataFim | date}}
+        </td>
+        <td>
+          {{atv.dataConclusao | date}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <table class="table">
+    <thead>
+      <tr>
+        <td scope="col">QTD. REQUISITOS</td>
+        <td scope="col">QTD. INTEGRANTES</td>
+        <td scope="col">QTE. ATIVIDADES</td>
+        <td scope="col">QTD. REQ. FUNCIONAIS</td>
+        <td scope="col">QTD. REQ. NÃO FUNCIONAIS</td>
+        <td scope="col">QTD. REQ. CONCLUÍDOS</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          {{qtdRequisitos}}
+        </td>
+        <td>
+          {{qtdIntegrantes}}
+        </td>
+        <td>
+          {{qtdAtividades}}
+        </td>
+        <td>
+          {{qtdReqFuncionais}}
+        </td>
+        <td>
+          {{qtdReqNaoFuncionais}}
+        </td>
+        <td>
+          {{qtdReqConcluidos}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p-button
+  class="m-1"
+  (click)="imprimir('imprimir')"
+  label="imprimir"
+>
+</p-button>
+
