@@ -30,6 +30,10 @@ import { RelatorioRequisitosComponent } from './componentes/relatorio-requisitos
 
 const APP_ROUTES: Routes = [
   {
+    path: 'validar-codigo',
+    component: ValidarCodigoComponent
+  },
+  {
     path: 'login',
     component: LoginComponent
   },
