@@ -27,13 +27,14 @@ export class NovoArtefatoComponent implements OnInit {
       '',
       '',
       null,
+      null,
+      '',
       null
     );
   }
 
   protected salvarArtefato() {
     this.blockedPanel = true;
-    console.log('novo artefato salvar', this.artefato.nome, '?');
     this.artefatoService.addArtefato(this.artefato).subscribe(() => {
       this.location.back();
       this.blockedPanel = false;

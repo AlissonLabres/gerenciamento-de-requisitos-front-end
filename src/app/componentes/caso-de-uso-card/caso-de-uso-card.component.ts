@@ -21,6 +21,9 @@ export class CasoDeUsoCardComponent implements OnChanges {
   protected status: { label: string, value: string }[];
   protected statusSelecionado: string;
 
+  protected display = false;
+  protected projetoSelecionado = localStorage.projetoId;
+
   constructor(
     private cdr: ChangeDetectorRef,
     private fb: FormBuilder
@@ -62,7 +65,8 @@ export class CasoDeUsoCardComponent implements OnChanges {
       this.casoDeUso.posCondicao,
       this.casoDeUso.cenarioPrincipal,
       this.casoDeUso.extensao,
-      this.casoDeUso.status
+      this.casoDeUso.status,
+      this.casoDeUso.artefatos
     );
   }
 
@@ -81,6 +85,10 @@ export class CasoDeUsoCardComponent implements OnChanges {
       extensao: [this.casoDeUsoAux.extensao, [Validators.required]],
       status: [this.casoDeUsoAux.status, [Validators.required]]
     });
+  }
+
+  dialogArtefato() {
+    this.display = !this.display;
   }
 
   /**

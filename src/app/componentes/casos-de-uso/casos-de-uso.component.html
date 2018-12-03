@@ -51,7 +51,10 @@
           let-rowData
           let-columns="columns"
         >
-          <tr [pSelectableRow]="rowData">
+          <tr
+            [pSelectableRow]="rowData"
+            (click)="detalheCasoDeUso(rowData.idCasoDeUso)"
+          >
             <td>{{ rowData.idCasoDeUso }}</td>
             <td>{{ rowData.nome }}</td>
             <td>{{ rowData.nivel }}</td>

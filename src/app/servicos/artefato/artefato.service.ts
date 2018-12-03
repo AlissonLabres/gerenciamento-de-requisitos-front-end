@@ -15,16 +15,29 @@ export class ArtefatoService {
 
   constructor(private http: HttpClient) { }
 
-  public addArtefato(artefato: Artefato): Observable<boolean> {
-    console.log('aqui', artefato);
-    const iArtefato: IArtefato = {
-      nome: artefato.nome,
-      descricao: artefato.descricao,
-      idRequisito: artefato.idRequisito,
-      idCasoDeUso: artefato.idCasoDeUso
-    };
+  public addArtefato(
+    artefato: Artefato
+  ): Observable<void> {
+    const iArtefato = new FormData();
 
-    return this.http.post<boolean>(URLSERVER + `/${localStorage.id}/projeto/${localStorage.projetoId}/artefato`, iArtefato);
+    iArtefato.append('documento', artefato.documento);
+    iArtefato.append('nome', artefato.nome);
+    iArtefato.append('descricao', artefato.descricao);
+    iArtefato.append('idCaso', artefato.idRequisito.toString());
+    iArtefato.append('tipoDocumento', artefato.tipoDocumento );
+
+    if (artefato.idRequisito) {
+      iArtefato.append('idRequisito', artefato.idRequisito.toString());
+    }
+
+    if (artefato.idCasoDeUso) {
+      iArtefato.append('idCasoDeUso', artefato.idCasoDeUso.toString());
+    }
+
+    return this.http.post<void>(
+      URLSERVER + `/${localStorage.id}/projeto/${localStorage.projetoId}/artefato`,
+      iArtefato
+    );
   }
 
   public getArtefatos(): Observable<Artefato[]> {
@@ -37,7 +50,9 @@ export class ArtefatoService {
               iArtefato.nome,
               iArtefato.descricao,
               iArtefato.idRequisito,
-              iArtefato.idCasoDeUso
+              iArtefato.idCasoDeUso,
+              iArtefato.documentoBase64,
+              null
             );
           });
         })
@@ -53,20 +68,30 @@ export class ArtefatoService {
             iArtefato.nome,
             iArtefato.descricao,
             iArtefato.idRequisito,
-            iArtefato.idCasoDeUso
+            iArtefato.idCasoDeUso,
+            iArtefato.documentoBase64,
+            null
           );
         })
       );
   }
 
   public editArtefato(artefato: Artefato): Observable<boolean> {
-    const iArtefato: IArtefato = {
-      id: artefato.id,
-      nome: artefato.nome,
-      descricao: artefato.descricao,
-      idRequisito: artefato.idRequisito,
-      idCasoDeUso: artefato.idCasoDeUso
-    };
+    const iArtefato = new FormData();
+
+    iArtefato.append('documento', artefato.documento);
+    iArtefato.append('nome', artefato.nome);
+    iArtefato.append('descricao', artefato.descricao);
+    iArtefato.append('idCaso', artefato.idRequisito.toString());
+    iArtefato.append('tipoDocumento', artefato.tipoDocumento);
+
+    if (artefato.idRequisito) {
+      iArtefato.append('idRequisito', artefato.idRequisito.toString());
+    }
+
+    if (artefato.idCasoDeUso) {
+      iArtefato.append('idCasoDeUso', artefato.idCasoDeUso.toString());
+    }
 
     return this.http.put<boolean>(URLSERVER + `/${localStorage.id}/projeto/${localStorage.projetoId}/artefato/${artefato.id}`, iArtefato);
   }

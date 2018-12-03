@@ -79,6 +79,28 @@
       </span>
     </div>
   </div>
+  <div class="form-group row mb-0">
+    <strong class="col-sm-4 col-form-label text-sm-right text-md-right">
+      Status:
+    </strong>
+    <div class="col-sm-8">
+      <span class="form-control-plaintext text-left">
+        {{ casoDeUsoAux?.status }}
+      </span>
+    </div>
+  </div>
+  <div class="form-group row mb-0" *ngIf="casoDeUsoAux?.artefatos.length > 0">
+    <strong class="col-sm-4 col-form-label text-sm-right text-md-right">
+      Artefato:
+    </strong>
+    <div class="col-sm-8">
+      <span *ngFor="let artefato of casoDeUsoAux?.artefatos" class="form-control-plaintext text-left">
+        <a [routerLink]="['../../' + artefato?.id + '/detalhe-artefato']">
+          {{ artefato?.nome }}
+        </a>
+      </span>
+    </div>
+  </div>
 </ng-container>
 <ng-template #editCasoDeUso>
   <form [formGroup]="casoDeUsoForm">
@@ -219,5 +241,21 @@
         </p-dropdown>
       </div>
     </div>
+    <div class="form-group row mb-0" *ngIf="casoDeUsoAux?.id && casoDeUsoAux?.artefatos !== null">
+      <strong class="col-sm-4 col-form-label text-sm-right text-md-right">
+        Artefato:
+      </strong>
+      <div class="col-sm-8 pt-2" (click)="dialogArtefato()"> Alterar artefato </div>
+    </div>
   </form>
 </ng-template>
+
+<p-dialog header="Title" [modal]="true" [responsive]="true" [(visible)]="display">
+  <p> Atenção!. </p>
+  <p> Para alterar o artefato você será redirecionado para o Artefato escolhido, </p>
+  <p> E irá perder toda alteração feita no Caso de Uso.</p>
+  <p-footer>
+    <button type="button" pButton (click)="dialogArtefato()" label="Cancelar" class="ui-button-warning"></button>
+    <button type="button" pButton routerLink="../artefatos" label="Prosseguir" class="ui-button-success"></button>
+  </p-footer>
+</p-dialog>

@@ -5,19 +5,25 @@ export class Artefato {
   private _descricao: string;
   private _idRequisito: number;
   private _idCasoDeUso: number;
+  private _tipoDocumento: string;
+  private _documento: Blob;
 
   constructor(
     id: number,
     nome: string,
     descricao: string,
     idRequisito: number,
-    idCasoDeUso: number
+    idCasoDeUso: number,
+    tipoDocumento: string,
+    documento: Blob
   ) {
     this.id = id;
     this.nome = nome;
     this.descricao = descricao;
     this.idRequisito = idRequisito;
     this.idCasoDeUso = idCasoDeUso;
+    this.tipoDocumento = tipoDocumento;
+    this.documento = documento;
   }
 
   public get id(): number {
@@ -58,5 +64,21 @@ export class Artefato {
 
   public set idCasoDeUso(value: number) {
     this._idCasoDeUso = value;
+  }
+
+  public get tipoDocumento(): string {
+    return this._tipoDocumento;
+  }
+
+  public get documento(): Blob {
+    return this._documento;
+  }
+
+  public set tipoDocumento(value: string) {
+    this._tipoDocumento = value;
+  }
+
+  public set documento(value: Blob) {
+    this._documento = value;
   }
 }

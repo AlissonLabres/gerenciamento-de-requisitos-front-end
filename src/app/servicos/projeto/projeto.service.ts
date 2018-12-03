@@ -191,7 +191,8 @@ export class ProjetoService {
             iCdu.posCondicao,
             iCdu.cenarioPrincipal,
             iCdu.extensao,
-            iCdu.status
+            iCdu.status,
+            null
           )
         );
       });

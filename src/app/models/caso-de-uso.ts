@@ -1,3 +1,5 @@
+import { Artefato } from './artefato';
+
 export class CasoDeUso {
   private _id: number;
   private _nome: string;
@@ -9,6 +11,7 @@ export class CasoDeUso {
   private _cenarioPrincipal: string;
   private _extensao: string;
   private _status: string;
+  private _artefatos: Artefato[];
 
   constructor(
     id: number,
@@ -20,7 +23,8 @@ export class CasoDeUso {
     posCondicao: string,
     cenarioPrincipal: string,
     extensao: string,
-    status: string
+    status: string,
+    artefatos: Artefato[]
   ) {
     this.idCasoDeUso = id;
     this.nome = nome;
@@ -32,6 +36,7 @@ export class CasoDeUso {
     this.cenarioPrincipal = cenarioPrincipal;
     this.extensao = extensao;
     this.status = status;
+    this.artefatos = artefatos;
   }
 
   public get idCasoDeUso(): number {
@@ -112,5 +117,21 @@ export class CasoDeUso {
 
   public set status(value: string) {
     this._status = value;
+  }
+
+  public get id(): number {
+    return this._id;
+  }
+
+  public get artefatos(): Artefato[] {
+    return this._artefatos;
+  }
+
+  public set id(value: number) {
+    this._id = value;
+  }
+
+  public set artefatos(value: Artefato[]) {
+    this._artefatos = value;
   }
 }

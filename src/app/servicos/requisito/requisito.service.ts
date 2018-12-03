@@ -14,6 +14,7 @@ import { URLSERVER } from '../../../environments/environment';
 import { Integrante } from '../../models/integrante';
 import { IIntegrante } from '../../interfaces/integrante.inteface';
 import { Artefato } from '../../models/artefato';
+import { IArtefato } from 'src/app/interfaces/artefato.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -43,7 +44,7 @@ export class RequisitoService {
             iReq.status,
             null,
             null,
-            [] // TODO
+            null
           )
         );
       }
@@ -59,19 +60,33 @@ export class RequisitoService {
     return this.http.get<IRequisito>(
       `${URLSERVER}/${localStorage['id']}/projeto/${localStorage['projetoId']}/requisito/${id}`
     ).map(
-      (iReq: IRequisito) => new Requisito(
-        iReq.id,
-        iReq.idRequisito,
-        iReq.nome,
-        iReq.descricao,
-        iReq.importancia,
-        iReq.fonte,
-        iReq.categoria,
-        iReq.status,
-        null,
-        null,
-        [] // TODO
-      )
+      (iReq: IRequisito) => {
+        const artefatos = iReq.artefatos !== null
+          ? iReq.artefatos.map((art: IArtefato) => new Artefato(
+            art.id,
+            art.nome,
+            art.descricao,
+            art.idRequisito,
+            art.idCasoDeUso,
+            art.documentoBase64,
+            null
+          ))
+          : null;
+
+        return new Requisito(
+          iReq.id,
+          iReq.idRequisito,
+          iReq.nome,
+          iReq.descricao,
+          iReq.importancia,
+          iReq.fonte,
+          iReq.categoria,
+          iReq.status,
+          null,
+          null,
+          artefatos
+        );
+      }
     );
   }
 
@@ -119,8 +134,8 @@ export class RequisitoService {
    *
    * @param id - id do requisito a ser deletado.
    */
-  deleteRequisito(id: number): Observable<any> {
-    return this.http.delete<any>(`${URLSERVER}/${localStorage.id}/projeto/${localStorage.projetoId}/requisito/${id}`);
+  deleteRequisito(id: number): Observable<void> {
+    return this.http.delete<void>(`${URLSERVER}/${localStorage.id}/projeto/${localStorage.projetoId}/requisito/${id}`);
   }
 
 }

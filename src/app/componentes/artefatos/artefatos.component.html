@@ -40,7 +40,10 @@
         let-rowData
         let-columns="columns"
       >
-        <tr [pSelectableRow]="rowData">
+        <tr
+          [pSelectableRow]="rowData"
+          (click)="detalheArtefato(rowData.id)"
+        >
           <td>{{ rowData.id }}</td>
           <td>{{ rowData.nome }}</td>
           <td class="text-center">
@@ -57,7 +60,7 @@
       </ng-template>
     </p-table>
   </div>
-  <div *ngIf="atividades?.length < 1">
+  <div *ngIf="artefatos?.length < 1">
     <p>Este projeto não possui artefatos.</p>
   </div>
 </ng-container>

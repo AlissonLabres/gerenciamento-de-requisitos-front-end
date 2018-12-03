@@ -4,6 +4,7 @@ import { ArtefatoService } from 'src/app/servicos/artefato/artefato.service';
 import { ProjetoService } from 'src/app/servicos/projeto/projeto.service';
 import { Artefato } from 'src/app/models/artefato';
 import { Projeto } from '../../models/projeto';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-artefatos',
@@ -17,10 +18,11 @@ export class ArtefatosComponent implements OnInit {
   protected blockedPanel = false;
   protected cols: any = [
     { field: 'id', header: 'ID' },
-    { field: 'nome', header: 'Nome' }
+    { field: 'nome', header: 'Nome' },
+    { field: 'acao', header: 'Ação' }
   ];
 
-  constructor(private artefatoService: ArtefatoService) { }
+  constructor(private router: Router, private artefatoService: ArtefatoService) { }
 
   ngOnInit() {
     ProjetoService.projeto.subscribe((proj: Projeto) => this.projeto = proj);
@@ -36,4 +38,8 @@ export class ArtefatosComponent implements OnInit {
     );
   }
 
+  detalheArtefato(id: number): void {
+    const rota = id + '/detalhe-artefato';
+    this.router.navigate([rota]);
+  }
 }

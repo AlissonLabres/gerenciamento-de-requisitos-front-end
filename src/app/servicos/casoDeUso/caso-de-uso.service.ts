@@ -6,6 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import { ICasoDeUso } from '../../interfaces/casoDeUso.interface';
 import { CasoDeUso } from '../../models/caso-de-uso';
 import { URLSERVER } from '../../../environments/environment';
+import { IArtefato } from 'src/app/interfaces/artefato.interface';
+import { Artefato } from 'src/app/models/artefato';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +35,8 @@ export class CasoDeUsoService {
             iCasosUso.posCondicao,
             iCasosUso.cenarioPrincipal,
             iCasosUso.extensao,
-            iCasosUso.status
+            iCasosUso.status,
+            null
           )
         );
         return casosDeUso;
@@ -51,6 +54,18 @@ export class CasoDeUsoService {
       `${URLSERVER}/${localStorage['id']}/projeto/${localStorage['projetoId']}/casoDeUso/${id}`
     ).map(
       (iCasoDeUso: ICasoDeUso) => {
+        const artefatos = iCasoDeUso.artefatos !== null
+          ? iCasoDeUso.artefatos.map((art: IArtefato) => new Artefato(
+            art.id,
+            art.nome,
+            art.descricao,
+            art.idRequisito,
+            art.idCasoDeUso,
+            art.documentoBase64,
+            null
+          ))
+          : null;
+
         return new CasoDeUso(
           iCasoDeUso.id,
           iCasoDeUso.nome,
@@ -61,7 +76,8 @@ export class CasoDeUsoService {
           iCasoDeUso.posCondicao,
           iCasoDeUso.cenarioPrincipal,
           iCasoDeUso.extensao,
-          iCasoDeUso.status
+          iCasoDeUso.status,
+          artefatos
         );
       }
     );

@@ -17,7 +17,7 @@
       icon="fa fa=fw fa-save"
       id="btnSalvar"
       [disabled]="!card.artefatoForm.valid"
-      (click)="card.savarDados(); salvarEdicao()"
+      (click)="card.salvarDados(); salvarEdicao()"
     >
     </button>
     <button
@@ -57,7 +57,7 @@
       pButton
       icon="fa fa-trash"
       class="m-1 ui-button-danger"
-      (click)="deletar()"
+      (click)="deleteArtefato()"
     >
     </button>
   </div>

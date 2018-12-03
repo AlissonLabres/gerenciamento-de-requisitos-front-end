@@ -30,7 +30,8 @@ export class NovoCasoDeUsoComponent implements OnInit {
       '',
       '',
       '',
-      ''
+      '',
+      null
     );
   }
 

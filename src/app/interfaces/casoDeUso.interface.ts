@@ -1,3 +1,4 @@
+import { IArtefato } from 'src/app/interfaces/artefato.interface';
 import { IIntegrante } from './integrante.inteface';
 export interface ICasoDeUso {
   id: number;
@@ -11,4 +12,5 @@ export interface ICasoDeUso {
   extensao: string;
   status: string;
   integrante: IIntegrante;
+  artefatos: IArtefato[];
 }

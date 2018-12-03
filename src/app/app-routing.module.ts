@@ -84,6 +84,11 @@ const APP_ROUTES: Routes = [
     canActivate: [LoginGuard]
   },
   {
+    path: ':idProjeto/artefatos',
+    component: ArtefatosComponent,
+    canActivate: [LoginGuard]
+  },
+  {
     path: 'not-found',
     component: NotFoundComponent,
     canActivate: [LoginGuard]
@@ -106,6 +111,11 @@ const APP_ROUTES: Routes = [
   {
     path: ':idIntegrante/detalhe-integrante',
     component: DetalheIntegranteComponent,
+    canActivate: [LoginGuard]
+  },
+  {
+    path: ':idArtefato/detalhe-artefato',
+    component: DetalheArtefatoComponent,
     canActivate: [LoginGuard]
   },
   {
@@ -141,16 +151,6 @@ const APP_ROUTES: Routes = [
   {
     path: 'novo-artefato',
     component: NovoArtefatoComponent,
-    canActivate: [LoginGuard]
-  },
-  {
-    path: 'artefatos',
-    component: ArtefatosComponent,
-    canActivate: [LoginGuard]
-  },
-  {
-    path: ':idArtefato/detalhe-artefato',
-    component: DetalheArtefatoComponent,
     canActivate: [LoginGuard]
   },
   {

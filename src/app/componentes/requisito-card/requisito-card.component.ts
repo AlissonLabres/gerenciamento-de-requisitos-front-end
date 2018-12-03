@@ -1,7 +1,7 @@
-import { Status } from './../../conts/status';
-import { Component, OnInit, Input, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Requisito } from '../../models/requisito';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Status } from './../../conts/status';
 
 @Component({
   selector: 'app-requisito-card',
@@ -25,9 +25,12 @@ export class RequisitoCardComponent implements OnInit, OnChanges {
   protected status: { label: string, value: string }[];
   protected statusSelecionado: string;
 
+  protected display = false;
+  protected projetoSelecionado = localStorage.projetoId;
+
   constructor(
     private cdr: ChangeDetectorRef,
-    private fb: FormBuilder
+    private fb: FormBuilder,
   ) { }
 
   ngOnInit(): void {
@@ -93,6 +96,10 @@ export class RequisitoCardComponent implements OnInit, OnChanges {
     });
   }
 
+  dialogArtefato() {
+    this.display = !this.display;
+  }
+
   /**
    * Requisito passado do componente de novo requisito recebe os dados do formulario.
    */
@@ -105,5 +112,4 @@ export class RequisitoCardComponent implements OnInit, OnChanges {
     this.requisito.categoria = this.requisitoForm.get('categoria').value;
     this.requisito.status = this.requisitoForm.get('status').value;
   }
-
 }

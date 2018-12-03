@@ -63,8 +63,7 @@ export class DetalheArtefatoComponent implements OnInit {
     this.artefatoService.editArtefato(this.artefato)
       .subscribe((() => {
         this.location.back();
-      })
-      );
+      }));
   }
 
   protected deleteArtefato(): void {
