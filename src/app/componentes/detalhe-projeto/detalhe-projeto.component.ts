@@ -11,10 +11,10 @@ import { Projeto } from './../../models/projeto';
   styleUrls: ['./detalhe-projeto.component.css']
 })
 export class DetalheProjetoComponent implements OnInit {
-  protected blockedPanel = false;
-  protected edit = false;
-  protected projeto: Projeto;
-  protected permissao: boolean;
+  public blockedPanel = false;
+  public edit = false;
+  public projeto: Projeto;
+  public permissao: boolean;
 
   constructor(
     private location: Location,

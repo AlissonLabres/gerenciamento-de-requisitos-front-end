@@ -9,9 +9,9 @@ import { CasoDeUsoService } from '../../servicos/casoDeUso/caso-de-uso.service';
   styleUrls: ['./novo-caso-de-uso.component.css']
 })
 export class NovoCasoDeUsoComponent implements OnInit {
-  protected blockedPanel = false;
-  protected edit = true;
-  protected casoDeUso: CasoDeUso;
+  public blockedPanel = false;
+  public edit = true;
+  public casoDeUso: CasoDeUso;
   private idProjeto = localStorage['projetoId'];
 
   constructor(

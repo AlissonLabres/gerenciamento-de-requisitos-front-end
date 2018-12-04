@@ -11,14 +11,14 @@ import { AtividadeService } from '../../servicos/atividade/atividade.service';
   styleUrls: ['./detalhe-atividade.component.css']
 })
 export class DetalheAtividadeComponent implements OnInit {
-  protected blockedPanel = false;
-  protected edit = false;
-  protected atividade: Atividade;
-  protected permissao: boolean;
+  public blockedPanel = false;
+  public edit = false;
+  public atividade: Atividade;
+  public permissao: boolean;
 
-  protected deletarAtividadeLog = false;
-  protected erroDeletarAtividade = false;
-  protected msgErroDeletarAtividade: string;
+  public deletarAtividadeLog = false;
+  public erroDeletarAtividade = false;
+  public msgErroDeletarAtividade: string;
 
   constructor(
     private location: Location,

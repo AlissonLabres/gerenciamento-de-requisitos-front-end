@@ -29,30 +29,30 @@ export class ArtefatoCardComponent implements OnInit, OnChanges {
   @Input()
   public artefato: Artefato;
 
-  protected artefatoForm: FormGroup;
+  public artefatoForm: FormGroup;
 
-  protected uploadedFiles: any[] = [];
-  protected url: string;
-  protected documentoAntigo: Blob[];
+  public uploadedFiles: any[] = [];
+  public url: string;
+  public documentoAntigo: File[];
 
   public artefatoAux: Artefato;
 
-  protected requisitoVinculado: Requisito;
-  protected requisitoProjeto: Requisito[];
-  protected requisitos: any[];
-  protected requisitoSelecionado: Requisito;
+  public requisitoVinculado: Requisito;
+  public requisitoProjeto: Requisito[];
+  public requisitos: any[];
+  public requisitoSelecionado: number;
 
-  protected casosDeUsoVinculado: CasoDeUso;
-  protected casosDeUsoProjeto: CasoDeUso[];
-  protected cdus: any[];
-  protected cduSelecionado: CasoDeUso;
+  public casosDeUsoVinculado: CasoDeUso;
+  public casosDeUsoProjeto: CasoDeUso[];
+  public cdus: any[];
+  public cduSelecionado: number;
 
   constructor(
     private cduService: CasoDeUsoService,
     private requisitoService: RequisitoService,
     private fb: FormBuilder,
     private cdr: ChangeDetectorRef,
-    protected sanitize: DomSanitizer
+    public sanitize: DomSanitizer
   ) { }
 
   ngOnInit() {
@@ -97,16 +97,23 @@ export class ArtefatoCardComponent implements OnInit, OnChanges {
         this.casosDeUsoVinculado = this.casosDeUsoProjeto.find(
           (cdu: CasoDeUso) => cdu.idCasoDeUso === Number.parseInt(this.artefatoAux.idCasoDeUso.toString())
         );
+
+        this.cduSelecionado = this.casosDeUsoVinculado.id;
       }
 
-      if (this.artefatoAux.idRequisito && this.requisitoProjeto && this.requisitoProjeto.length > 0) {
-        this.requisitoVinculado = this.requisitoProjeto.find(
-          (req: Requisito) => req.id === Number.parseInt(this.artefatoAux.idRequisito.toString())
-        );
+      if (this.artefatoAux.idRequisito) {
+        if (this.requisitoProjeto && this.requisitoProjeto.length > 0) {
+          this.requisitoVinculado = this.requisitoProjeto.find(
+            (req: Requisito) => req.id === Number.parseInt(this.artefatoAux.idRequisito.toString())
+          );
+
+          this.requisitoSelecionado = this.requisitoVinculado.id;
+          this.artefatoForm.get('requisito').patchValue(this.requisitoSelecionado);
+        }
       }
 
       if (this.artefatoAux.tipoDocumento) {
-        const doc = this.base64ToBlob(this.artefatoAux.tipoDocumento);
+        const doc = this.base64ToFile(this.artefatoAux.tipoDocumento, this.artefatoAux.nome);
         this.documentoAntigo = [];
         this.documentoAntigo.push(doc);
       }
@@ -118,7 +125,7 @@ export class ArtefatoCardComponent implements OnInit, OnChanges {
   /**
    * Inicia formulário.
    */
-  protected initForm(): void {
+  public initForm(): void {
     this.artefatoForm = this.fb.group({
       nome: [this.artefatoAux.nome, [Validators.required]],
       descricao: [this.artefatoAux.descricao, [Validators.required]],
@@ -141,13 +148,13 @@ export class ArtefatoCardComponent implements OnInit, OnChanges {
     );
   }
 
-  protected documentChange(event) {
+  public documentChange(event) {
     this.artefato.documento = event.files[0];
     this.artefato.tipoDocumento = `${event.files[0].type} ${event.files[0].name.substring(event.files[0].name.length - 4)}`;
     this.artefatoForm.get('documento').setValue(this.artefato.documento);
   }
 
-  protected removerDocumento() {
+  public removerDocumento() {
     this.artefato.documento = null;
     this.artefato.tipoDocumento = '';
     this.artefatoForm.get('documento').setValue(null);
@@ -160,6 +167,20 @@ export class ArtefatoCardComponent implements OnInit, OnChanges {
     this.artefato.idCasoDeUso = this.artefatoForm.get('casoDeUso').value;
     this.artefato.documento = this.artefatoForm.get('documento').value;
     console.log(`salvarDado()`, this.artefato);
+  }
+
+  private base64ToFile(file: string, name: string) {
+    const arr = file.split(',');
+    const mime = arr[0].match(/:(.*?);/)[1];
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+
+    return new File([u8arr], name, { type: mime });
   }
 
   private base64ToBlob(documento: string) {

@@ -10,13 +10,13 @@ import { Usuario } from '../../models/usuario';
   styleUrls: ['./novo-integrante.component.css']
 })
 export class NovoIntegranteComponent implements OnInit {
-  protected blockedPanel = false;
-  protected msgErroIntegrante = 'Os campos sao obrigatorios';
-  protected integranteLog = false;
-  protected integrante: Integrante;
-  protected edit = true;
+  public blockedPanel = false;
+  public msgErroIntegrante = 'Os campos sao obrigatorios';
+  public integranteLog = false;
+  public integrante: Integrante;
+  public edit = true;
 
-  protected usuarioSelecionado: Usuario = null;
+  public usuarioSelecionado: Usuario = null;
 
   constructor(
     private integranteService: IntegranteService,

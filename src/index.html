@@ -6,9 +6,26 @@
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta name="theme-color" content="#343a40" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#343a40">
+  <meta name="msapplication-starturl" content="./">
+  <link rel="icon" type="image/x-icon" href="./assets/LOGO600x600.png">
+  <link rel="manifest" href="./manifest.json">
 </head>
 <body>
   <app-root></app-root>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./service-worker.js')
+        .then(registration => {
+          console.log('ServiceWorker registration');
+        })
+        .catch(error => {
+          console.log('ServiceWorker registration error: ', error);
+        })
+    }
+  </script>
 </body>
 </html>

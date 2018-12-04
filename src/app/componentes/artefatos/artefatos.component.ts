@@ -12,11 +12,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./artefatos.component.css']
 })
 export class ArtefatosComponent implements OnInit {
-  protected permissao: boolean;
-  protected projeto: Projeto;
-  protected artefatos: Artefato[];
-  protected blockedPanel = false;
-  protected cols: any = [
+  public permissao: boolean;
+  public projeto: Projeto;
+  public artefatos: Artefato[];
+  public blockedPanel = false;
+  public cols: any = [
     { field: 'id', header: 'ID' },
     { field: 'nome', header: 'Nome' },
     { field: 'acao', header: 'Ação' }

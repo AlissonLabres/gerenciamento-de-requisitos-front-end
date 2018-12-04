@@ -13,12 +13,12 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./requisito.component.css']
 })
 export class RequisitoComponent implements OnInit {
-  protected ocultar = false;
-  protected permissao: boolean;
-  protected projeto: Observable<Projeto>;
-  protected blockedPanel = false;
-  protected requisitos: Requisito[];
-  protected cols: { field: string, header: string }[] = [
+  public ocultar = false;
+  public permissao: boolean;
+  public projeto: Observable<Projeto>;
+  public blockedPanel = false;
+  public requisitos: Requisito[];
+  public cols: { field: string, header: string }[] = [
     { field: 'idRequisito', header: 'ID do requisito' },
     { field: 'nome', header: 'Nome' },
     { field: 'categoria', header: 'Categoria' },

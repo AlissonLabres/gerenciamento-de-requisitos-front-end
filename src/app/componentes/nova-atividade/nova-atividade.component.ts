@@ -9,9 +9,9 @@ import { Location } from '@angular/common';
   styleUrls: ['./nova-atividade.component.css']
 })
 export class NovaAtividadeComponent implements OnInit {
-  protected blockedPanel = false;
-  protected edit = true;
-  protected atividade: Atividade;
+  public blockedPanel = false;
+  public edit = true;
+  public atividade: Atividade;
   private idProjeto = localStorage['projetoId'];
 
   constructor(

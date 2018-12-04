@@ -13,9 +13,9 @@ import { ProjetoService } from '../../servicos/projeto/projeto.service';
   providers: [ConfirmationService]
 })
 export class ProjetosComponent implements OnInit {
-  protected projetos: Projeto[];
-  protected blockedPanel = false;
-  protected cols: any = [
+  public projetos: Projeto[];
+  public blockedPanel = false;
+  public cols: any = [
     { field: 'idProjeto', header: 'Id' },
     { field: 'nome', header: 'Nome' },
     { field: 'dataInicio', header: 'Data inicial' },
@@ -23,7 +23,7 @@ export class ProjetosComponent implements OnInit {
     { field: 'status', header: 'Status' },
     { field: 'acao', header: 'Ação' }
   ];
-  protected msgs: Message[] = [];
+  public msgs: Message[] = [];
 
   constructor(
     private confirmationService: ConfirmationService,

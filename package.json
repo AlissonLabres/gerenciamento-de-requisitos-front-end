@@ -9,7 +9,10 @@
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "concurrently --success first --kill-others \"npm run server\" \"ng e2e\""
+    "e2e": "concurrently --success first --kill-others \"npm run server\" \"ng e2e\"",
+    "precache": "sw-precache --root=dist/gerenciamento-de-requisitos",
+    "build:cache": "ng build --prod --aot --buildOptimizer && npm run precache",
+    "build:test": "npm run build:cache && php -S localhost:8000 -t dist/gerenciamento-de-requisitos"
   },
   "private": true,
   "dependencies": {
@@ -55,6 +58,7 @@
     "karma-jasmine": "~1.1.1",
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.3.0",
+    "sw-precache": "^5.2.1",
     "ts-node": "~5.0.1",
     "tslint": "~5.9.1",
     "typescript": "~2.7.2"

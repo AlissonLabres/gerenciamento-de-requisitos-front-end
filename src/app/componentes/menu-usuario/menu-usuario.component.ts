@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./menu-usuario.component.css']
 })
 export class MenuUsuarioComponent implements OnInit {
-  protected usuario: string;
+  public usuario: string;
   constructor(private userService: UsuarioService) { }
 
   ngOnInit() {

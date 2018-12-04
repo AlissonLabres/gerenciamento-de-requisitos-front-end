@@ -12,9 +12,9 @@ import { Artefato } from './../../models/artefato';
   styleUrls: ['./novo-artefato.component.css']
 })
 export class NovoArtefatoComponent implements OnInit {
-  protected blockedPanel = false;
-  protected edit = true;
-  protected artefato: Artefato;
+  public blockedPanel = false;
+  public edit = true;
+  public artefato: Artefato;
 
   constructor(
     private artefatoService: ArtefatoService,
@@ -33,7 +33,7 @@ export class NovoArtefatoComponent implements OnInit {
     );
   }
 
-  protected salvarArtefato() {
+  public salvarArtefato() {
     this.blockedPanel = true;
     this.artefatoService.addArtefato(this.artefato).subscribe(() => {
       this.location.back();
@@ -41,7 +41,7 @@ export class NovoArtefatoComponent implements OnInit {
     });
   }
 
-  protected cancelar() {
+  public cancelar() {
     this.location.back();
   }
 

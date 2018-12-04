@@ -11,14 +11,14 @@ import { IntegranteService } from '../../servicos/integrante/integrante.service'
   styleUrls: ['./detalhe-integrante.component.css']
 })
 export class DetalheIntegranteComponent implements OnInit {
-  protected blockedPanel = false;
-  protected edit = false;
-  protected integrante: Integrante;
-  protected permissao: boolean;
+  public blockedPanel = false;
+  public edit = false;
+  public integrante: Integrante;
+  public permissao: boolean;
 
-  protected deletarIntegranteLog = false;
-  protected erroDeletarIntegrante = false;
-  protected msgErroDeletarIntegrante: string;
+  public deletarIntegranteLog = false;
+  public erroDeletarIntegrante = false;
+  public msgErroDeletarIntegrante: string;
 
   constructor(
     private location: Location,

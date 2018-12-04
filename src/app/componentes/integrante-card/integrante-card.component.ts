@@ -28,14 +28,14 @@ export class IntegranteCardComponent implements OnInit, OnChanges {
   @Output()
   public emitUsuarioSelecionado: EventEmitter<Usuario> = new EventEmitter<Usuario>();
 
-  protected integranteAux: Integrante;
-  protected integranteForm: FormGroup;
+  public integranteAux: Integrante;
+  public integranteForm: FormGroup;
 
-  protected usuarios: any;
-  protected usuarioSelecionado: Usuario;
+  public usuarios: any;
+  public usuarioSelecionado: Usuario;
 
-  protected perfis: any;
-  protected perfilSelecionado: string;
+  public perfis: any;
+  public perfilSelecionado: string;
 
   constructor(
     private fb: FormBuilder,

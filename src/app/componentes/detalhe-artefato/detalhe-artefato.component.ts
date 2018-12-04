@@ -11,10 +11,10 @@ import { Location } from '@angular/common';
 })
 export class DetalheArtefatoComponent implements OnInit {
 
-  protected artefato: Artefato;
-  protected edit = false;
-  protected blockedPanel = false;
-  protected permissao: boolean;
+  public artefato: Artefato;
+  public edit = false;
+  public blockedPanel = false;
+  public permissao: boolean;
 
   constructor(
     private location: Location,
@@ -51,14 +51,14 @@ export class DetalheArtefatoComponent implements OnInit {
   /**
    * Redireciona para rota anterior;
    */
-  protected cancelar(): void {
+  public cancelar(): void {
     this.location.back();
   }
 
   /**
    * Bloqueia o painel de formulario e salva os dados editados do requisito.
    */
-  protected salvarEdicao(): void {
+  public salvarEdicao(): void {
     this.blockedPanel = true;
     this.artefatoService.editArtefato(this.artefato)
       .subscribe((() => {
@@ -66,7 +66,7 @@ export class DetalheArtefatoComponent implements OnInit {
       }));
   }
 
-  protected deleteArtefato(): void {
+  public deleteArtefato(): void {
     const id: number = +this.route.snapshot.paramMap.get('idArtefato');
     this.artefatoService.deleteArtefato(id).subscribe(
       () => this.location.back()

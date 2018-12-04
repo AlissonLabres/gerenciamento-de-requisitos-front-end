@@ -14,26 +14,26 @@ import { CasoDeUso } from '../../models/caso-de-uso';
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent implements OnInit {
-  protected ocultar = false;
+  public ocultar = false;
   // informacoes para relatorio:
-  protected qtdRequisitos: number;
-  protected qtdIntegrantes: number;
-  protected qtdAtividades: number;
-  protected qtdReqFuncionais: number;
-  protected qtdReqNaoFuncionais: number;
-  protected qtdReqConcluidos: number;
-  protected permissao: boolean;
+  public qtdRequisitos: number;
+  public qtdIntegrantes: number;
+  public qtdAtividades: number;
+  public qtdReqFuncionais: number;
+  public qtdReqNaoFuncionais: number;
+  public qtdReqConcluidos: number;
+  public permissao: boolean;
   /**
    * Requisitos, atividades e integrantes.
    */
-  protected reqAtvInt: any;
-  protected statusRequisitos: any;
-  protected atvStatus: any;
-  protected projeto: Projeto;
-  protected requisitos: Requisito[];
-  protected atividades: Atividade[];
-  protected integrantes: Integrante[];
-  protected cdus: CasoDeUso[];
+  public reqAtvInt: any;
+  public statusRequisitos: any;
+  public atvStatus: any;
+  public projeto: Projeto;
+  public requisitos: Requisito[];
+  public atividades: Atividade[];
+  public integrantes: Integrante[];
+  public cdus: CasoDeUso[];
 
   constructor(
     private projetoService: ProjetoService,

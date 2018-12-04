@@ -17,23 +17,23 @@ import { Usuario } from '../../models/usuario';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  protected displayCadastro = false;
-  protected erroCadastro = false;
-  protected msgErroCadastro = '';
-  protected usuarioCadastradoLog = false;
+  public displayCadastro = false;
+  public erroCadastro = false;
+  public msgErroCadastro = '';
+  public usuarioCadastradoLog = false;
 
-  protected displayEsqueceuSenha = false;
-  protected erroEsqueceuSenha = false;
-  protected msgErroEsqueceuSenha = '';
-  protected usuarioEsqueceuSenhaLog = false;
+  public displayEsqueceuSenha = false;
+  public erroEsqueceuSenha = false;
+  public msgErroEsqueceuSenha = '';
+  public usuarioEsqueceuSenhaLog = false;
 
-  protected loginForm: FormGroup;
-  protected erroLogin = false;
-  protected msgErroLogin = '';
+  public loginForm: FormGroup;
+  public erroLogin = false;
+  public msgErroLogin = '';
 
   private usuario: string;
   public save = false;
-  protected user: Usuario;
+  public user: Usuario;
 
   constructor(
     private userService: UsuarioService,

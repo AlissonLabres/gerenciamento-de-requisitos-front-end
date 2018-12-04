@@ -11,9 +11,9 @@ import { Projeto } from '../../models/projeto';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  protected projeto: string;
-  protected token: string;
-  protected projetoSelecionado: number;
+  public projeto: string;
+  public token: string;
+  public projetoSelecionado: number;
 
   constructor(
     private projetoService: ProjetoService

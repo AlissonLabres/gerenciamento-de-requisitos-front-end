@@ -10,10 +10,10 @@ import { Location } from '@angular/common';
   styleUrls: ['./detalhe-requisito.component.css']
 })
 export class DetalheRequisitoComponent implements OnInit {
-  protected requisito: Requisito;
-  protected edit = false;
-  protected blockedPanel = false;
-  protected permissao: boolean;
+  public requisito: Requisito;
+  public edit = false;
+  public blockedPanel = false;
+  public permissao: boolean;
 
   constructor(
     private location: Location,

@@ -12,9 +12,9 @@ import { UsuarioService } from '../../servicos/usuario/usuario.service';
 export class TrocaSenhaComponent implements OnInit {
   public user: Usuario;
   public trocarSenhaForm: FormGroup;
-  protected trocaSenhaLog = false;
-  protected erroTrocarSenha = false;
-  protected msgErroTrocarSenha: string;
+  public trocaSenhaLog = false;
+  public erroTrocarSenha = false;
+  public msgErroTrocarSenha: string;
 
   constructor(
     private formBuilder: FormBuilder,

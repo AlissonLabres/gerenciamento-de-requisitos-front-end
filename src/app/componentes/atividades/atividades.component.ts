@@ -11,11 +11,11 @@ import { AtividadeService } from '../../servicos/atividade/atividade.service';
   styleUrls: ['./atividades.component.css']
 })
 export class AtividadesComponent implements OnInit {
-  protected permissao: boolean;
-  protected projeto: Projeto;
-  protected atividades: Atividade[];
-  protected blockedPanel = false;
-  protected cols: any = [
+  public permissao: boolean;
+  public projeto: Projeto;
+  public atividades: Atividade[];
+  public blockedPanel = false;
+  public cols: any = [
     { field: 'idAtividade', header: 'ID' },
     { field: 'nome', header: 'Nome' },
     { field: 'status', header: 'Status' },

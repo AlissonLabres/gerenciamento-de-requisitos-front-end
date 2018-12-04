@@ -8,7 +8,7 @@ import { CasoDeUso } from 'src/app/models/caso-de-uso';
   styleUrls: ['./relatorio-casos-de-uso.component.css']
 })
 export class RelatorioCasosDeUsoComponent implements OnInit {
-  protected listarCasosdeuso: CasoDeUso[];
+  public listarCasosdeuso: CasoDeUso[];
 
   constructor(
     private cduService: CasoDeUsoService

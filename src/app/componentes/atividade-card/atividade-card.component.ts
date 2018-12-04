@@ -26,17 +26,17 @@ export class AtividadeCardComponent implements OnInit, OnChanges {
   @Input()
   public novo: boolean;
 
-  protected atividadeAux: Atividade;
-  protected atividadeForm: FormGroup;
+  public atividadeAux: Atividade;
+  public atividadeForm: FormGroup;
 
-  protected status: any;
-  protected statusSelecionado: string;
+  public status: any;
+  public statusSelecionado: string;
 
-  protected requisitos: any[];
-  protected requisitoSelecionado: Requisito;
+  public requisitos: any[];
+  public requisitoSelecionado: Requisito;
 
-  protected desenvolvedores: any;
-  protected desenvolvedorSelecionado: Integrante;
+  public desenvolvedores: any;
+  public desenvolvedorSelecionado: Integrante;
 
   constructor(
     private cdr: ChangeDetectorRef,

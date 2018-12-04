@@ -9,10 +9,10 @@ import { ProjetoService } from '../../servicos/projeto/projeto.service';
   styleUrls: ['./novo-projeto.component.css']
 })
 export class NovoProjetoComponent implements OnInit {
-  protected blockedPanel = false;
-  protected msgErroProjeto = 'Os campos sao obrigatorios';
-  protected projeto: Projeto;
-  protected edit = true;
+  public blockedPanel = false;
+  public msgErroProjeto = 'Os campos sao obrigatorios';
+  public projeto: Projeto;
+  public edit = true;
 
   constructor(
     private projetoService: ProjetoService,

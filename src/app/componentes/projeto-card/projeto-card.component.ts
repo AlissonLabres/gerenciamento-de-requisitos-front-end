@@ -13,11 +13,11 @@ export class ProjetoCardComponent implements OnInit, OnChanges {
   public edit: boolean;
   @Input()
   public projeto: Projeto;
-  protected projetoAux: Projeto;
-  protected projetoForm: FormGroup;
+  public projetoAux: Projeto;
+  public projetoForm: FormGroup;
 
-  protected status: { label: string, value: string }[] = [];
-  protected statusSelecionado: string;
+  public status: { label: string, value: string }[] = [];
+  public statusSelecionado: string;
 
   constructor(private fb: FormBuilder) { }
 

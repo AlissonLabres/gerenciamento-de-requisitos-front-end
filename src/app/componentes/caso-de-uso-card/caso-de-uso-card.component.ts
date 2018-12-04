@@ -13,16 +13,16 @@ export class CasoDeUsoCardComponent implements OnChanges {
   public edit: boolean;
   @Input()
   public casoDeUso: CasoDeUso;
-  protected casoDeUsoAux: CasoDeUso;
-  protected casoDeUsoForm: FormGroup;
-  protected nivel: any;
-  protected nivelSelecionado: string;
+  public casoDeUsoAux: CasoDeUso;
+  public casoDeUsoForm: FormGroup;
+  public nivel: any;
+  public nivelSelecionado: string;
 
-  protected status: { label: string, value: string }[];
-  protected statusSelecionado: string;
+  public status: { label: string, value: string }[];
+  public statusSelecionado: string;
 
-  protected display = false;
-  protected projetoSelecionado = localStorage.projetoId;
+  public display = false;
+  public projetoSelecionado = localStorage.projetoId;
 
   constructor(
     private cdr: ChangeDetectorRef,

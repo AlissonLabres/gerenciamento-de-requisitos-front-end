@@ -8,7 +8,7 @@ import { Requisito } from 'src/app/models/requisito';
   styleUrls: ['./relatorio-requisitos.component.css']
 })
 export class RelatorioRequisitosComponent implements OnInit {
-  protected listarRequisitos: Requisito[];
+  public listarRequisitos: Requisito[];
   constructor(
     private requisitoService: RequisitoService
   ) { }

@@ -11,10 +11,10 @@ import { Requisito } from '../../models/requisito';
   styleUrls: ['./novo-requisito.component.css']
 })
 export class NovoRequisitoComponent implements OnInit {
-  protected blockedPanel = false;
-  protected edit = true;
-  protected requisito: Requisito;
-  protected msgErroRequisito = 'Os campos sao obrigatorios';
+  public blockedPanel = false;
+  public edit = true;
+  public requisito: Requisito;
+  public msgErroRequisito = 'Os campos sao obrigatorios';
 
   constructor(
     private requisitoService: RequisitoService,

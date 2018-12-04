@@ -13,20 +13,20 @@ export class RequisitoCardComponent implements OnInit, OnChanges {
   public edit: boolean;
   @Input()
   public requisito: Requisito;
-  protected requisitoAux: Requisito;
-  protected requisitoForm: FormGroup;
+  public requisitoAux: Requisito;
+  public requisitoForm: FormGroup;
 
-  protected importancia: { label: string, value: string }[];
-  protected importanciaSelecionada: string;
+  public importancia: { label: string, value: string }[];
+  public importanciaSelecionada: string;
 
-  protected categoria: { label: string, value: string }[];
-  protected categoriaSelecionada: string;
+  public categoria: { label: string, value: string }[];
+  public categoriaSelecionada: string;
 
-  protected status: { label: string, value: string }[];
-  protected statusSelecionado: string;
+  public status: { label: string, value: string }[];
+  public statusSelecionado: string;
 
-  protected display = false;
-  protected projetoSelecionado = localStorage.projetoId;
+  public display = false;
+  public projetoSelecionado = localStorage.projetoId;
 
   constructor(
     private cdr: ChangeDetectorRef,

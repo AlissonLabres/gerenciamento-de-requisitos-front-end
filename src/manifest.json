@@ -1,0 +1,30 @@
+{
+  "name": "Gerencimento de Requisitos",
+  "short_name": "GDR",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#343a40",
+  "theme_color": "#343a40",
+  "icons": [
+    {
+      "src": "./assets/LOGO128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "./assets/LOGO144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "./assets/LOGO192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./assets/LOGO600x600.png",
+      "sizes": "600x600",
+      "type": "image/png"
+    }
+  ]
+}

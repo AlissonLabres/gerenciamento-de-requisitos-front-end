@@ -11,12 +11,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./casos-de-uso.component.css']
 })
 export class CasosDeUsoComponent implements OnInit {
-  protected ocultar = false;
-  protected permissao: boolean;
-  protected projeto: Projeto;
-  protected casosDeUso: CasoDeUso[];
-  protected blockedPanel = false;
-  protected cols: { field: string, header: string }[] = [
+  public ocultar = false;
+  public permissao: boolean;
+  public projeto: Projeto;
+  public casosDeUso: CasoDeUso[];
+  public blockedPanel = false;
+  public cols: { field: string, header: string }[] = [
     { field: 'idCasoDeUso', header: 'UC' },
     { field: 'nome', header: 'Nome' },
     { field: 'nivel', header: 'Nivel' },

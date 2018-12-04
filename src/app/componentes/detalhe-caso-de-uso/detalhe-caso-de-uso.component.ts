@@ -11,10 +11,10 @@ import { CasoDeUso } from '../../models/caso-de-uso';
   styleUrls: ['./detalhe-caso-de-uso.component.css']
 })
 export class DetalheCasoDeUsoComponent implements OnInit {
-  protected edit = false;
-  protected blockedPanel = false;
-  protected casoDeUso: CasoDeUso;
-  protected permissao: boolean;
+  public edit = false;
+  public blockedPanel = false;
+  public casoDeUso: CasoDeUso;
+  public permissao: boolean;
 
   constructor(
     private location: Location,

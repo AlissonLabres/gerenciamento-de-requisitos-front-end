@@ -11,11 +11,11 @@ import { ProjetoService } from '../../servicos/projeto/projeto.service';
   styleUrls: ['./integrantes.component.css']
 })
 export class IntegrantesComponent implements OnInit {
-  protected permissao: boolean;
-  protected projeto: Projeto;
-  protected integrantes: Integrante[];
-  protected blockedPanel = false;
-  protected cols: any = [
+  public permissao: boolean;
+  public projeto: Projeto;
+  public integrantes: Integrante[];
+  public blockedPanel = false;
+  public cols: any = [
     { field: 'id', header: 'ID' },
     { field: 'nome', header: 'Nome' },
     { field: 'perfil', header: 'Perfil' },
