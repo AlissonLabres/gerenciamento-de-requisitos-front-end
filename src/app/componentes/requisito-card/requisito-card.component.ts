@@ -28,6 +28,8 @@ export class RequisitoCardComponent implements OnInit, OnChanges {
   public display = false;
   public projetoSelecionado = localStorage.projetoId;
 
+  tooltipPosition: string;
+
   constructor(
     private cdr: ChangeDetectorRef,
     private fb: FormBuilder,
@@ -52,6 +54,8 @@ export class RequisitoCardComponent implements OnInit, OnChanges {
       { label: 'Funcional', value: 'Funcional' },
       { label: 'Não Funcional', value: 'Nao Funcional' }
     ];
+
+    this.tooltipPosition = window.screen.width < 600 ? 'top' : 'right';
   }
 
   ngOnChanges(changes: SimpleChanges) {

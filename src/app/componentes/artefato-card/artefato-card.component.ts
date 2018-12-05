@@ -47,6 +47,8 @@ export class ArtefatoCardComponent implements OnInit, OnChanges {
   public cdus: any[];
   public cduSelecionado: number;
 
+  tooltipPosition: string;
+
   constructor(
     private cduService: CasoDeUsoService,
     private requisitoService: RequisitoService,
@@ -85,6 +87,8 @@ export class ArtefatoCardComponent implements OnInit, OnChanges {
         }
       }
     );
+
+    this.tooltipPosition = window.screen.width < 600 ? 'top' : 'right';
   }
 
   ngOnChanges(changes: SimpleChanges) {

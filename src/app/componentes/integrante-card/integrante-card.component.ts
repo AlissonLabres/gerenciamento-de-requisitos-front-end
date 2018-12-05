@@ -37,6 +37,8 @@ export class IntegranteCardComponent implements OnInit, OnChanges {
   public perfis: any;
   public perfilSelecionado: string;
 
+  tooltipPosition: string;
+
   constructor(
     private fb: FormBuilder,
     private usuarioService: UsuarioService,
@@ -47,7 +49,7 @@ export class IntegranteCardComponent implements OnInit, OnChanges {
     this.perfis = [
       { label: 'Selecione', value: null },
       { label: 'Analista', value: 'Analista' },
-      { label: 'Desenvolvedor', value: 'Desenvolvendo' },
+      { label: 'Desenvolvedor', value: 'Desenvolvedor' },
       { label: 'Visitante', value: 'Visitante' }
     ];
 
@@ -64,6 +66,8 @@ export class IntegranteCardComponent implements OnInit, OnChanges {
         }
       }
     );
+
+    this.tooltipPosition = window.screen.width < 600 ? 'top' : 'right';
   }
 
   ngOnChanges(changes: SimpleChanges) {

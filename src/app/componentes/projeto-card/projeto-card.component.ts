@@ -19,6 +19,8 @@ export class ProjetoCardComponent implements OnInit, OnChanges {
   public status: { label: string, value: string }[] = [];
   public statusSelecionado: string;
 
+  public tooltipPosition: string;
+
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -26,6 +28,8 @@ export class ProjetoCardComponent implements OnInit, OnChanges {
     for (const status of Status) {
       this.status.push({ label: status, value: status });
     }
+
+    this.tooltipPosition = window.screen.width < 600 ? 'top' : 'right';
   }
 
   ngOnChanges(changes: SimpleChanges) {

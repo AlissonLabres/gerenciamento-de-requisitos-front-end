@@ -24,6 +24,8 @@ export class CasoDeUsoCardComponent implements OnChanges {
   public display = false;
   public projetoSelecionado = localStorage.projetoId;
 
+  tooltipPosition: string;
+
   constructor(
     private cdr: ChangeDetectorRef,
     private fb: FormBuilder
@@ -36,11 +38,12 @@ export class CasoDeUsoCardComponent implements OnChanges {
 
     this.nivel = [
       { label: 'Selecione', value: null },
-      { label: 'Essencial', value: 'Essencial' },
-      { label: 'Muito', value: 'Muito' },
+      { label: 'Alto', value: 'Alto' },
       { label: 'Médio', value: 'Medio' },
-      { label: 'Pouco', value: 'Pouco' },
+      { label: 'Baixo', value: 'Baixo' },
     ];
+
+    this.tooltipPosition = window.screen.width < 600 ? 'top' : 'right';
   }
 
   ngOnChanges(changes: SimpleChanges) {

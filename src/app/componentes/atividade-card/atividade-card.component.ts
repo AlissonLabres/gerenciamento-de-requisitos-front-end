@@ -12,6 +12,7 @@ import { Requisito } from '../../models/requisito';
 import { Integrante } from '../../models/integrante';
 import { RequisitoService } from '../../servicos/requisito/requisito.service';
 import { IntegranteService } from '../../servicos/integrante/integrante.service';
+import { Status } from 'src/app/conts/status';
 
 @Component({
   selector: 'app-atividade-card',
@@ -29,32 +30,29 @@ export class AtividadeCardComponent implements OnInit, OnChanges {
   public atividadeAux: Atividade;
   public atividadeForm: FormGroup;
 
+  tooltipPosition: string;
+
   public status: any;
   public statusSelecionado: string;
 
   public requisitos: any[];
-  public requisitoSelecionado: Requisito;
+  public requisitoSelecionado: number;
 
   public desenvolvedores: any;
-  public desenvolvedorSelecionado: Integrante;
+  public desenvolvedorSelecionado: number;
 
   constructor(
     private cdr: ChangeDetectorRef,
     private fb: FormBuilder,
     private requisitoService: RequisitoService,
     private integranteService: IntegranteService
-  ) {
-    this.status = [
-      { label: 'Selecione', value: null },
-      { label: 'Iniciar', value: 'Ha iniciar' },
-      { label: 'Desenvolvendo', value: 'Desenvolvendo' },
-      { label: 'Testando', value: 'Testando' },
-      { label: 'Parado', value: 'Parado' },
-      { label: 'Concluido', value: 'Concluido' },
-    ];
-  }
+  ) { }
 
   ngOnInit() {
+    this.status.push({ label: 'Selecione', value: null });
+    for (const status of Status) {
+      this.status.push({ label: status, value: status });
+    }
 
     this.requisitoService.getRequisitos().subscribe(
       (requisitos: Requisito[]) => {
@@ -81,6 +79,8 @@ export class AtividadeCardComponent implements OnInit, OnChanges {
           this.desenvolvedores.unshift({ label: 'Selecione', value: null });
         }
       });
+
+    this.tooltipPosition = window.screen.width < 600 ? 'top' : 'right';
   }
 
   ngOnChanges(changes: SimpleChanges) {
